@@ -9,6 +9,12 @@ public class RocketScript : MonoBehaviour {
     public GameObject rocketPrefab;
     Vector3 pos;
     bool shot = false;
+    string type;
+
+    private void Awake()
+    {
+        type = gameObject.GetComponent<CharacterControls>().type;
+    }
 
     // Use this for initialization
     void Start () {
@@ -23,7 +29,7 @@ public class RocketScript : MonoBehaviour {
             shot = true;
             Instantiate(rocketPrefab, pos, Quaternion.Euler(0, 0, 90));
         }
-		if(Input.GetKeyDown(KeyCode.Space) && rocket)
+		if(Input.GetAxis("Fire" + type) > 0 && rocket)
         {
             Instantiate(rocketPrefab, pos, Quaternion.Euler(0, 0, 90));
         }
