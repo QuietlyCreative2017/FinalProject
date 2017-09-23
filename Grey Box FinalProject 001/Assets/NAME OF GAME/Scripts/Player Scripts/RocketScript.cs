@@ -24,13 +24,14 @@ public class RocketScript : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         pos = new Vector3(gameObject.transform.position.x + 2, gameObject.transform.position.y, gameObject.transform.position.z);
-        if(XCI.GetButtonDown(XboxButton.B) && rocket)
+        if(XCI.GetButtonDown(XboxButton.B) && rocket && !shot)
         {
             shot = true;
             Instantiate(rocketPrefab, pos, Quaternion.Euler(0, 0, 90));
         }
-		if(Input.GetAxis("Fire" + type) > 0 && rocket)
+		if(Input.GetAxis("Fire" + type) > 0 && rocket && !shot)
         {
+            shot = true;
             Instantiate(rocketPrefab, pos, Quaternion.Euler(0, 0, 90));
         }
 	}

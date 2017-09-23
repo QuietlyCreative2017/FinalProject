@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using XboxCtrlrInput;
+using XInputDotNetPure;
 
 public class GameManager : MonoBehaviour
 {
