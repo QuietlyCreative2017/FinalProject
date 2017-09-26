@@ -6,7 +6,7 @@ public class CheckpointScript : MonoBehaviour
 {
 
     GameObject[] player;
-    bool toggled = false;
+    public bool toggled = false;
 
     // Use this for initialization
     void Start()

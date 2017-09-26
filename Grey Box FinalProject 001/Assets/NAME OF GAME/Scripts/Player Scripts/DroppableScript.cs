@@ -25,14 +25,14 @@ public class DroppableScript : MonoBehaviour {
         switch (type)
         {
             case "WASD":
-                if(Input.GetKeyDown(KeyCode.LeftAlt))
+                if(Input.GetKeyDown(KeyCode.LeftAlt) && canUse)
                 {
                     Instantiate(droppableObject, new Vector3(gameObject.transform.position.x - 2, gameObject.transform.position.y, gameObject.transform.position.z), new Quaternion(0, 0, 0, 0));
                     canUse = false;
                 }
                 break;
             case "Key":
-                if (Input.GetKeyDown(KeyCode.RightShift))
+                if (Input.GetKeyDown(KeyCode.RightShift) && canUse)
                 {
                     Instantiate(droppableObject, new Vector3(gameObject.transform.position.x - 2, gameObject.transform.position.y, gameObject.transform.position.z), new Quaternion(0, 0, 0, 0));
                     canUse = false;

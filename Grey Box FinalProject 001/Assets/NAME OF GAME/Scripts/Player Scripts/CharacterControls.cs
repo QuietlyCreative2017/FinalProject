@@ -14,12 +14,15 @@ public class CharacterControls : MonoBehaviour
     //JUMP STUFF
     public bool grounded;
     [Tooltip("How fast the player jumps")]
+
+    //////////////Jumping//////////////
     public float JumpVel;
     [Tooltip("Max jump time (for setting a maximum jump height)")]
     public float JumpTime;
     [Tooltip("Tracks how long you've been jumping")]
-    public float JumpTimeCounter;
+    float JumpTimeCounter;
     public bool StoppedJumping;
+    //////////////Jumping//////////////
     [Tooltip("Key input type (WASD / Key(arrows))")]
     public string type;
     public float maxSpeed;
@@ -32,6 +35,8 @@ public class CharacterControls : MonoBehaviour
     public Vector3 gravity;
     public float m_JumpVel;
 
+    int distToGround;
+
     private void Awake()
     {
         rb = gameObject.GetComponent<Rigidbody>();
@@ -43,13 +48,13 @@ public class CharacterControls : MonoBehaviour
         JumpTimeCounter = JumpTime;
     }
 
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.tag == "Ground")
-        {
-            grounded = true;
-        }
-    }
+    //private void OnCollisionEnter(Collision collision)
+    //{
+    //    if (collision.gameObject.tag == "Ground")
+    //    {
+    //        grounded = true;
+    //    }
+    //}
     //
     //private void OnCollisionStay(Collision collision)
     //{
@@ -58,21 +63,23 @@ public class CharacterControls : MonoBehaviour
     //        grounded = true;
     //    }
     //}
-
-    private void OnCollisionExit(Collision collision)
-    {
-        if (collision.gameObject.tag == "Ground")
-        {
-            grounded = false;
-        }
-    }
+    //
+    //private void OnCollisionExit(Collision collision)
+    //{
+    //    if (collision.gameObject.tag == "Ground")
+    //    {
+    //        grounded = false;
+    //    }
+    //}
 
 
     // Update is called once per frame
     void Update()
     {
-        Debug.Log("velocity: " + rb.velocity + ".");
-        
+        Debug.Log("velocity: " + (uint)rb.velocity.x + ".");
+
+        grounded = IsGrounded();
+
         //transform.Translate(direction);
         if (grounded)
         {
@@ -92,16 +99,23 @@ public class CharacterControls : MonoBehaviour
         //v = Input.GetAxis("Vertical");
         direction = new Vector3(h, 0, 0);
         direction.x *= speed;
-
         //movement force
-        rb.velocity = (direction);
+
+        if (rb.velocity.x <= maxSpeed && rb.velocity.x >= -maxSpeed)
+        {
+            rb.AddForce(direction);
+        }
 
 
         ////////////////////////Start Gravity////////////////////////
         if ((!grounded || rb.velocity.y > 0 || rb.velocity.y < 0) && StoppedJumping)
         {
-           // if(gravity.y >= -200)
-            gravity += new Vector3(0, gravityforce, 0);
+            // if(gravity.y >= -200)
+            if (gravity.y >= -100)
+            {
+                gravity += new Vector3(0, gravityforce, 0);
+
+            }
 
         }
         rb.AddForce(gravity);
@@ -184,5 +198,24 @@ public class CharacterControls : MonoBehaviour
     IEnumerator stun()
     {
         yield return new WaitForSeconds(5f);
+    }
+
+    bool IsStuck()
+    {
+        return Physics.Raycast(transform.position, Vector3.right, 1, 1);
+    }
+
+    bool IsGrounded()
+    {
+        if (Physics.Raycast(transform.position, -Vector3.up, 1))
+            return true;
+
+        if (Physics.Raycast(new Vector3(transform.position.x + 1, transform.position.y, transform.position.z), -Vector3.up, 1))
+            return true;
+
+        if (Physics.Raycast(new Vector3(transform.position.x - 1, transform.position.y, transform.position.z), -Vector3.up, 1))
+            return true;
+
+        return false;
     }
 }
