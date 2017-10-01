@@ -22,7 +22,7 @@ public class SpeedUp : MonoBehaviour {
             other.gameObject.GetComponent<CharacterControls>().speed *= 2;
         }
 
-        Camera.main.GetComponent<CameraScript>().translate *= 2;
+        Camera.main.GetComponent<CameraScript>().translate *= 3;
     }
 
     private void OnTriggerExit(Collider other)
@@ -33,6 +33,6 @@ public class SpeedUp : MonoBehaviour {
             other.gameObject.GetComponent<CharacterControls>().speed /= 2;
         }
 
-        Camera.main.GetComponent<CameraScript>().translate /= 2;
+        Camera.main.GetComponent<CameraScript>().translate /= 3;
     }
 }

@@ -100,7 +100,7 @@ public class CharacterControls : MonoBehaviour
         direction = new Vector3(h, 0, 0);
         direction.x *= speed;
         //movement force
-
+        
         if (rb.velocity.x <= maxSpeed && rb.velocity.x >= -maxSpeed)
         {
             rb.AddForce(direction);
