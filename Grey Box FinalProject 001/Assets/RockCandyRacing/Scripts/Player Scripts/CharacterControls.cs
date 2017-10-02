@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using XboxCtrlrInput;
+using XInputDotNetPure;
 
 public class CharacterControls : MonoBehaviour
 {
@@ -37,6 +38,12 @@ public class CharacterControls : MonoBehaviour
 
     int distToGround;
 
+    public PlayerIndex playerIndex;
+    GamePadState currentState;
+    GamePadState previousState;
+
+
+    public Vector3 forceForward;
     private void Awake()
     {
         rb = gameObject.GetComponent<Rigidbody>();
@@ -48,35 +55,10 @@ public class CharacterControls : MonoBehaviour
         JumpTimeCounter = JumpTime;
     }
 
-    //private void OnCollisionEnter(Collision collision)
-    //{
-    //    if (collision.gameObject.tag == "Ground")
-    //    {
-    //        grounded = true;
-    //    }
-    //}
-    //
-    //private void OnCollisionStay(Collision collision)
-    //{
-    //    if (collision.gameObject.tag == "Ground")
-    //    {
-    //        grounded = true;
-    //    }
-    //}
-    //
-    //private void OnCollisionExit(Collision collision)
-    //{
-    //    if (collision.gameObject.tag == "Ground")
-    //    {
-    //        grounded = false;
-    //    }
-    //}
-
-
     // Update is called once per frame
     void Update()
     {
-        Debug.Log("velocity: " + (uint)rb.velocity.x + ".");
+        HandleXinput();
 
         grounded = IsGrounded();
 
@@ -89,21 +71,66 @@ public class CharacterControls : MonoBehaviour
         }
     }
 
+    void HandleXinput()
+    {
+        currentState = GamePad.GetState(playerIndex);
+
+        if (!currentState.IsConnected)
+        {
+            return;
+        }
+
+        
+        h = currentState.ThumbSticks.Left.X;
+
+        //jump by pushing A
+        if (previousState.Buttons.A == ButtonState.Released && currentState.Buttons.A == ButtonState.Pressed)
+        {
+            if (grounded)
+            {
+                //jump!
+                rb.velocity = new Vector3(rb.velocity.x, m_JumpVel, 0);
+                StoppedJumping = false;
+                JumpTimeCounter = JumpTime;
+            }
+        }
+
+        if (!StoppedJumping)
+        {
+            //and your counter hasn't reached zero...
+            if (JumpTimeCounter > 0)
+            {
+                //keep jumping!
+                rb.velocity = new Vector3(rb.velocity.x, m_JumpVel, 0);
+                JumpTimeCounter -= Time.deltaTime;
+            }
+        }
+
+        if ((previousState.Buttons.A == ButtonState.Released && currentState.Buttons.A == ButtonState.Released && JumpTimeCounter <= JumpTime / 1.5f) || JumpTimeCounter <= 0)
+        {
+            JumpTimeCounter = 0;
+            StoppedJumping = true;
+        }
+
+
+        previousState = currentState;
+    }
+
 
     //Uses collision events and calculates if your object is inside a different one
     //handy for making sure you dont go inside other things
     private void FixedUpdate()
     {
-        h = Input.GetAxis("Horizontal" + type);
-        //h = XCI.GetAxis(XboxAxis.LeftStickX);
-        //v = Input.GetAxis("Vertical");
-        direction = new Vector3(h, 0, 0);
-        direction.x *= speed;
+        //h = Input.GetAxis("Horizontal" + type);
+        //direction = new Vector3(h, 0, 0);
+        forceForward = new Vector3(h, 0, 0);
+        //direction.x *= speed;
+        forceForward.x *= speed;
+
         //movement force
-        
         if (rb.velocity.x <= maxSpeed && rb.velocity.x >= -maxSpeed)
         {
-            rb.AddForce(direction);
+            rb.AddForce(forceForward);
         }
 
 
@@ -130,49 +157,50 @@ public class CharacterControls : MonoBehaviour
 
             }
         }
+        ////////////////////////End jump reduction////////////////////////
 
         //if you press down the mouse button...
-        if (Input.GetAxis("Vertical" + type) > 0)
-        {
-            //if (XCI.GetButton(XboxButton.A))
-            //{
-            //and you are on the ground...
-            if (grounded)
-            {
-                //jump!
-                rb.velocity = new Vector3(rb.velocity.x, m_JumpVel, 0);
-                StoppedJumping = false;
-                JumpTimeCounter = JumpTime;
-            }
-
-            //}
-        }
-
-        //if you keep holding down the mouse button...
-        if (/*(Input.GetAxis("Vertical" + type) > 0) &&*/ !StoppedJumping)
-        {
-            //if (XCI.GetButton(XboxButton.A) && !StoppedJumping)
-            //{
-            //and your counter hasn't reached zero...
-            if (JumpTimeCounter > 0)
-            {
-                //keep jumping!
-                rb.velocity = new Vector3(rb.velocity.x, m_JumpVel, 0);
-                JumpTimeCounter -= Time.deltaTime;
-            }
-            //}
-        }
-
-        //if you stop holding down the mouse button...
-        if ((Input.GetAxis("Vertical" + type) <= 0 && JumpTimeCounter <= JumpTime / 1.5f) || JumpTimeCounter <= 0)
-        {
-            //if (XCI.GetButtonUp(XboxButton.A) && !StoppedJumping)
-            // {
-            //stop jumping and set counter to zero.
-            JumpTimeCounter = 0;
-            StoppedJumping = true;
-            //}
-        }
+        //if (Input.GetAxis("Vertical" + type) > 0)
+        //{
+        //    //if (XCI.GetButton(XboxButton.A))
+        //    //{
+        //    //and you are on the ground...
+        //    if (grounded)
+        //    {
+        //        //jump!
+        //        rb.velocity = new Vector3(rb.velocity.x, m_JumpVel, 0);
+        //        StoppedJumping = false;
+        //        JumpTimeCounter = JumpTime;
+        //    }
+        //
+        //    //}
+        //}
+        //
+        ////if you keep holding down the mouse button...
+        //if (/*(Input.GetAxis("Vertical" + type) > 0) &&*/ !StoppedJumping)
+        //{
+        //    //if (XCI.GetButton(XboxButton.A) && !StoppedJumping)
+        //    //{
+        //    //and your counter hasn't reached zero...
+        //    if (JumpTimeCounter > 0)
+        //    {
+        //        //keep jumping!
+        //        rb.velocity = new Vector3(rb.velocity.x, m_JumpVel, 0);
+        //        JumpTimeCounter -= Time.deltaTime;
+        //    }
+        //    //}
+        //}
+        //
+        ////if you stop holding down the mouse button...
+        //if ((Input.GetAxis("Vertical" + type) <= 0 && JumpTimeCounter <= JumpTime / 1.5f) || JumpTimeCounter <= 0)
+        //{
+        //    //if (XCI.GetButtonUp(XboxButton.A) && !StoppedJumping)
+        //    // {
+        //    //stop jumping and set counter to zero.
+        //    JumpTimeCounter = 0;
+        //    StoppedJumping = true;
+        //    //}
+        //}
     }
 
     public void Slow()

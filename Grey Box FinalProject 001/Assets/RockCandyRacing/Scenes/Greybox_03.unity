@@ -2293,8 +2293,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cam: {fileID: 0}
-  translate: {x: 1, y: 0, z: 0}
-  transSpeed: 20
+  translate: {x: 0.2, y: 0, z: 0}
   fovSpeed: 1
 --- !u!81 &546855566
 AudioListener:
@@ -5278,6 +5277,15 @@ Prefab:
       value: 
       objectReference: {fileID: 13400000, guid: a8f3ce66f44af544a9aeb9d554074a2e,
         type: 2}
+    - target: {fileID: 114602163639671874, guid: 14477b45314ba894aa9242d70d18b82b,
+        type: 2}
+      propertyPath: playerIndex
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1967706111451934, guid: 14477b45314ba894aa9242d70d18b82b, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 54311844466181264, guid: 14477b45314ba894aa9242d70d18b82b, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 14477b45314ba894aa9242d70d18b82b, type: 2}
@@ -5737,7 +5745,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh-515386
+  m_Name: pb_Mesh-1562
   serializedVersion: 8
   m_SubMeshes:
   - serializedVersion: 2
@@ -8060,7 +8068,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh-532796
+  m_Name: pb_Mesh-1374
   serializedVersion: 8
   m_SubMeshes:
   - serializedVersion: 2
@@ -11000,6 +11008,11 @@ Prefab:
       value: 
       objectReference: {fileID: 13400000, guid: a8f3ce66f44af544a9aeb9d554074a2e,
         type: 2}
+    - target: {fileID: 114602163639671874, guid: 14477b45314ba894aa9242d70d18b82b,
+        type: 2}
+      propertyPath: playerIndex
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 54311844466181264, guid: 14477b45314ba894aa9242d70d18b82b, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 14477b45314ba894aa9242d70d18b82b, type: 2}

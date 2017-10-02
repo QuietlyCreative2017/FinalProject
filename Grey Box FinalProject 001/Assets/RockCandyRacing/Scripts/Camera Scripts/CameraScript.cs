@@ -12,6 +12,8 @@ public class CameraScript : MonoBehaviour
     Rigidbody rb;
     GameObject leader;
 
+
+    Vector3 displacement;
     private void Awake()
     {
         player = GameObject.FindGameObjectsWithTag("Player");
@@ -22,19 +24,26 @@ public class CameraScript : MonoBehaviour
     void Start()
     {
         pos = new[] { new Vector3(0f, 0f, 0f), new Vector3(0f, 0f, 0f) };
-        
+        displacement = new Vector3(0, 0, 0);
     }
 
     void Update()
     {
-        gameObject.transform.parent = null;
         leader = SortDistance();
-        Debug.Log(SortDistance().name);
+        //displacement = new Vector3(leader.transform.position.x, gameObject.transform.position.y, gameObject.transform.position.z);
+        //if (Camera.main.WorldToViewportPoint(leader.transform.position).x >= 0.5f)
+        //{
+        //    if (leader.GetComponent<Rigidbody>().velocity.x > 0 && leader.GetComponent<Rigidbody>().velocity.x <= 12)
+        //    {
+        //        gameObject.transform.position = displacement;
+        //    }
+        //}
     }
 
     // Update is called once per frame
     void LateUpdate()
     {
+
         for (int i = 0; i < 2; i++)
         {
             pos[i] = Camera.main.WorldToViewportPoint(player[i].transform.position);
