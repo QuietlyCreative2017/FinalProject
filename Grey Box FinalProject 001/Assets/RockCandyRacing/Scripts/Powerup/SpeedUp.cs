@@ -4,8 +4,13 @@ using UnityEngine;
 
 public class SpeedUp : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
+    [Tooltip("Speed increase whilst in zone")]
+    public float InitialSpeedAmount;
+    [Tooltip("Speed increase as you leave the zone(to shoot out)")]
+    public float ExitSpeedAmount;
+
+    // Use this for initialization
+    void Start () {
 		
 	}
 	
@@ -18,7 +23,7 @@ public class SpeedUp : MonoBehaviour {
     {
         if (other.gameObject.tag == "Player")
         {
-            other.gameObject.GetComponent<Rigidbody>().AddForce(other.gameObject.GetComponent<CharacterControls>().forceForward * 10);
+            other.gameObject.GetComponent<Rigidbody>().AddForce(new Vector3(InitialSpeedAmount, 0, 0));
         }
 
         Camera.main.GetComponent<CameraScript>().translate *= 6;
@@ -28,7 +33,7 @@ public class SpeedUp : MonoBehaviour {
     {
         if (other.gameObject.tag == "Player")
         {
-           
+            other.gameObject.GetComponent<Rigidbody>().AddForce(new Vector3(ExitSpeedAmount, 0, 0));
         }
 
         Camera.main.GetComponent<CameraScript>().translate /= 3;

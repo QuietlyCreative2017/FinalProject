@@ -17,7 +17,7 @@ public class CheckpointScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        for (int i = 0; i < 2; i++)
+        for (int i = 0; i < player.Length; i++)
         {
             if (player[i].transform.position.x >= gameObject.transform.position.x)
             {

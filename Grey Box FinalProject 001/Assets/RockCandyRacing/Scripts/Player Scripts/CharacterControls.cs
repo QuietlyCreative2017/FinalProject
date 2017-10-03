@@ -8,42 +8,43 @@ public class CharacterControls : MonoBehaviour
 {
 
     float h;
-    float v;
     Vector3 direction;
     public float speed;
 
-    //JUMP STUFF
-    public bool grounded;
-    [Tooltip("How fast the player jumps")]
 
     //////////////Jumping//////////////
+    bool grounded;
+    [Tooltip("How fast the player jumps")]
     public float JumpVel;
     [Tooltip("Max jump time (for setting a maximum jump height)")]
     public float JumpTime;
     [Tooltip("Tracks how long you've been jumping")]
     float JumpTimeCounter;
-    public bool StoppedJumping;
+    bool StoppedJumping;
     //////////////Jumping//////////////
-    [Tooltip("Key input type (WASD / Key(arrows))")]
-    public string type;
-    public float maxSpeed;
-    public int playerNumber;
 
-    public Transform Ground;
+    [Tooltip("Key input type (WASD / Key(arrows)) for debugging without controller")]
+    public string type;
+    [Tooltip("Maximum velocity")]
+    public float maxSpeed;
 
     Rigidbody rb;
+    [Tooltip("How much gravity you want")]
     public float gravityforce;
-    public Vector3 gravity;
-    public float m_JumpVel;
+    Vector3 gravity;
+    float m_JumpVel;
 
+    //CHECK FOR GROUNDED
     int distToGround;
 
+    //XINPUT REQS
+    [Tooltip("Player #, needed for input controls")]
     public PlayerIndex playerIndex;
     GamePadState currentState;
     GamePadState previousState;
 
 
-    public Vector3 forceForward;
+    Vector3 forceForward;
     private void Awake()
     {
         rb = gameObject.GetComponent<Rigidbody>();
@@ -69,19 +70,39 @@ public class CharacterControls : MonoBehaviour
             m_JumpVel = JumpVel;
             //JumpTimeCounter = JumpTime;
         }
+        //Debug.Log(gravity.y);
     }
 
     void HandleXinput()
     {
         currentState = GamePad.GetState(playerIndex);
 
+        //if controller index isn't connected
         if (!currentState.IsConnected)
         {
+            //break out of function
             return;
         }
 
-        
-        h = currentState.ThumbSticks.Left.X;
+        //get left stick for movement
+        if (IsStuckLeft())
+        {
+            if(Mathf.Sign(currentState.ThumbSticks.Left.X) == -1)
+            {
+                h = currentState.ThumbSticks.Left.X;
+            }   
+        }
+        else if(IsStuckRight())
+        {
+            if (Mathf.Sign(currentState.ThumbSticks.Left.X) == 1)
+            {
+                h = currentState.ThumbSticks.Left.X;
+            }
+        }
+        else
+        {
+            h = currentState.ThumbSticks.Left.X;
+        }
 
         //jump by pushing A
         if (previousState.Buttons.A == ButtonState.Released && currentState.Buttons.A == ButtonState.Pressed)
@@ -106,8 +127,11 @@ public class CharacterControls : MonoBehaviour
             }
         }
 
+        //if you have released a and minimum jump is reached
+        //or you jump for the full time
         if ((previousState.Buttons.A == ButtonState.Released && currentState.Buttons.A == ButtonState.Released && JumpTimeCounter <= JumpTime / 1.5f) || JumpTimeCounter <= 0)
         {
+            //stop jumping
             JumpTimeCounter = 0;
             StoppedJumping = true;
         }
@@ -121,21 +145,23 @@ public class CharacterControls : MonoBehaviour
     //handy for making sure you dont go inside other things
     private void FixedUpdate()
     {
+        //h = currentState.ThumbSticks.Left.X;
         //h = Input.GetAxis("Horizontal" + type);
         //direction = new Vector3(h, 0, 0);
         forceForward = new Vector3(h, 0, 0);
         //direction.x *= speed;
         forceForward.x *= speed;
 
+        
         //movement force
-        if (rb.velocity.x <= maxSpeed && rb.velocity.x >= -maxSpeed)
+        if (rb.velocity.magnitude <= maxSpeed)
         {
             rb.AddForce(forceForward);
         }
 
 
         ////////////////////////Start Gravity////////////////////////
-        if ((!grounded || rb.velocity.y > 0 || rb.velocity.y < 0) && StoppedJumping)
+        if ((!grounded || rb.velocity.y > 0 || rb.velocity.y < 0) /*&& StoppedJumping*/)
         {
             // if(gravity.y >= -200)
             if (gravity.y >= -100)
@@ -154,7 +180,6 @@ public class CharacterControls : MonoBehaviour
             if (m_JumpVel > JumpVel / 2)
             {
                 m_JumpVel -= 5;
-
             }
         }
         ////////////////////////End jump reduction////////////////////////
@@ -228,22 +253,75 @@ public class CharacterControls : MonoBehaviour
         yield return new WaitForSeconds(5f);
     }
 
-    bool IsStuck()
+    bool IsStuckLeft()
     {
-        return Physics.Raycast(transform.position, Vector3.right, 1, 1);
+        Debug.DrawRay(transform.position, new Vector3(0.6f, 0, 0));
+        if (Physics.Raycast(transform.position, Vector3.right, 0.6f, 1))
+        {
+            h = 0;
+            return true;
+        }
+        
+        Debug.DrawRay(new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z), new Vector3(0.6f, 0, 0));
+        if (Physics.Raycast(new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z), Vector3.right, 0.6f, 1))
+        {
+            h = 0;
+            return true;
+        }
+        
+        Debug.DrawRay(new Vector3(transform.position.x, transform.position.y - 0.5f, transform.position.z), new Vector3(0.6f, 0, 0));
+        if (Physics.Raycast(new Vector3(transform.position.x, transform.position.y - 0.5f, transform.position.z), Vector3.right, 0.6f, 1))
+        {
+            h = 0;
+            return true;
+        }
+
+        else return false;
+    }
+
+    bool IsStuckRight()
+    {
+        Debug.DrawRay(transform.position, new Vector3(-0.6f, 0, 0));
+        if (Physics.Raycast(transform.position, Vector3.left, 0.6f, 1))
+        {
+            h = 0;
+            return true;
+        }
+        Debug.DrawRay(new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z), new Vector3(-0.6f, 0, 0));
+        if (Physics.Raycast(new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z), Vector3.left, 0.6f, 1))
+        {
+            h = 0;
+            return true;
+        }
+        Debug.DrawRay(new Vector3(transform.position.x, transform.position.y - 0.5f, transform.position.z), new Vector3(-0.6f, 0, 0));
+        if (Physics.Raycast(new Vector3(transform.position.x, transform.position.y - 0.5f, transform.position.z), Vector3.left, 0.6f, 1))
+        {
+            h = 0;
+            return true;
+        }
+
+        else return false;
     }
 
     bool IsGrounded()
     {
+        //Debug.DrawRay(transform.position, -Vector3.up);
         if (Physics.Raycast(transform.position, -Vector3.up, 1))
             return true;
 
-        if (Physics.Raycast(new Vector3(transform.position.x + 1, transform.position.y, transform.position.z), -Vector3.up, 1))
+        //Debug.DrawRay(new Vector3(transform.position.x + 0.4f, transform.position.y, transform.position.z), -Vector3.up);
+        if (Physics.Raycast(new Vector3(transform.position.x + 0.4f, transform.position.y, transform.position.z), -Vector3.up, 1))
             return true;
 
-        if (Physics.Raycast(new Vector3(transform.position.x - 1, transform.position.y, transform.position.z), -Vector3.up, 1))
+        //Debug.DrawRay(new Vector3(transform.position.x - 0.4f, transform.position.y, transform.position.z), -Vector3.up);
+        if (Physics.Raycast(new Vector3(transform.position.x - 0.4f, transform.position.y, transform.position.z), -Vector3.up, 1))
             return true;
 
         return false;
+    }
+
+    public PlayerIndex GetPlayerIndex()
+    {
+        return playerIndex;
     }
 }

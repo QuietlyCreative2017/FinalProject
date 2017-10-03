@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class SlowDown : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
+   
+
+    // Use this for initialization
+    void Start () {
 		
 	}
 	
@@ -18,8 +20,7 @@ public class SlowDown : MonoBehaviour {
     {
         if (other.gameObject.tag == "Player")
         {
-            other.gameObject.GetComponent<CharacterControls>().maxSpeed /= 2;
-            other.gameObject.GetComponent<CharacterControls>().speed /= 2;
+            other.gameObject.GetComponent<CharacterControls>().maxSpeed /= 3;
         }
 
         //Camera.main.GetComponent<CameraScript>().translate *= 2;
@@ -29,8 +30,7 @@ public class SlowDown : MonoBehaviour {
     {
         if (other.gameObject.tag == "Player")
         {
-            other.gameObject.GetComponent<CharacterControls>().maxSpeed *= 2;
-            other.gameObject.GetComponent<CharacterControls>().speed *= 2;
+            other.gameObject.GetComponent<CharacterControls>().maxSpeed *= 3;
         }
 
         //Camera.main.GetComponent<CameraScript>().translate /= 2;

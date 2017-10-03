@@ -11,7 +11,11 @@ public class CameraScript : MonoBehaviour
     public float fovSpeed;
     Rigidbody rb;
     GameObject leader;
+    public GameObject middle;
 
+    public float masd;
+    float difference;
+    float value;
 
     Vector3 displacement;
     private void Awake()
@@ -30,31 +34,25 @@ public class CameraScript : MonoBehaviour
     void Update()
     {
         leader = SortDistance();
-        //displacement = new Vector3(leader.transform.position.x, gameObject.transform.position.y, gameObject.transform.position.z);
-        //if (Camera.main.WorldToViewportPoint(leader.transform.position).x >= 0.5f)
-        //{
-        //    if (leader.GetComponent<Rigidbody>().velocity.x > 0 && leader.GetComponent<Rigidbody>().velocity.x <= 12)
-        //    {
-        //        gameObject.transform.position = displacement;
-        //    }
-        //}
     }
 
     // Update is called once per frame
-    void LateUpdate()
+    void FixedUpdate()
     {
 
-        for (int i = 0; i < 2; i++)
+        for (int i = 0; i < player.Length; i++)
         {
             pos[i] = Camera.main.WorldToViewportPoint(player[i].transform.position);
 
-            if (pos[i].x >= 0.5f)
+            if (pos[i].x >= 0.7)
             {
-                //if (player[i].GetComponent<Rigidbody>().velocity.x > 0 && player[i].GetComponent<Rigidbody>().velocity.x <= 12)
-                //{
-                //    gameObject.transform.position = new Vector3(leader.transform.position.x, gameObject.transform.position.y, gameObject.transform.position.z);
-                //}
-                gameObject.transform.Translate(translate);
+                difference = leader.transform.position.x - middle.transform.position.x;
+                if (player[i].GetComponent<Rigidbody>().velocity.x > 0 && player[i].GetComponent<Rigidbody>().velocity.x <= 100)
+                {
+                    gameObject.transform.position = new Vector3(leader.transform.position.x, gameObject.transform.position.y, gameObject.transform.position.z);
+                    //gameObject.transform.position = Vector3.SmoothDamp(gameObject.transform.position, new Vector3(leader.transform.position.x, gameObject.transform.position.y, gameObject.transform.position.z),Camera.main.velocity, 0.2f);
+                    //cam.velocity.Set(player[i].GetComponent<Rigidbody>().velocity.x, player[i].GetComponent<Rigidbody>().velocity.y, player[i].GetComponent<Rigidbody>().velocity.z);
+                }
             }
             if (pos[i].x <= 0.1 && cam.transform.position.z >= -80)
             {
@@ -81,6 +79,6 @@ public class CameraScript : MonoBehaviour
         {
             return player[0];
         }
-        else return player[1];
+         return player[1];
     }
 }
