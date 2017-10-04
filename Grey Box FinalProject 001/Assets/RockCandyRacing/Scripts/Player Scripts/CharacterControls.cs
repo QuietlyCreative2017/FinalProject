@@ -54,6 +54,7 @@ public class CharacterControls : MonoBehaviour
     void Start()
     {
         JumpTimeCounter = JumpTime;
+        speed = maxSpeed / 2;
     }
 
     // Update is called once per frame
@@ -70,6 +71,9 @@ public class CharacterControls : MonoBehaviour
             m_JumpVel = JumpVel;
             //JumpTimeCounter = JumpTime;
         }
+
+        forceForward = new Vector3(h, 0, 0);
+        forceForward.x *= speed;
         //Debug.Log(gravity.y);
     }
 
@@ -85,23 +89,40 @@ public class CharacterControls : MonoBehaviour
         }
 
         //get left stick for movement
-        if (IsStuckLeft())
+        //if (IsStuckLeft())
+        //{
+        //    if(Mathf.Sign(currentState.ThumbSticks.Left.X) == -1)
+        //    {
+        //        h = currentState.ThumbSticks.Left.X;
+        //    }   
+        //}
+        //else if(IsStuckRight())
+        //{
+        //    if (Mathf.Sign(currentState.ThumbSticks.Left.X) == 1)
+        //    {
+        //        h = currentState.ThumbSticks.Left.X;
+        //    }
+        //}
+        //else
+        //{
+        h = currentState.ThumbSticks.Left.X;
+        //}
+
+        Debug.Log("Speed: " + speed);
+        if (currentState.ThumbSticks.Left.X != 0)
         {
-            if(Mathf.Sign(currentState.ThumbSticks.Left.X) == -1)
+            if (speed < maxSpeed)
             {
-                h = currentState.ThumbSticks.Left.X;
-            }   
-        }
-        else if(IsStuckRight())
-        {
-            if (Mathf.Sign(currentState.ThumbSticks.Left.X) == 1)
-            {
-                h = currentState.ThumbSticks.Left.X;
+                speed += 2 * Time.deltaTime;
+
             }
         }
-        else
+        else if(currentState.ThumbSticks.Left.X == 0)
         {
-            h = currentState.ThumbSticks.Left.X;
+            if (speed > maxSpeed / 2)
+            {
+                speed -= 2 * Time.deltaTime;
+            }
         }
 
         //jump by pushing A
@@ -136,7 +157,6 @@ public class CharacterControls : MonoBehaviour
             StoppedJumping = true;
         }
 
-
         previousState = currentState;
     }
 
@@ -148,15 +168,13 @@ public class CharacterControls : MonoBehaviour
         //h = currentState.ThumbSticks.Left.X;
         //h = Input.GetAxis("Horizontal" + type);
         //direction = new Vector3(h, 0, 0);
-        forceForward = new Vector3(h, 0, 0);
         //direction.x *= speed;
-        forceForward.x *= speed;
 
-        
+
         //movement force
         if (rb.velocity.magnitude <= maxSpeed)
         {
-            rb.AddForce(forceForward);
+            rb.MovePosition(rb.position + transform.right * h * speed * Time.fixedDeltaTime);
         }
 
 
@@ -261,14 +279,14 @@ public class CharacterControls : MonoBehaviour
             h = 0;
             return true;
         }
-        
+
         Debug.DrawRay(new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z), new Vector3(0.6f, 0, 0));
         if (Physics.Raycast(new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z), Vector3.right, 0.6f, 1))
         {
             h = 0;
             return true;
         }
-        
+
         Debug.DrawRay(new Vector3(transform.position.x, transform.position.y - 0.5f, transform.position.z), new Vector3(0.6f, 0, 0));
         if (Physics.Raycast(new Vector3(transform.position.x, transform.position.y - 0.5f, transform.position.z), Vector3.right, 0.6f, 1))
         {

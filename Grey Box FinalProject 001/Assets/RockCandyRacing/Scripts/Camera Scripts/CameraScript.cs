@@ -12,12 +12,11 @@ public class CameraScript : MonoBehaviour
     Rigidbody rb;
     GameObject leader;
     public GameObject middle;
+    bool distSet = false;
 
     public float masd;
     float difference;
     float value;
-
-    Vector3 displacement;
     private void Awake()
     {
         player = GameObject.FindGameObjectsWithTag("Player");
@@ -28,7 +27,6 @@ public class CameraScript : MonoBehaviour
     void Start()
     {
         pos = new[] { new Vector3(0f, 0f, 0f), new Vector3(0f, 0f, 0f) };
-        displacement = new Vector3(0, 0, 0);
     }
 
     void Update()
@@ -44,25 +42,32 @@ public class CameraScript : MonoBehaviour
         {
             pos[i] = Camera.main.WorldToViewportPoint(player[i].transform.position);
 
-            if (pos[i].x >= 0.7)
+            if (pos[i].x >= 0.8)
             {
-                difference = leader.transform.position.x - middle.transform.position.x;
-                if (player[i].GetComponent<Rigidbody>().velocity.x > 0 && player[i].GetComponent<Rigidbody>().velocity.x <= 100)
+                if (!distSet)
                 {
-                    gameObject.transform.position = new Vector3(leader.transform.position.x, gameObject.transform.position.y, gameObject.transform.position.z);
+                    difference = leader.transform.position.x - middle.transform.position.x;
+                    distSet = true;
+                }
+                //if (player[i].GetComponent<Rigidbody>().velocity.x > 0 && player[i].GetComponent<Rigidbody>().velocity.x <= 100)
+                //{
+                //Vector3.SmoothDamp(cam.transform.position, leader.transform)
+                    gameObject.transform.position = new Vector3(leader.transform.position.x - difference, gameObject.transform.position.y, gameObject.transform.position.z);
                     //gameObject.transform.position = Vector3.SmoothDamp(gameObject.transform.position, new Vector3(leader.transform.position.x, gameObject.transform.position.y, gameObject.transform.position.z),Camera.main.velocity, 0.2f);
                     //cam.velocity.Set(player[i].GetComponent<Rigidbody>().velocity.x, player[i].GetComponent<Rigidbody>().velocity.y, player[i].GetComponent<Rigidbody>().velocity.z);
-                }
+                //}
             }
             if (pos[i].x <= 0.1 && cam.transform.position.z >= -80)
             {
                 cam.transform.Translate(new Vector3(0, 0, -1));
+                distSet = false;
             }
-           
+
         }
         if (pos[0].x >= 0.4 && pos[1].x >= 0.4 && cam.transform.position.z < -50)
         {
             cam.transform.Translate(new Vector3(0, 0, 1));
+            distSet = false;
         }
     }
 
@@ -79,6 +84,6 @@ public class CameraScript : MonoBehaviour
         {
             return player[0];
         }
-         return player[1];
+        return player[1];
     }
 }
