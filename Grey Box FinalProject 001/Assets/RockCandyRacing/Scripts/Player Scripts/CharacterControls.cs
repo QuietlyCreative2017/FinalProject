@@ -6,8 +6,8 @@ using XInputDotNetPure;
 
 public class CharacterControls : MonoBehaviour
 {
-
-    float h;
+    [HideInInspector]
+    public float h;
     Vector3 direction;
     public float speed;
 
@@ -43,6 +43,7 @@ public class CharacterControls : MonoBehaviour
     GamePadState currentState;
     GamePadState previousState;
 
+    public float friction;
 
     Vector3 forceForward;
     private void Awake()
@@ -71,9 +72,6 @@ public class CharacterControls : MonoBehaviour
             m_JumpVel = JumpVel;
             //JumpTimeCounter = JumpTime;
         }
-
-        forceForward = new Vector3(h, 0, 0);
-        forceForward.x *= speed;
         //Debug.Log(gravity.y);
     }
 
@@ -88,40 +86,40 @@ public class CharacterControls : MonoBehaviour
             return;
         }
 
-        //get left stick for movement
-        //if (IsStuckLeft())
-        //{
-        //    if(Mathf.Sign(currentState.ThumbSticks.Left.X) == -1)
-        //    {
-        //        h = currentState.ThumbSticks.Left.X;
-        //    }   
-        //}
-        //else if(IsStuckRight())
-        //{
-        //    if (Mathf.Sign(currentState.ThumbSticks.Left.X) == 1)
-        //    {
-        //        h = currentState.ThumbSticks.Left.X;
-        //    }
-        //}
-        //else
-        //{
-        h = currentState.ThumbSticks.Left.X;
-        //}
+        //Debug.Log(h);
+        if (h < 1 && h > -1)
+        {
+            h  += currentState.ThumbSticks.Left.X;
+        }
+        if(h != 0 && currentState.ThumbSticks.Left.X == 0)
+        {
+            h = Mathf.Lerp(h, 0, 1);
+        }
 
-        Debug.Log("Speed: " + speed);
+        //if (h > 0)
+        //{
+        //    h = Mathf.Lerp(h, 0, 0.5f);
+        //    //h -= Time.deltaTime * friction;
+        //}
+        //else if (h < 0)
+        //{
+        //    h = Mathf.Lerp(h, 0, 0.5f);
+        //    //h += Time.deltaTime * friction;
+        //}
+        
         if (currentState.ThumbSticks.Left.X != 0)
         {
             if (speed < maxSpeed)
             {
-                speed += 2 * Time.deltaTime;
+                speed += Time.deltaTime * 7;
 
             }
         }
-        else if(currentState.ThumbSticks.Left.X == 0)
+        else if (currentState.ThumbSticks.Left.X == 0)
         {
             if (speed > maxSpeed / 2)
             {
-                speed -= 2 * Time.deltaTime;
+                speed = maxSpeed / 2;
             }
         }
 
@@ -165,17 +163,9 @@ public class CharacterControls : MonoBehaviour
     //handy for making sure you dont go inside other things
     private void FixedUpdate()
     {
-        //h = currentState.ThumbSticks.Left.X;
-        //h = Input.GetAxis("Horizontal" + type);
-        //direction = new Vector3(h, 0, 0);
-        //direction.x *= speed;
-
 
         //movement force
-        if (rb.velocity.magnitude <= maxSpeed)
-        {
-            rb.MovePosition(rb.position + transform.right * h * speed * Time.fixedDeltaTime);
-        }
+        rb.MovePosition(rb.position + transform.right * h * speed * Time.fixedDeltaTime);
 
 
         ////////////////////////Start Gravity////////////////////////
@@ -201,49 +191,6 @@ public class CharacterControls : MonoBehaviour
             }
         }
         ////////////////////////End jump reduction////////////////////////
-
-        //if you press down the mouse button...
-        //if (Input.GetAxis("Vertical" + type) > 0)
-        //{
-        //    //if (XCI.GetButton(XboxButton.A))
-        //    //{
-        //    //and you are on the ground...
-        //    if (grounded)
-        //    {
-        //        //jump!
-        //        rb.velocity = new Vector3(rb.velocity.x, m_JumpVel, 0);
-        //        StoppedJumping = false;
-        //        JumpTimeCounter = JumpTime;
-        //    }
-        //
-        //    //}
-        //}
-        //
-        ////if you keep holding down the mouse button...
-        //if (/*(Input.GetAxis("Vertical" + type) > 0) &&*/ !StoppedJumping)
-        //{
-        //    //if (XCI.GetButton(XboxButton.A) && !StoppedJumping)
-        //    //{
-        //    //and your counter hasn't reached zero...
-        //    if (JumpTimeCounter > 0)
-        //    {
-        //        //keep jumping!
-        //        rb.velocity = new Vector3(rb.velocity.x, m_JumpVel, 0);
-        //        JumpTimeCounter -= Time.deltaTime;
-        //    }
-        //    //}
-        //}
-        //
-        ////if you stop holding down the mouse button...
-        //if ((Input.GetAxis("Vertical" + type) <= 0 && JumpTimeCounter <= JumpTime / 1.5f) || JumpTimeCounter <= 0)
-        //{
-        //    //if (XCI.GetButtonUp(XboxButton.A) && !StoppedJumping)
-        //    // {
-        //    //stop jumping and set counter to zero.
-        //    JumpTimeCounter = 0;
-        //    StoppedJumping = true;
-        //    //}
-        //}
     }
 
     public void Slow()

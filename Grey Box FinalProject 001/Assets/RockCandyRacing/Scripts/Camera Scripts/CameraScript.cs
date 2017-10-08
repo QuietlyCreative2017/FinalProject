@@ -1,25 +1,31 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class CameraScript : MonoBehaviour
 {
     public Camera cam;
     Vector3[] pos;
-    GameObject[] player;
+    public List<GameObject> player;
     public Vector3 translate = new Vector3(1, 0, 0);
-    public float fovSpeed;
-    Rigidbody rb;
     GameObject leader;
+    GameObject loser;
     public GameObject middle;
     bool distSet = false;
 
     public float masd;
     float difference;
-    float value;
+
+    float leadX;
+    float loseX;
+    bool changed = false;
+
+    Vector3 velocity = Vector3.zero;
+
     private void Awake()
     {
-        player = GameObject.FindGameObjectsWithTag("Player");
+        player = new List<GameObject>(GameObject.FindGameObjectsWithTag("Player"));
         cam = Camera.main;
     }
 
@@ -31,44 +37,82 @@ public class CameraScript : MonoBehaviour
 
     void Update()
     {
-        leader = SortDistance();
     }
 
-    // Update is called once per frame
     void FixedUpdate()
     {
+        SortLeader();
+        leader = player.Last();
+        loser = player.First();
+        leadX = Camera.main.WorldToViewportPoint(leader.transform.position).x;
+        loseX = Camera.main.WorldToViewportPoint(loser.transform.position).x;
 
-        for (int i = 0; i < player.Length; i++)
+        if (Camera.main.WorldToViewportPoint(leader.transform.position).x >= masd)
         {
-            pos[i] = Camera.main.WorldToViewportPoint(player[i].transform.position);
+            //if (!distSet && changed)
+            //{
+            //    difference = leader.transform.position.x - middle.transform.position.x;
+            //    distSet = true;
+            //    changed = false;
+            //}
 
-            if (pos[i].x >= 0.8)
+            if (leader.GetComponent<CharacterControls>().h > 0)
             {
-                if (!distSet)
-                {
-                    difference = leader.transform.position.x - middle.transform.position.x;
-                    distSet = true;
-                }
-                //if (player[i].GetComponent<Rigidbody>().velocity.x > 0 && player[i].GetComponent<Rigidbody>().velocity.x <= 100)
-                //{
-                //Vector3.SmoothDamp(cam.transform.position, leader.transform)
-                    gameObject.transform.position = new Vector3(leader.transform.position.x - difference, gameObject.transform.position.y, gameObject.transform.position.z);
-                    //gameObject.transform.position = Vector3.SmoothDamp(gameObject.transform.position, new Vector3(leader.transform.position.x, gameObject.transform.position.y, gameObject.transform.position.z),Camera.main.velocity, 0.2f);
-                    //cam.velocity.Set(player[i].GetComponent<Rigidbody>().velocity.x, player[i].GetComponent<Rigidbody>().velocity.y, player[i].GetComponent<Rigidbody>().velocity.z);
-                //}
+                gameObject.transform.position = new Vector3(leader.transform.position.x - difference, gameObject.transform.position.y, gameObject.transform.position.z);
             }
-            if (pos[i].x <= 0.1 && cam.transform.position.z >= -80)
-            {
-                cam.transform.Translate(new Vector3(0, 0, -1));
-                distSet = false;
-            }
-
         }
-        if (pos[0].x >= 0.4 && pos[1].x >= 0.4 && cam.transform.position.z < -50)
+
+
+        if (Camera.main.WorldToViewportPoint(loser.transform.position).x <= 0.1 && cam.transform.position.z >= -80)
         {
+            cam.transform.Translate(new Vector3(0, 0, -1));
+            distSet = false;
+            changed = true;
+        }
+
+        if ((loseX >= 0.4 && leadX >= 0.4) && cam.transform.position.z < -50)
+        {
+            if(leadX >= masd)
+            {
+                cam.transform.position = Vector3.SmoothDamp(gameObject.transform.position, new Vector3(leader.transform.position.x, gameObject.transform.position.y, gameObject.transform.position.z), ref velocity, 0.3f);
+            }
             cam.transform.Translate(new Vector3(0, 0, 1));
             distSet = false;
+            changed = true;
         }
+        //    for (int i = 0; i < player.Count; i++)
+        //    {
+        //        pos[i] = Camera.main.WorldToViewportPoint(player[i].transform.position);
+        //
+        //        if (pos[i].x >= masd)
+        //        {
+        //            if (!distSet)
+        //            {
+        //                difference = leader.transform.position.x - middle.transform.position.x;
+        //                distSet = true;
+        //            }
+        //            if (player[i].GetComponent<CharacterControls>().h > 0)
+        //            {
+        //                gameObject.transform.position = new Vector3(leader.transform.position.x - difference, gameObject.transform.position.y, gameObject.transform.position.z);
+        //                //gameObject.transform.position = Vector3.SmoothDamp(gameObject.transform.position, new Vector3(leader.transform.position.x - difference, gameObject.transform.position.y, gameObject.transform.position.z), ref Velocity, 0);
+        //
+        //            }
+        //        }
+        //    //    if (pos[i].x <= 0.1 && cam.transform.position.z >= -80)
+        //    //    {
+        //    //        cam.transform.Translate(new Vector3(0, 0, -1));
+        //    //        difference = leader.transform.position.x - middle.transform.position.x;
+        //    //        distSet = false;
+        //    //    }
+        //
+        //    }
+        //   // if (pos[0].x >= 0.4 && pos[1].x >= 0.4 && cam.transform.position.z < -50)
+        //   // {
+        //   //     gameObject.transform.position = new Vector3(leader.transform.position.x - difference, gameObject.transform.position.y, gameObject.transform.position.z);
+        //   //     difference = leader.transform.position.x - middle.transform.position.x;
+        //   //     cam.transform.Translate(new Vector3(0, 0, 1));
+        //   //     distSet = false;
+        //   // }
     }
 
     IEnumerator camWait(int a_index)
@@ -78,12 +122,13 @@ public class CameraScript : MonoBehaviour
         gameObject.transform.SetParent(null);
     }
 
-    public GameObject SortDistance()
+    public void SortLeader()
     {
-        if (player[0].transform.position.x > player[1].transform.position.x)
-        {
-            return player[0];
-        }
-        return player[1];
+        player = player.OrderBy(player => player.transform.position.x).ToList();
     }
+
+    //public GameObject Loser()
+    //{
+    //    retur
+    //}
 }
