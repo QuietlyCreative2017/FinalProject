@@ -12,7 +12,7 @@ public class WinBox : MonoBehaviour {
         won = false;
 	}
 
-    void OnTriggerEnter(Collider collision)
+    void OnTriggerExit(Collider collision)
     {
         if (collision.gameObject.tag == "Player")
         {

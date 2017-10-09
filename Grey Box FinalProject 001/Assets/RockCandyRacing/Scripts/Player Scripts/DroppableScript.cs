@@ -13,6 +13,7 @@ public class DroppableScript : MonoBehaviour {
     public bool canUse = false;
     public GameObject droppableObject;
     public string type;
+    bool canPickUp = true;
 
     private void Awake()
     {
@@ -44,21 +45,25 @@ public class DroppableScript : MonoBehaviour {
         //        }
         //        break;
         //}
-        if((currentState.Buttons.Y == ButtonState.Pressed 
-            || currentState.Buttons.B == ButtonState.Pressed
-            || currentState.Buttons.X == ButtonState.Pressed) && canUse)
+        if((currentState.Triggers.Right > 0 || currentState.Buttons.B == ButtonState.Pressed
+              || currentState.Buttons.X == ButtonState.Pressed
+               || currentState.Buttons.Y == ButtonState.Pressed) && canUse)
         {
             Instantiate(droppableObject, new Vector3(gameObject.transform.position.x - 2, gameObject.transform.position.y, gameObject.transform.position.z), new Quaternion(0, 0, 0, 0));
             canUse = false;
+            gameObject.GetComponent<RocketScript>().enabled = true;
+            canPickUp = true;
         }
 	}
 
     private void OnTriggerEnter(Collider collision)
     {
-        if(collision.gameObject.tag == "Droppable")
+        if(collision.gameObject.tag == "Droppable" && canPickUp)
         {
             canUse = true;
             Destroy(collision.gameObject);
+            gameObject.GetComponent<RocketScript>().enabled = false;
+            canPickUp = false;
         }
     }
 }

@@ -46,6 +46,8 @@ public class CharacterControls : MonoBehaviour
     public float friction;
 
     Vector3 forceForward;
+
+    float lerp = 0.0f;
     private void Awake()
     {
         rb = gameObject.GetComponent<Rigidbody>();
@@ -62,6 +64,10 @@ public class CharacterControls : MonoBehaviour
     void Update()
     {
         HandleXinput();
+        if(speed > maxSpeed)
+        {
+            speed = maxSpeed;
+        }
 
         grounded = IsGrounded();
 
@@ -78,6 +84,8 @@ public class CharacterControls : MonoBehaviour
     void HandleXinput()
     {
         currentState = GamePad.GetState(playerIndex);
+        //lerp += 0.5f * Time.deltaTime;
+        lerp = 0.02f;
 
         //if controller index isn't connected
         if (!currentState.IsConnected)
@@ -86,14 +94,22 @@ public class CharacterControls : MonoBehaviour
             return;
         }
 
-        //Debug.Log(h);
-        if (h < 1 && h > -1)
+        if(h > 1)
         {
-            h  += currentState.ThumbSticks.Left.X;
+            h = 1;
+        }
+        if(h < -1)
+        {
+            h = -1;
+        }
+        //Debug.Log(h);
+        if (h <= 1 && h >= -1)
+        {
+            h += currentState.ThumbSticks.Left.X;
         }
         if(h != 0 && currentState.ThumbSticks.Left.X == 0)
         {
-            h = Mathf.Lerp(h, 0, 1);
+            h = Mathf.Lerp(h, 0, lerp);
         }
 
         //if (h > 0)
@@ -201,16 +217,16 @@ public class CharacterControls : MonoBehaviour
 
     IEnumerator slow()
     {
-        speed /= 2.0f;
+        maxSpeed /= 2.0f;
         yield return new WaitForSeconds(2f);
-        speed *= 2.0f;
+        maxSpeed *= 2.0f;
     }
 
     IEnumerator speedUp()
     {
-        speed *= 2.0f;
+        maxSpeed *= 2.0f;
         yield return new WaitForSeconds(2f);
-        speed /= 2.0f;
+        maxSpeed /= 2.0f;
     }
 
     IEnumerator stun()

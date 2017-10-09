@@ -22,5 +22,9 @@ public class RocketUpdate : MonoBehaviour {
     private void OnCollisionEnter(Collision collision)
     {
         Destroy(gameObject);
+        if(collision.gameObject.tag == "Player")
+        {
+            collision.gameObject.GetComponent<CharacterControls>().Slow();
+        }
     }
 }

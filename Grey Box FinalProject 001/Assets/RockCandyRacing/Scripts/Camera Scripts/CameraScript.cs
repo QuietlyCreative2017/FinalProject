@@ -37,10 +37,12 @@ public class CameraScript : MonoBehaviour
 
     void Update()
     {
+
     }
 
-    void FixedUpdate()
+    void LateUpdate()
     {
+        middle.transform.position = new Vector3(gameObject.transform.position.x, middle.transform.position.y, 1);
         SortLeader();
         leader = player.Last();
         loser = player.First();
@@ -49,12 +51,11 @@ public class CameraScript : MonoBehaviour
 
         if (Camera.main.WorldToViewportPoint(leader.transform.position).x >= masd)
         {
-            //if (!distSet && changed)
-            //{
-            //    difference = leader.transform.position.x - middle.transform.position.x;
-            //    distSet = true;
-            //    changed = false;
-            //}
+            if (!distSet)
+            {
+                difference = Vector3.Distance(new Vector3(leader.transform.position.x, 0, 0), new Vector3(middle.transform.position.x, 0, 0));
+                distSet = true;
+            }
 
             if (leader.GetComponent<CharacterControls>().h > 0)
             {
@@ -65,12 +66,13 @@ public class CameraScript : MonoBehaviour
 
         if (Camera.main.WorldToViewportPoint(loser.transform.position).x <= 0.1 && cam.transform.position.z >= -80)
         {
-            cam.transform.Translate(new Vector3(0, 0, -1));
+            
+            cam.transform.position = Vector3.SmoothDamp(cam.transform.position, new Vector3(cam.transform.position.x, cam.transform.position.y, cam.transform.position.z - 1), ref velocity, 0.001f);
+            //cam.transform.Translate(new Vector3(0, 0, -1));
             distSet = false;
-            changed = true;
         }
 
-        if ((loseX >= 0.4 && leadX >= 0.4) && cam.transform.position.z < -50)
+        if ((loseX >= 0.4 && leadX >= 0.4) && cam.transform.position.z < -60)
         {
             if(leadX >= masd)
             {
@@ -78,7 +80,6 @@ public class CameraScript : MonoBehaviour
             }
             cam.transform.Translate(new Vector3(0, 0, 1));
             distSet = false;
-            changed = true;
         }
         //    for (int i = 0; i < player.Count; i++)
         //    {

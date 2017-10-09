@@ -20,7 +20,7 @@ public class SlowDown : MonoBehaviour {
     {
         if (other.gameObject.tag == "Player")
         {
-            other.gameObject.GetComponent<CharacterControls>().maxSpeed /= 3;
+            other.gameObject.GetComponent<CharacterControls>().maxSpeed /= 2;
         }
 
         //Camera.main.GetComponent<CameraScript>().translate *= 2;
@@ -30,7 +30,7 @@ public class SlowDown : MonoBehaviour {
     {
         if (other.gameObject.tag == "Player")
         {
-            other.gameObject.GetComponent<CharacterControls>().maxSpeed *= 3;
+            other.gameObject.GetComponent<CharacterControls>().maxSpeed *= 2;
         }
 
         //Camera.main.GetComponent<CameraScript>().translate /= 2;

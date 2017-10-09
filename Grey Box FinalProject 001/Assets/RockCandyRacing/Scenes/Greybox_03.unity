@@ -2663,10 +2663,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cam: {fileID: 0}
+  player: []
   translate: {x: 0.2, y: 0, z: 0}
-  fovSpeed: 1
   middle: {fileID: 871032370}
-  masd: 0.8
+  masd: 0.5
 --- !u!81 &546855566
 AudioListener:
   m_ObjectHideFlags: 0
@@ -3662,7 +3662,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 120
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!4 &666184885 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4157937536440212, guid: 14477b45314ba894aa9242d70d18b82b,
@@ -4540,7 +4540,7 @@ Prefab:
     - target: {fileID: 114641815452175396, guid: ff5feb97d484a664f8c2bdbe382f2424,
         type: 2}
       propertyPath: ExitSpeedAmount
-      value: 400
+      value: 800
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ff5feb97d484a664f8c2bdbe382f2424, type: 2}
@@ -6109,7 +6109,7 @@ Prefab:
     - target: {fileID: 114602163639671874, guid: 14477b45314ba894aa9242d70d18b82b,
         type: 2}
       propertyPath: maxSpeed
-      value: 20
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 136549710994860646, guid: 14477b45314ba894aa9242d70d18b82b,
         type: 2}
@@ -6135,6 +6135,16 @@ Prefab:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
+    - target: {fileID: 136549710994860646, guid: 14477b45314ba894aa9242d70d18b82b,
+        type: 2}
+      propertyPath: m_Direction
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 136549710994860646, guid: 14477b45314ba894aa9242d70d18b82b,
+        type: 2}
+      propertyPath: m_Radius
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 54311844466181264, guid: 14477b45314ba894aa9242d70d18b82b, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 14477b45314ba894aa9242d70d18b82b, type: 2}
@@ -7118,7 +7128,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 120
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!114 &1168938776
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11050,7 +11060,7 @@ Prefab:
     - target: {fileID: 114641815452175396, guid: ff5feb97d484a664f8c2bdbe382f2424,
         type: 2}
       propertyPath: ExitSpeedAmount
-      value: 400
+      value: 800
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ff5feb97d484a664f8c2bdbe382f2424, type: 2}
@@ -13068,7 +13078,7 @@ Prefab:
     - target: {fileID: 114602163639671874, guid: 14477b45314ba894aa9242d70d18b82b,
         type: 2}
       propertyPath: maxSpeed
-      value: 20
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 136549710994860646, guid: 14477b45314ba894aa9242d70d18b82b,
         type: 2}
@@ -13092,6 +13102,16 @@ Prefab:
     - target: {fileID: 114166205543495246, guid: 14477b45314ba894aa9242d70d18b82b,
         type: 2}
       propertyPath: playerIndex
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 136549710994860646, guid: 14477b45314ba894aa9242d70d18b82b,
+        type: 2}
+      propertyPath: m_Direction
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 136549710994860646, guid: 14477b45314ba894aa9242d70d18b82b,
+        type: 2}
+      propertyPath: m_Radius
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
