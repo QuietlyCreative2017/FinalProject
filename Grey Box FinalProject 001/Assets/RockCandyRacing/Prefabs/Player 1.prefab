@@ -231,7 +231,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4628903423853192}
-  - component: {fileID: 95535640346819732}
   m_Layer: 0
   m_Name: PlayCharacter_mesh_v01 (1)
   m_TagString: Untagged
@@ -1108,23 +1107,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 120
   m_CollisionDetection: 1
---- !u!95 &95535640346819732
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1505638593252872}
-  m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 43ef869388ba26641b29a5b32884d2b1, type: 3}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
 --- !u!102 &102618206045447434
 TextMesh:
   serializedVersion: 3
@@ -1158,7 +1140,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canUse: 0
-  droppableObject: {fileID: 1027601248027926, guid: d10ca7fde8fee354f87685c926c301eb,
+  droppableObject: {fileID: 1027601248027926, guid: d328ab5de3868b144bc9d3f33e98a8c1,
     type: 2}
   type: Key
 --- !u!114 &114220372303131602
@@ -1173,7 +1155,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canUse: 0
-  droppableObject: {fileID: 1027601248027926, guid: d10ca7fde8fee354f87685c926c301eb,
+  droppableObject: {fileID: 1027601248027926, guid: d328ab5de3868b144bc9d3f33e98a8c1,
     type: 2}
   type: WASD
 --- !u!114 &114353005695598556
@@ -1187,7 +1169,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79e41fe5c4e32e24ba80de8024039575, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rocketPrefab: {fileID: 1703890069281522, guid: 1f87374b83985d54b9c265118fd31d5d,
+  rocketPrefab: {fileID: 1703890069281522, guid: b3925314aa35bf844b4158c0b8422da9,
     type: 2}
 --- !u!114 &114368492133806644
 MonoBehaviour:
@@ -1205,7 +1187,7 @@ MonoBehaviour:
   JumpVel: 25
   JumpTime: 0.45
   type: WASD
-  maxSpeed: 15
+  maxSpeed: 10
   gravityforce: -9.8
   playerIndex: 0
   friction: 0
