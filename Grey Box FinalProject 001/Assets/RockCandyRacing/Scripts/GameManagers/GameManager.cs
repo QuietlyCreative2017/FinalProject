@@ -45,7 +45,7 @@ public class GameManager : MonoBehaviour
     {
         deltaTime += (Time.deltaTime - deltaTime) * 0.1f;
         //Checkpoints = Checkpoints.OrderBy(Checkpoints => Checkpoints.GetComponent<CheckpointScript>().toggled).ToArray();
-        CheckGameOver();
+       // CheckGameOver();
         P1health.GetComponent<Text>().text = player[0].GetComponent<PlayerLives>().Lives().ToString();
         P2health.GetComponent<Text>().text = player[1].GetComponent<PlayerLives>().Lives().ToString();
         for (int i = 0; i < player.Length; i++)

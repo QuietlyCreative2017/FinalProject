@@ -59,7 +59,7 @@ public class CameraScript : MonoBehaviour
 
             if (leader.GetComponent<CharacterControls>().h > 0)
             {
-                gameObject.transform.position = new Vector3(leader.transform.position.x - difference, gameObject.transform.position.y, gameObject.transform.position.z);
+                gameObject.transform.position = new Vector3(leader.transform.position.x/* - difference*/, gameObject.transform.position.y, gameObject.transform.position.z);
             }
         }
 
