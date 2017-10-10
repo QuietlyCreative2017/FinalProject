@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 33349046094682882}
   - component: {fileID: 114542507985001276}
   - component: {fileID: 64831220474235804}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Ramp_Collider
   m_TagString: Ground
   m_Icon: {fileID: 0}

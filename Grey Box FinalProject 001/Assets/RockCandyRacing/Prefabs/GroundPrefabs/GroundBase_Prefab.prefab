@@ -75,8 +75,8 @@ GameObject:
   - component: {fileID: 33470835156459046}
   - component: {fileID: 114368269787306634}
   - component: {fileID: 64627656995094340}
-  m_Layer: 0
-  m_Name: GroundBase_Greybox
+  m_Layer: 10
+  m_Name: GroundBase_Collider
   m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

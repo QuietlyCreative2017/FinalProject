@@ -25,8 +25,7 @@ public class SpeedUp : MonoBehaviour {
         {
             other.gameObject.GetComponent<Rigidbody>().AddForce(new Vector3(InitialSpeedAmount, 0, 0));
         }
-
-        Camera.main.GetComponent<CameraScript>().translate *= 6;
+        
     }
 
     private void OnTriggerExit(Collider other)
@@ -35,7 +34,6 @@ public class SpeedUp : MonoBehaviour {
         {
             other.gameObject.GetComponent<Rigidbody>().AddForce(new Vector3(ExitSpeedAmount, 0, 0));
         }
-
-        Camera.main.GetComponent<CameraScript>().translate /= 3;
+        
     }
 }

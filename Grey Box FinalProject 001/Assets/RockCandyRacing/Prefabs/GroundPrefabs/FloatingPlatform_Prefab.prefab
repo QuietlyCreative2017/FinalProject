@@ -57,7 +57,7 @@ GameObject:
   - component: {fileID: 33094011215813990}
   - component: {fileID: 114938876676846852}
   - component: {fileID: 64939951800358802}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: FloatingPlatform_Collider
   m_TagString: Ground
   m_Icon: {fileID: 0}

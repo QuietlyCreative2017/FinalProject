@@ -75,7 +75,7 @@ GameObject:
   - component: {fileID: 33073979285871356}
   - component: {fileID: 114326814695720060}
   - component: {fileID: 64748974811277992}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Ramp_Collider
   m_TagString: Ground
   m_Icon: {fileID: 0}

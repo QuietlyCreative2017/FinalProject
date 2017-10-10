@@ -13,7 +13,7 @@ public class CharacterControls : MonoBehaviour
 
 
     //////////////Jumping//////////////
-    bool grounded;
+    public bool grounded;
     [Tooltip("How fast the player jumps")]
     public float JumpVel;
     [Tooltip("Max jump time (for setting a maximum jump height)")]
@@ -21,6 +21,8 @@ public class CharacterControls : MonoBehaviour
     [Tooltip("Tracks how long you've been jumping")]
     float JumpTimeCounter;
     bool StoppedJumping;
+
+    public LayerMask LayerMask;
     //////////////Jumping//////////////
 
     [Tooltip("Key input type (WASD / Key(arrows)) for debugging without controller")]
@@ -35,8 +37,8 @@ public class CharacterControls : MonoBehaviour
     float m_JumpVel;
 
     //CHECK FOR GROUNDED
-    int distToGround;
-
+    int DistToGround;
+    
     //XINPUT REQS
     [Tooltip("Player #, needed for input controls")]
     public PlayerIndex playerIndex;
@@ -44,8 +46,6 @@ public class CharacterControls : MonoBehaviour
     GamePadState previousState;
 
     public float friction;
-
-    Vector3 forceForward;
 
     float lerp = 0.0f;
     private void Awake()
@@ -111,17 +111,6 @@ public class CharacterControls : MonoBehaviour
         {
             h = Mathf.Lerp(h, 0, lerp);
         }
-
-        //if (h > 0)
-        //{
-        //    h = Mathf.Lerp(h, 0, 0.5f);
-        //    //h -= Time.deltaTime * friction;
-        //}
-        //else if (h < 0)
-        //{
-        //    h = Mathf.Lerp(h, 0, 0.5f);
-        //    //h += Time.deltaTime * friction;
-        //}
         
         if (currentState.ThumbSticks.Left.X != 0)
         {
@@ -164,7 +153,7 @@ public class CharacterControls : MonoBehaviour
 
         //if you have released a and minimum jump is reached
         //or you jump for the full time
-        if ((previousState.Buttons.A == ButtonState.Released && currentState.Buttons.A == ButtonState.Released && JumpTimeCounter <= JumpTime / 1.5f) || JumpTimeCounter <= 0)
+        if ((previousState.Buttons.A == ButtonState.Released && currentState.Buttons.A == ButtonState.Released && JumpTimeCounter <= JumpTime - Time.deltaTime) || JumpTimeCounter <= 0)
         {
             //stop jumping
             JumpTimeCounter = 0;
@@ -222,6 +211,7 @@ public class CharacterControls : MonoBehaviour
         maxSpeed *= 2.0f;
     }
 
+    //Multiplied max speed by 2 then waits for 2 seconds 
     IEnumerator speedUp()
     {
         maxSpeed *= 2.0f;
@@ -229,11 +219,15 @@ public class CharacterControls : MonoBehaviour
         maxSpeed /= 2.0f;
     }
 
+
+    //doesnt do anything yet
     IEnumerator stun()
     {
         yield return new WaitForSeconds(5f);
     }
 
+
+    //cast a ray to the see if the player is stuck to the left of an objcet
     bool IsStuckLeft()
     {
         Debug.DrawRay(transform.position, new Vector3(0.6f, 0, 0));
@@ -260,6 +254,8 @@ public class CharacterControls : MonoBehaviour
         else return false;
     }
 
+
+    //cast a ray to the see if the player is stuck to the right of an objcet
     bool IsStuckRight()
     {
         Debug.DrawRay(transform.position, new Vector3(-0.6f, 0, 0));
@@ -284,18 +280,21 @@ public class CharacterControls : MonoBehaviour
         else return false;
     }
 
+
+    //cast rays to check if the player is above the ground
     bool IsGrounded()
     {
+        LayerMask ground = LayerMask.NameToLayer("Ground");
         //Debug.DrawRay(transform.position, -Vector3.up);
-        if (Physics.Raycast(transform.position, -Vector3.up, 1))
+        if (Physics.Raycast(transform.position, -Vector3.up, 1.2f, LayerMask))
             return true;
 
         //Debug.DrawRay(new Vector3(transform.position.x + 0.4f, transform.position.y, transform.position.z), -Vector3.up);
-        if (Physics.Raycast(new Vector3(transform.position.x + 0.4f, transform.position.y, transform.position.z), -Vector3.up, 1))
+        if (Physics.Raycast(new Vector3(transform.position.x + 0.4f, transform.position.y, transform.position.z), -Vector3.up, 1.2f, LayerMask))
             return true;
 
         //Debug.DrawRay(new Vector3(transform.position.x - 0.4f, transform.position.y, transform.position.z), -Vector3.up);
-        if (Physics.Raycast(new Vector3(transform.position.x - 0.4f, transform.position.y, transform.position.z), -Vector3.up, 1))
+        if (Physics.Raycast(new Vector3(transform.position.x - 0.4f, transform.position.y, transform.position.z), -Vector3.up, 1.2f, LayerMask))
             return true;
 
         return false;

@@ -60,7 +60,7 @@ GameObject:
   - component: {fileID: 33662930780268126}
   - component: {fileID: 114421010040496854}
   - component: {fileID: 64610490920223718}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: FloatingRamp_SlopeRight_Collider
   m_TagString: Ground
   m_Icon: {fileID: 0}

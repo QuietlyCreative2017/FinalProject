@@ -8,18 +8,18 @@ public class CameraScript : MonoBehaviour
     public Camera cam;
     Vector3[] pos;
     public List<GameObject> player;
-    public Vector3 translate = new Vector3(1, 0, 0);
     GameObject leader;
     GameObject loser;
     public GameObject middle;
     bool distSet = false;
 
-    public float masd;
+    public float screenPercent;
     float difference;
 
     float leadX;
     float loseX;
-    bool changed = false;
+
+    Vector3 offset;
 
     Vector3 velocity = Vector3.zero;
 
@@ -49,7 +49,20 @@ public class CameraScript : MonoBehaviour
         leadX = Camera.main.WorldToViewportPoint(leader.transform.position).x;
         loseX = Camera.main.WorldToViewportPoint(loser.transform.position).x;
 
-        if (Camera.main.WorldToViewportPoint(leader.transform.position).x >= masd)
+        //transform.position = new Vector3(transform.position.x, leader.transform.position.y + offset.y, transform.position.z);
+
+        //if (Camera.main.WorldToViewportPoint(leader.transform.position).y >= screenPercent || Camera.main.WorldToViewportPoint(leader.transform.position).y <= 0.1f)
+        //{
+        //    if(!yChanged)
+        //    {
+        //        yDifference = leader.transform.position.y - middle.transform.position.y;
+        //        yChanged = true;
+        //    }
+        //
+        //    cam.transform.position = new Vector3(gameObject.transform.position.x, leader.transform.position.y - yDifference, gameObject.transform.position.z);
+        //}
+
+        if (Camera.main.WorldToViewportPoint(leader.transform.position).x >= screenPercent)
         {
             if (!distSet)
             {
@@ -59,12 +72,17 @@ public class CameraScript : MonoBehaviour
 
             if (leader.GetComponent<CharacterControls>().h > 0)
             {
-                gameObject.transform.position = new Vector3(leader.transform.position.x/* - difference*/, gameObject.transform.position.y, gameObject.transform.position.z);
+                gameObject.transform.position = new Vector3(leader.transform.position.x/* - difference*/, gameObject.transform.position.y/*gameObject.transform.position.y*/, gameObject.transform.position.z);
+                //gameObject.transform.SetParent(leader.transform);
             }
         }
+        else
+        {
+            gameObject.transform.SetParent(null);
+        }
 
-
-        if (Camera.main.WorldToViewportPoint(loser.transform.position).x <= 0.1 && cam.transform.position.z >= -80)
+        //zoom out
+        if (Camera.main.WorldToViewportPoint(loser.transform.position).x <= 0.1 && cam.transform.position.z >= -150)
         {
             
             cam.transform.position = Vector3.SmoothDamp(cam.transform.position, new Vector3(cam.transform.position.x, cam.transform.position.y, cam.transform.position.z - 1), ref velocity, 0.001f);
@@ -72,9 +90,10 @@ public class CameraScript : MonoBehaviour
             distSet = false;
         }
 
-        if ((loseX >= 0.4 && leadX >= 0.4) && cam.transform.position.z < -60)
+        //zoom in
+        if ((loseX >= 0.4 && leadX >= 0.4) && cam.transform.position.z < -145)
         {
-            if(leadX >= masd)
+            if(leadX >= screenPercent)
             {
                 cam.transform.position = Vector3.SmoothDamp(gameObject.transform.position, new Vector3(leader.transform.position.x, gameObject.transform.position.y, gameObject.transform.position.z), ref velocity, 0.3f);
             }
