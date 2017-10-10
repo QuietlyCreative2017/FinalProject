@@ -49,6 +49,9 @@ public class CameraScript : MonoBehaviour
         leadX = Camera.main.WorldToViewportPoint(leader.transform.position).x;
         loseX = Camera.main.WorldToViewportPoint(loser.transform.position).x;
 
+        //gets the average y position of the players and sets the camera position to it//////////
+        transform.position = new Vector3(transform.position.x, ((player[0].transform.position.y + player[1].transform.position.y) / 2), transform.position.z);
+
         //transform.position = new Vector3(transform.position.x, leader.transform.position.y + offset.y, transform.position.z);
 
         //if (Camera.main.WorldToViewportPoint(leader.transform.position).y >= screenPercent || Camera.main.WorldToViewportPoint(leader.transform.position).y <= 0.1f)
@@ -62,23 +65,20 @@ public class CameraScript : MonoBehaviour
         //    cam.transform.position = new Vector3(gameObject.transform.position.x, leader.transform.position.y - yDifference, gameObject.transform.position.z);
         //}
 
+        //Move to the right if the leading player is above screen percent
         if (Camera.main.WorldToViewportPoint(leader.transform.position).x >= screenPercent)
         {
-            if (!distSet)
-            {
-                difference = Vector3.Distance(new Vector3(leader.transform.position.x, 0, 0), new Vector3(middle.transform.position.x, 0, 0));
-                distSet = true;
-            }
+            //if (!distSet)
+            //{
+            //    difference = Vector3.Distance(new Vector3(leader.transform.position.x, 0, 0), new Vector3(middle.transform.position.x, 0, 0));
+            //    distSet = true;
+            //}
 
             if (leader.GetComponent<CharacterControls>().h > 0)
             {
                 gameObject.transform.position = new Vector3(leader.transform.position.x/* - difference*/, gameObject.transform.position.y/*gameObject.transform.position.y*/, gameObject.transform.position.z);
                 //gameObject.transform.SetParent(leader.transform);
             }
-        }
-        else
-        {
-            gameObject.transform.SetParent(null);
         }
 
         //zoom out
@@ -91,7 +91,7 @@ public class CameraScript : MonoBehaviour
         }
 
         //zoom in
-        if ((loseX >= 0.4 && leadX >= 0.4) && cam.transform.position.z < -145)
+        if ((loseX >= 0.4 && leadX >= 0.4) && cam.transform.position.z < -100)
         {
             if(leadX >= screenPercent)
             {
@@ -100,39 +100,39 @@ public class CameraScript : MonoBehaviour
             cam.transform.Translate(new Vector3(0, 0, 1));
             distSet = false;
         }
-        //    for (int i = 0; i < player.Count; i++)
-        //    {
-        //        pos[i] = Camera.main.WorldToViewportPoint(player[i].transform.position);
-        //
-        //        if (pos[i].x >= masd)
-        //        {
-        //            if (!distSet)
-        //            {
-        //                difference = leader.transform.position.x - middle.transform.position.x;
-        //                distSet = true;
-        //            }
-        //            if (player[i].GetComponent<CharacterControls>().h > 0)
-        //            {
-        //                gameObject.transform.position = new Vector3(leader.transform.position.x - difference, gameObject.transform.position.y, gameObject.transform.position.z);
-        //                //gameObject.transform.position = Vector3.SmoothDamp(gameObject.transform.position, new Vector3(leader.transform.position.x - difference, gameObject.transform.position.y, gameObject.transform.position.z), ref Velocity, 0);
-        //
-        //            }
-        //        }
-        //    //    if (pos[i].x <= 0.1 && cam.transform.position.z >= -80)
-        //    //    {
-        //    //        cam.transform.Translate(new Vector3(0, 0, -1));
-        //    //        difference = leader.transform.position.x - middle.transform.position.x;
-        //    //        distSet = false;
-        //    //    }
-        //
-        //    }
-        //   // if (pos[0].x >= 0.4 && pos[1].x >= 0.4 && cam.transform.position.z < -50)
-        //   // {
-        //   //     gameObject.transform.position = new Vector3(leader.transform.position.x - difference, gameObject.transform.position.y, gameObject.transform.position.z);
-        //   //     difference = leader.transform.position.x - middle.transform.position.x;
-        //   //     cam.transform.Translate(new Vector3(0, 0, 1));
-        //   //     distSet = false;
-        //   // }
+           //for (int i = 0; i < player.Count; i++)
+           //{
+           //   // pos[i] = Camera.main.WorldToViewportPoint(player[i].transform.position);
+           //   //
+           //   // if (pos[i].x >= masd)
+           //   // {
+           //   //     if (!distSet)
+           //   //     {
+           //   //         difference = leader.transform.position.x - middle.transform.position.x;
+           //   //         distSet = true;
+           //   //     }
+           //   //     if (player[i].GetComponent<CharacterControls>().h > 0)
+           //   //     {
+           //   //         gameObject.transform.position = new Vector3(leader.transform.position.x - difference, gameObject.transform.position.y, gameObject.transform.position.z);
+           //   //         //gameObject.transform.position = Vector3.SmoothDamp(gameObject.transform.position, new Vector3(leader.transform.position.x - difference, gameObject.transform.position.y, gameObject.transform.position.z), ref Velocity, 0);
+           //   //
+           //   //     }
+           //   // }
+           //    if (pos[i].x <= 0.1 && cam.transform.position.z >= -80)
+           //    {
+           //        cam.transform.Translate(new Vector3(0, 0, -1));
+           //        //difference = leader.transform.position.x - middle.transform.position.x;
+           //        //distSet = false;
+           //    }
+           //
+           //}
+           //if (pos[0].x >= 0.4 && pos[1].x >= 0.4 && cam.transform.position.z < -50)
+           //{
+           //    //gameObject.transform.position = new Vector3(leader.transform.position.x - difference, gameObject.transform.position.y, gameObject.transform.position.z);
+           //    //difference = leader.transform.position.x - middle.transform.position.x;
+           //    cam.transform.Translate(new Vector3(0, 0, 1));
+           //    //distSet = false;
+           //}
     }
 
     IEnumerator camWait(int a_index)
@@ -142,6 +142,7 @@ public class CameraScript : MonoBehaviour
         gameObject.transform.SetParent(null);
     }
 
+    //sorts the player array by their x position
     public void SortLeader()
     {
         player = player.OrderBy(player => player.transform.position.x).ToList();
