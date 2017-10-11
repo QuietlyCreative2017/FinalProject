@@ -49,19 +49,21 @@ public class GameManager : MonoBehaviour
         //CheckGameOver();
         P1health.GetComponent<Text>().text = player[0].GetComponent<PlayerLives>().Lives().ToString();
         P2health.GetComponent<Text>().text = player[1].GetComponent<PlayerLives>().Lives().ToString();
+        
+
         for (int i = 0; i < player.Length; i++)
         {
             leader = SortDistance();
             if (Camera.main.WorldToViewportPoint(player[i].transform.position).y <= 0 || Camera.main.WorldToViewportPoint(player[i].transform.position).x <= 0)
             {
-                newT.Set(SpawnPoint.transform.position.x, 10, 1);
+                newT.Set(SpawnPoint.transform.position.x, 25, 1);
                 player[i].transform.position = newT;
                 player[i].GetComponent<PlayerLives>().RemoveLife();
                 player[i].GetComponent<Rigidbody>().velocity = Vector3.zero;
             }
             if(player[i].transform.position.y <= DeathTouch.transform.position.y)
             {
-                newT.Set(SpawnPoint.transform.position.x, 10, 1);
+                newT.Set(SpawnPoint.transform.position.x, 25, 1);
                 player[i].transform.position = newT;
                 player[i].GetComponent<PlayerLives>().RemoveLife();
                 player[i].GetComponent<Rigidbody>().velocity = Vector3.zero;
