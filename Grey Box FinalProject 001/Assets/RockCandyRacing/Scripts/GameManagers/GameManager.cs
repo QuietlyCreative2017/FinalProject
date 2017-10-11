@@ -54,9 +54,10 @@ public class GameManager : MonoBehaviour
         for (int i = 0; i < player.Length; i++)
         {
             leader = SortDistance();
-            if (Camera.main.WorldToViewportPoint(player[i].transform.position).y <= 0 || Camera.main.WorldToViewportPoint(player[i].transform.position).x <= 0)
+            if (/*Camera.main.WorldToViewportPoint(player[i].transform.position).y <= 0 ||*/ Camera.main.WorldToViewportPoint(player[i].transform.position).x <= 0)
             {
-                newT.Set(SpawnPoint.transform.position.x, 25, 1);
+                Vector3 disPos = Camera.main.ViewportToWorldPoint(new Vector3(1, 1, 0)); 
+                newT.Set(SpawnPoint.transform.position.x, disPos.y, 1);
                 player[i].transform.position = newT;
                 player[i].GetComponent<PlayerLives>().RemoveLife();
                 player[i].GetComponent<Rigidbody>().velocity = Vector3.zero;
