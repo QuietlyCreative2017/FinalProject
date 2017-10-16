@@ -58,6 +58,7 @@ public class CharacterControls : MonoBehaviour
     public float movementRayLength = 2;
     Vector3 movementPosition;
 
+    public LayerMask Ground;
     private void Awake()
     {
         rb = gameObject.GetComponent<Rigidbody>();
@@ -195,8 +196,8 @@ public class CharacterControls : MonoBehaviour
     //handy for making sure you dont go inside other things
     private void FixedUpdate()
     {
-        movementPosition = rb.position + transform.right * fInput * speed * Time.fixedDeltaTime;
-        //movementPosition = CheckMovementPosition(movementPosition, Mathf.Sign(fInput));
+        //movementPosition = rb.position + transform.right * fInput * speed * Time.fixedDeltaTime;
+        movementPosition = CheckMovementPosition(movementPosition, Mathf.Sign(fInput));
 
         //movement force
         rb.MovePosition(movementPosition);
@@ -253,6 +254,11 @@ public class CharacterControls : MonoBehaviour
     }
 
 
+    //Casts 3 rays to the right or left depending on current direction
+    //Checks if any rays hit a wall
+    //if it does it saves the length of the ray from origin to hitpoint
+    //changes movement position to equal length of shortest ray
+    //else it doesnt change movement position
     private Vector3 CheckMovementPosition(Vector3 positionToMoveTo, float dirValue)
     {
         RaycastHit[] hit = new RaycastHit[3];
@@ -261,7 +267,7 @@ public class CharacterControls : MonoBehaviour
         for (int i = 0; i < 3; i++)
         {
             Debug.DrawRay(transform.position + Vector3.up * ((i - 1) * 0.5f), Vector3.right * movementRayLength * dirValue, Color.blue);
-            if (Physics.Raycast(transform.position + Vector3.up * ((i - 1) * 0.5f), Vector3.right * dirValue, out hit[i], movementRayLength))
+            if (Physics.Raycast(transform.position + Vector3.up * ((i - 1) * 0.5f), Vector3.right * dirValue, out hit[i], movementRayLength, Ground))
             {
                 if (hit[i].distance > leastDist.distance)
                 {
@@ -272,7 +278,7 @@ public class CharacterControls : MonoBehaviour
 
         if (leastDist.distance != 0)
         {
-            return rb.position + Vector3.right * leastDist.distance;
+            return rb.position + Vector3.right * leastDist.distance * Time.deltaTime;
         }
         else
             return rb.position + transform.right * fInput * speed * Time.fixedDeltaTime;
