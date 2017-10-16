@@ -7,7 +7,6 @@ public class DestroyScripts : MonoBehaviour
 
     public GameObject brokenThing;
     bool spawn;
-    GameObject player;
 
     // Use this for initialization
     void Start()
@@ -24,19 +23,20 @@ public class DestroyScripts : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        Destroy(gameObject);
-        player = collision.gameObject;
-        if (!spawn)
+        //slow collision if it's a player
+        if (collision.gameObject.tag == "Player")
         {
-            Instantiate(brokenThing, gameObject.transform.position, new Quaternion(0, 0, 0, 0));
-            spawn = true;
-        }
-        if(collision.gameObject.tag == "Player")
-        {
+            if (!spawn)
+            {
+                //spawn broken thing
+                Instantiate(brokenThing, gameObject.transform.position, new Quaternion(0, 0, 0, 0));
+                spawn = true;
+            }
+            Destroy(gameObject);
             collision.gameObject.GetComponent<CharacterControls>().Slow();
             //collision.gameObject.GetComponent<CharacterControls>().StartCoroutine("stun");
         }
 
-       
+
     }
 }

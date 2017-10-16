@@ -4,4 +4,7 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/RockCandyRacing/Scenes/Greybox_03.unity
+    guid: af243a5f053afaa46b3e37b7c7455fed

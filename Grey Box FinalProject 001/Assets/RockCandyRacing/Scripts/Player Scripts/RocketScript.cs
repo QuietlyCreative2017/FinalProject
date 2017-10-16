@@ -14,13 +14,11 @@ public class RocketScript : MonoBehaviour {
     public GameObject rocketPrefab;
     Vector3 pos;
     bool shot = false;
-    string type;
     bool canPickUp = true;
 
     private void Awake()
     {
         playerIndex = gameObject.GetComponent<CharacterControls>().GetPlayerIndex();
-        type = gameObject.GetComponent<CharacterControls>().type;
     }
 
     // Use this for initialization
@@ -32,31 +30,31 @@ public class RocketScript : MonoBehaviour {
 	void Update () {
         currentState = GamePad.GetState(playerIndex);
 
+        //set spawn position
         pos = new Vector3(gameObject.transform.position.x + 5, gameObject.transform.position.y, gameObject.transform.position.z);
+
+        //input check
         if((currentState.Triggers.Right > 0 || currentState.Buttons.B == ButtonState.Pressed
               || currentState.Buttons.X == ButtonState.Pressed
                || currentState.Buttons.Y == ButtonState.Pressed) && rocket && !shot)
         {
+            //shoot the thing
             shot = true;
             rocket = false;
             Instantiate(rocketPrefab, pos, Quaternion.Euler(0, 0, 90));
             gameObject.GetComponent<DroppableScript>().enabled = true;
             canPickUp = true;
         }
-		//if(Input.GetAxis("Fire" + type) > 0 && rocket && !shot)
-        //{
-        //    shot = true;
-        //    rocket = false;
-        //    Instantiate(rocketPrefab, pos, Quaternion.Euler(0, 0, 90));
-        //}
-
+        //set previous state to current
         previousState = currentState;
 	}
 
     private void OnTriggerEnter(Collider col)
     {
+        //check if you can pick up a thing
         if(col.gameObject.tag == "Rocket" && canPickUp && isActiveAndEnabled)
         {
+            //pick up the thing
             rocket = true;
             shot = false;
             Destroy(col.gameObject);

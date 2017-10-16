@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SlowDown : MonoBehaviour {
 
-   
+    public float SlowToPercent;
 
     // Use this for initialization
     void Start () {
@@ -20,19 +20,17 @@ public class SlowDown : MonoBehaviour {
     {
         if (other.gameObject.tag == "Player")
         {
-            other.gameObject.GetComponent<CharacterControls>().maxSpeed /= 1.5f;
+            other.gameObject.GetComponent<CharacterControls>().maxSpeed *= SlowToPercent;
         }
-
-        //Camera.main.GetComponent<CameraScript>().translate *= 2;
+        
     }
 
     private void OnTriggerExit(Collider other)
     {
         if (other.gameObject.tag == "Player")
         {
-            other.gameObject.GetComponent<CharacterControls>().maxSpeed *= 1.5f;
+            other.gameObject.GetComponent<CharacterControls>().maxSpeed /= SlowToPercent;
         }
-
-        //Camera.main.GetComponent<CameraScript>().translate /= 2;
+        
     }
 }

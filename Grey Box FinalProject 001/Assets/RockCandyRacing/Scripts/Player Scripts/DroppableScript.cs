@@ -49,8 +49,8 @@ public class DroppableScript : MonoBehaviour {
               || currentState.Buttons.X == ButtonState.Pressed
                || currentState.Buttons.Y == ButtonState.Pressed) && canUse)
         {
-            Instantiate(droppableObject, new Vector3(gameObject.transform.position.x - 2, gameObject.transform.position.y, gameObject.transform.position.z), new Quaternion(0, 0, 0, 0));
             canUse = false;
+            Instantiate(droppableObject, new Vector3(gameObject.transform.position.x - 2, gameObject.transform.position.y, gameObject.transform.position.z), new Quaternion(0, 0, 0, 0));
             gameObject.GetComponent<RocketScript>().enabled = true;
             canPickUp = true;
         }

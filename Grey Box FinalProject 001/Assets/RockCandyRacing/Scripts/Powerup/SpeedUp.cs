@@ -23,7 +23,7 @@ public class SpeedUp : MonoBehaviour {
     {
         if (other.gameObject.tag == "Player")
         {
-            other.gameObject.GetComponent<Rigidbody>().AddForce(new Vector3(InitialSpeedAmount, 0, 0));
+            other.gameObject.GetComponent<CharacterControls>().StartCoroutine(other.gameObject.GetComponent<CharacterControls>().speedUp(InitialSpeedAmount));
         }
         
     }
@@ -32,7 +32,7 @@ public class SpeedUp : MonoBehaviour {
     {
         if (other.gameObject.tag == "Player")
         {
-            other.gameObject.GetComponent<Rigidbody>().AddForce(new Vector3(ExitSpeedAmount, 0, 0));
+            other.gameObject.GetComponent<CharacterControls>().StartCoroutine(other.gameObject.GetComponent<CharacterControls>().speedUp(ExitSpeedAmount));
         }
         
     }

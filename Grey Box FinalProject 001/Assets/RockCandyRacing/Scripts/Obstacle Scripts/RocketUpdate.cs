@@ -20,17 +20,20 @@ public class RocketUpdate : MonoBehaviour {
         direction *= speed * Time.deltaTime;
         transform.Translate(direction);
 
+        //if the rocket has been on screen for deadTime destroy it
         if(deadTime <= 0)
         {
             Destroy(gameObject);
         }
     }
 
+    //check for collision with a player
     private void OnCollisionEnter(Collision collision)
     {
         Destroy(gameObject);
         if(collision.gameObject.tag == "Player")
         {
+            //slow the player it hits
             collision.gameObject.GetComponent<CharacterControls>().Slow();
         }
     }

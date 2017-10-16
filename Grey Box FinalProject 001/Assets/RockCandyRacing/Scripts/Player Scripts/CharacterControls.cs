@@ -7,13 +7,14 @@ using XInputDotNetPure;
 public class CharacterControls : MonoBehaviour
 {
     [HideInInspector]
-    public float h;
+    public float fInput;
     Vector3 direction;
+    [SerializeField]
     public float speed;
 
 
     //////////////Jumping//////////////
-    public bool grounded;
+    bool grounded;
     [Tooltip("How fast the player jumps")]
     public float JumpVel;
     [Tooltip("Max jump time (for setting a maximum jump height)")]
@@ -38,7 +39,7 @@ public class CharacterControls : MonoBehaviour
 
     //CHECK FOR GROUNDED
     int DistToGround;
-    
+
     //XINPUT REQS
     [Tooltip("Player #, needed for input controls")]
     public PlayerIndex playerIndex;
@@ -47,7 +48,16 @@ public class CharacterControls : MonoBehaviour
 
     public float friction;
 
+    public float SlowPercent;
+    public float AccelAmount;
+
+    float InitialMaxSpeed;
+
     float lerp = 0.0f;
+
+    public float movementRayLength = 2;
+    Vector3 movementPosition;
+
     private void Awake()
     {
         rb = gameObject.GetComponent<Rigidbody>();
@@ -58,15 +68,16 @@ public class CharacterControls : MonoBehaviour
     {
         JumpTimeCounter = JumpTime;
         speed = maxSpeed / 2;
+        InitialMaxSpeed = maxSpeed;
     }
 
     // Update is called once per frame
     void Update()
     {
         HandleXinput();
-        if(speed > maxSpeed)
+        if (speed > maxSpeed)
         {
-            speed = maxSpeed;
+            speed -= Time.deltaTime * 5;
         }
 
         grounded = IsGrounded();
@@ -74,17 +85,19 @@ public class CharacterControls : MonoBehaviour
         //transform.Translate(direction);
         if (grounded)
         {
+            //if grounded reset gravity and jump velocity
             gravity = new Vector3(0, gravityforce, 0);
             m_JumpVel = JumpVel;
             //JumpTimeCounter = JumpTime;
         }
-        //Debug.Log(gravity.y);
     }
 
+
+    //all xinput inputs
     void HandleXinput()
     {
+        //get controller state
         currentState = GamePad.GetState(playerIndex);
-        //lerp += 0.5f * Time.deltaTime;
         lerp = 0.02f;
 
         //if controller index isn't connected
@@ -94,36 +107,50 @@ public class CharacterControls : MonoBehaviour
             return;
         }
 
-        if(h > 1)
+        //bounds
+        if (fInput > 1)
         {
-            h = 1;
+            fInput = 1;
         }
-        if(h < -1)
+        if (fInput < -1)
         {
-            h = -1;
+            fInput = -1;
         }
-        //Debug.Log(h);
-        if (h <= 1 && h >= -1)
+        //end bounds
+
+        //if fInput is within bounds
+        if (fInput <= 1 && fInput >= -1)
         {
-            h += currentState.ThumbSticks.Left.X;
+            //add current stick input to fInput
+            fInput += currentState.ThumbSticks.Left.X;
         }
-        if(h != 0 && currentState.ThumbSticks.Left.X == 0)
+        if (fInput != 0 && currentState.ThumbSticks.Left.X == 0)
         {
-            h = Mathf.Lerp(h, 0, lerp);
+            //if the stick isnt being used move fInput to zero (slows down when you stop moving)
+            fInput = Mathf.Lerp(fInput, 0, lerp);
         }
-        
+
+        //if you're using the stick
         if (currentState.ThumbSticks.Left.X != 0)
         {
+            //if current speed isnt maxSpeed
             if (speed < maxSpeed)
             {
+                //speed up
                 speed += Time.deltaTime * 7;
-
+            }
+            else if (speed > maxSpeed)
+            {
+                speed -= Time.deltaTime;
             }
         }
+        //if you aren't using the stick
         else if (currentState.ThumbSticks.Left.X == 0)
         {
+            //if speed is greater than half maxSpeed
             if (speed > maxSpeed / 2)
             {
+                //speed = half maxSpeed
                 speed = maxSpeed / 2;
             }
         }
@@ -168,17 +195,18 @@ public class CharacterControls : MonoBehaviour
     //handy for making sure you dont go inside other things
     private void FixedUpdate()
     {
+        movementPosition = rb.position + transform.right * fInput * speed * Time.fixedDeltaTime;
+        //movementPosition = CheckMovementPosition(movementPosition, Mathf.Sign(fInput));
 
         //movement force
-        rb.MovePosition(rb.position + transform.right * h * speed * Time.fixedDeltaTime);
-
+        rb.MovePosition(movementPosition);
 
         ////////////////////////Start Gravity////////////////////////
         if ((!grounded || rb.velocity.y > 0 || rb.velocity.y < 0) /*&& StoppedJumping*/)
         {
-            // if(gravity.y >= -200)
             if (gravity.y >= -100)
             {
+                //grav increase over time
                 gravity += new Vector3(0, gravityforce, 0);
 
             }
@@ -204,19 +232,17 @@ public class CharacterControls : MonoBehaviour
         //StopCoroutine("slow");
     }
 
+    //divide maxSpeed by whatever wait 2 seconds and restore
     IEnumerator slow()
     {
-        maxSpeed /= 2.0f;
         yield return new WaitForSeconds(2f);
-        maxSpeed *= 2.0f;
     }
 
     //Multiplied max speed by 2 then waits for 2 seconds 
-    IEnumerator speedUp()
+    public IEnumerator speedUp(float a_SpeedIncrease)
     {
-        maxSpeed *= 2.0f;
-        yield return new WaitForSeconds(2f);
-        maxSpeed /= 2.0f;
+        speed *= a_SpeedIncrease;
+        yield return new WaitForSeconds(0.5f);
     }
 
 
@@ -227,53 +253,97 @@ public class CharacterControls : MonoBehaviour
     }
 
 
+    private Vector3 CheckMovementPosition(Vector3 positionToMoveTo, float dirValue)
+    {
+        RaycastHit[] hit = new RaycastHit[3];
+        RaycastHit leastDist = new RaycastHit();
+
+        for (int i = 0; i < 3; i++)
+        {
+            Debug.DrawRay(transform.position + Vector3.up * ((i - 1) * 0.5f), Vector3.right * movementRayLength * dirValue, Color.blue);
+            if (Physics.Raycast(transform.position + Vector3.up * ((i - 1) * 0.5f), Vector3.right * dirValue, out hit[i], movementRayLength))
+            {
+                if (hit[i].distance > leastDist.distance)
+                {
+                    leastDist = hit[i];
+                }
+            }
+        }
+
+        if (leastDist.distance != 0)
+        {
+            return rb.position + Vector3.right * leastDist.distance;
+        }
+        else
+            return rb.position + transform.right * fInput * speed * Time.fixedDeltaTime;
+    }
+
     //cast a ray to the see if the player is stuck to the left of an objcet
+    //not being used
     bool IsStuckLeft()
     {
-        Debug.DrawRay(transform.position, new Vector3(0.6f, 0, 0));
-        if (Physics.Raycast(transform.position, Vector3.right, 0.6f, 1))
+
+        // List<RaycastHit> rayList = new List<RaycastHit>();
+
+        for (int i = 0; i < 3; i++)
         {
-            h = 0;
-            return true;
+            RaycastHit hit;
+
+            Debug.DrawRay(transform.position + Vector3.up * ((i - 1) * 0.5f), Vector3.right * movementRayLength, Color.blue);
+            if (Physics.Raycast(transform.position + Vector3.up * ((i - 1) * 0.5f), Vector3.right, out hit, movementRayLength))
+            {
+                fInput = 0;
+
+                return true;
+            }
+
         }
 
-        Debug.DrawRay(new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z), new Vector3(0.6f, 0, 0));
-        if (Physics.Raycast(new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z), Vector3.right, 0.6f, 1))
-        {
-            h = 0;
-            return true;
-        }
+        //Debug.DrawRay(transform.position, Vector3.right * movementRayLength , Color.blue);
+        //if (Physics.Raycast(transform.position, Vector3.right * movementRayLength , 0.6f, 1))
+        //{
+        //    fInput = 0;
+        //    return true;
+        //}
 
-        Debug.DrawRay(new Vector3(transform.position.x, transform.position.y - 0.5f, transform.position.z), new Vector3(0.6f, 0, 0));
-        if (Physics.Raycast(new Vector3(transform.position.x, transform.position.y - 0.5f, transform.position.z), Vector3.right, 0.6f, 1))
-        {
-            h = 0;
-            return true;
-        }
+        //Debug.DrawRay(new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z), Vector3.right * movementRayLength, Color.blue);
+        //if (Physics.Raycast(new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z), Vector3.right, 0.6f, 1))
+        //{
+        //    fInput = 0;
+        //    return true;
+        //}
 
-        else return false;
+        //Debug.DrawRay(new Vector3(transform.position.x, transform.position.y - 0.5f, transform.position.z), new Vector3(0.6f, 0, 0), Color.blue);
+        //if (Physics.Raycast(new Vector3(transform.position.x, transform.position.y - 0.5f, transform.position.z), Vector3.right, 0.6f, 1))
+        //{
+        //    fInput = 0;
+        //    return true;
+        //}
+
+        return false;
     }
 
 
     //cast a ray to the see if the player is stuck to the right of an objcet
+    //not being used
     bool IsStuckRight()
     {
         Debug.DrawRay(transform.position, new Vector3(-0.6f, 0, 0));
         if (Physics.Raycast(transform.position, Vector3.left, 0.6f, 1))
         {
-            h = 0;
+            fInput = 0;
             return true;
         }
         Debug.DrawRay(new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z), new Vector3(-0.6f, 0, 0));
         if (Physics.Raycast(new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z), Vector3.left, 0.6f, 1))
         {
-            h = 0;
+            fInput = 0;
             return true;
         }
         Debug.DrawRay(new Vector3(transform.position.x, transform.position.y - 0.5f, transform.position.z), new Vector3(-0.6f, 0, 0));
         if (Physics.Raycast(new Vector3(transform.position.x, transform.position.y - 0.5f, transform.position.z), Vector3.left, 0.6f, 1))
         {
-            h = 0;
+            fInput = 0;
             return true;
         }
 
@@ -281,10 +351,9 @@ public class CharacterControls : MonoBehaviour
     }
 
 
-    //cast rays to check if the player is above the ground
+    //cast rays to check if the player is on the ground
     bool IsGrounded()
     {
-        LayerMask ground = LayerMask.NameToLayer("Ground");
         //Debug.DrawRay(transform.position, -Vector3.up);
         if (Physics.Raycast(transform.position, -Vector3.up, 1.2f, LayerMask))
             return true;
@@ -303,5 +372,16 @@ public class CharacterControls : MonoBehaviour
     public PlayerIndex GetPlayerIndex()
     {
         return playerIndex;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+      
+    }
+
+    public void Respawn()
+    {
+        speed = 0;
+        maxSpeed = InitialMaxSpeed;
     }
 }

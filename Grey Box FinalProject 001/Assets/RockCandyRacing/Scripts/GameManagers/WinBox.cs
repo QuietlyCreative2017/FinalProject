@@ -14,6 +14,7 @@ public class WinBox : MonoBehaviour {
 
     void OnTriggerExit(Collider collision)
     {
+        //if a player enters set the winner
         if (collision.gameObject.tag == "Player")
         {
             Winner = collision.gameObject;

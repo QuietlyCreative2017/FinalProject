@@ -6,22 +6,21 @@ using System.Linq;
 public class CameraScript : MonoBehaviour
 {
     public Camera cam;
-    Vector3[] pos;
     public List<GameObject> player;
     GameObject leader;
     GameObject loser;
     public GameObject middle;
-    bool distSet = false;
 
     public float screenPercent;
     float difference;
-
-    float leadX;
-    float loseX;
+    
 
     Vector3 offset;
     float distanceX;
+    public float zOffset;
     Vector3 velocity = Vector3.zero;
+
+    float yCalc;
 
     private void Awake()
     {
@@ -32,7 +31,6 @@ public class CameraScript : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        pos = new[] { new Vector3(0f, 0f, 0f), new Vector3(0f, 0f, 0f) };
         transform.position = new Vector3(transform.position.x, transform.position.y, -80);
     }
 
@@ -47,25 +45,20 @@ public class CameraScript : MonoBehaviour
         SortLeader();
         leader = player.Last();
         loser = player.First();
-        leadX = Camera.main.WorldToViewportPoint(leader.transform.position).x;
-        loseX = Camera.main.WorldToViewportPoint(loser.transform.position).x;
+        yCalc = 0;
 
-        //gets the average y position of the players and sets the camera position to it//////////
-        transform.position = new Vector3(transform.position.x, ((player[0].transform.position.y + player[1].transform.position.y) / 2), transform.position.z);
-
-        //transform.position = new Vector3(transform.position.x, leader.transform.position.y + offset.y, transform.position.z);
-
-        //if (Camera.main.WorldToViewportPoint(leader.transform.position).y >= screenPercent || Camera.main.WorldToViewportPoint(leader.transform.position).y <= 0.1f)
-        //{
-        //    if(!yChanged)
-        //    {
-        //        yDifference = leader.transform.position.y - middle.transform.position.y;
-        //        yChanged = true;
-        //    }
-        //
-        //    cam.transform.position = new Vector3(gameObject.transform.position.x, leader.transform.position.y - yDifference, gameObject.transform.position.z);
-        //}
-
+        /////////////////////////gets the average y position of the players and sets the camera position to it/////////////////////////////////////
+        //for each player
+        for (int i = 0; i < player.Count; i++)
+        {
+            //add current players y position to calc variable
+            yCalc += player[i].transform.position.y;
+        }
+        //divide calc by number of players
+        yCalc /= player.Count;
+        //set camera position to the current position with average y position of players
+        transform.position = new Vector3(transform.position.x, yCalc, transform.position.z);
+        
         //Move to the right if the leading player is above screen percent
         if (Camera.main.WorldToViewportPoint(leader.transform.position).x >= screenPercent)
         {
@@ -75,33 +68,27 @@ public class CameraScript : MonoBehaviour
             //    distSet = true;
             //}
 
-            if (leader.GetComponent<CharacterControls>().h > 0)
+            //only follow if the character is moving forward
+            if (leader.GetComponent<CharacterControls>().fInput > 0)
             {
                 gameObject.transform.position = new Vector3(leader.transform.position.x/* - difference*/, gameObject.transform.position.y/*gameObject.transform.position.y*/, gameObject.transform.position.z);
-                //gameObject.transform.SetParent(leader.transform);
             }
         }
-
-        //zoom out
-        //if (Camera.main.WorldToViewportPoint(loser.transform.position).x <= 0.1 && cam.transform.position.z >= -150)
-        //{
-        //
-        //    cam.transform.position = Vector3.SmoothDamp(cam.transform.position, new Vector3(cam.transform.position.x, cam.transform.position.y, cam.transform.position.z - 1), ref velocity, 0.001f);
-        //    //cam.transform.Translate(new Vector3(0, 0, -1));
-        //    //distSet = false;
-        //}
         
-        
-            distanceX = leader.transform.position.x - loser.transform.position.x;
-            if (transform.position.z >= -150 && transform.position.z <= -65)
-                     transform.position = Vector3.SmoothDamp(transform.position, new Vector3(transform.position.x, transform.position.y, /*transform.position.z - */-distanceX * 4 - 50), ref velocity, 0.02f);
-                //transform.position = new Vector3(transform.position.x, transform.position.y, /*transform.position.z - */-distanceX * 4 - 50);
+        //gets distance between leader and loser
+        //distanceX = leader.transform.position.x - loser.transform.position.x;
 
-            if(transform.position.z < -150)
+        //if z position is within bounds, zoom in/out dependant on distance
+        if (transform.position.z >= -150 && transform.position.z <= -65)
+            transform.position = Vector3.SmoothDamp(transform.position, new Vector3(transform.position.x, transform.position.y, /*transform.position.z - */-distanceX * 4 + zOffset), ref velocity, 0.02f);
+
+        
+        //camera z bounds
+        if (transform.position.z < -150)
         {
             transform.position = new Vector3(transform.position.x, transform.position.y, -150);
         }
-            if(transform.position.z > -65)
+        if (transform.position.z > -65)
         {
             transform.position = new Vector3(transform.position.x, transform.position.y, -65);
         }
@@ -153,6 +140,7 @@ public class CameraScript : MonoBehaviour
         //}
     }
 
+    //not being used
     IEnumerator camWait(int a_index)
     {
         gameObject.transform.SetParent(player[a_index].transform);
