@@ -14,6 +14,7 @@ public class DroppableScript : MonoBehaviour {
     public GameObject droppableObject;
     public string type;
     bool canPickUp = true;
+    float dirValue;
 
     private void Awake()
     {
@@ -28,6 +29,7 @@ public class DroppableScript : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         currentState = GamePad.GetState(playerIndex);
+        dirValue = Mathf.Sign(gameObject.GetComponent<CharacterControls>().fInput);
         //switch (type)
         //{
         //    case "WASD":
@@ -50,7 +52,7 @@ public class DroppableScript : MonoBehaviour {
                || currentState.Buttons.Y == ButtonState.Pressed) && canUse)
         {
             canUse = false;
-            Instantiate(droppableObject, new Vector3(gameObject.transform.position.x - 2, gameObject.transform.position.y, gameObject.transform.position.z), new Quaternion(0, 0, 0, 0));
+            Instantiate(droppableObject, gameObject.transform.position + Vector3.right * -dirValue * 2/*new Vector3(gameObject.transform.position.x - 2, gameObject.transform.position.y, gameObject.transform.position.z)*/, new Quaternion(0, 0, 0, 0));
             gameObject.GetComponent<RocketScript>().enabled = true;
             canPickUp = true;
         }

@@ -10,11 +10,11 @@ public class RocketScript : MonoBehaviour {
     GamePadState currentState;
     GamePadState previousState;
 
-    bool rocket = false;
+    public bool rocket = false;
     public GameObject rocketPrefab;
     Vector3 pos;
-    bool shot = false;
-    bool canPickUp = true;
+    public bool shot = false;
+    public bool canPickUp = true;
 
     private void Awake()
     {

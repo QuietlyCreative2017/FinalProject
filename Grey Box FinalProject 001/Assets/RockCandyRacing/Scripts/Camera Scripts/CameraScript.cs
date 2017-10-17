@@ -6,7 +6,7 @@ using System.Linq;
 public class CameraScript : MonoBehaviour
 {
     public Camera cam;
-    public List<GameObject> player;
+    public GameObject[] players;
     GameObject leader;
     GameObject loser;
     public GameObject middle;
@@ -22,9 +22,12 @@ public class CameraScript : MonoBehaviour
 
     float yCalc;
 
+    public float maxZoom;
+    public float minZoom;
+
     private void Awake()
     {
-        player = new List<GameObject>(GameObject.FindGameObjectsWithTag("Player"));
+        players = GameObject.FindGameObjectsWithTag("Player");
         cam = Camera.main;
     }
 
@@ -43,19 +46,19 @@ public class CameraScript : MonoBehaviour
     {
         middle.transform.position = new Vector3(gameObject.transform.position.x, middle.transform.position.y, 1);
         SortLeader();
-        leader = player.Last();
-        loser = player.First();
+        leader = players.Last();
+        loser = players.First();
         yCalc = 0;
 
         /////////////////////////gets the average y position of the players and sets the camera position to it/////////////////////////////////////
         //for each player
-        for (int i = 0; i < player.Count; i++)
+        for (int i = 0; i < players.Count(); i++)
         {
             //add current players y position to calc variable
-            yCalc += player[i].transform.position.y;
+            yCalc += players[i].transform.position.y;
         }
         //divide calc by number of players
-        yCalc /= player.Count;
+        yCalc /= players.Count();
         //set camera position to the current position with average y position of players
         transform.position = new Vector3(transform.position.x, yCalc, transform.position.z);
         
@@ -76,7 +79,7 @@ public class CameraScript : MonoBehaviour
         }
         
         //gets distance between leader and loser
-        //distanceX = leader.transform.position.x - loser.transform.position.x;
+        distanceX = leader.transform.position.x - loser.transform.position.x;
 
         //if z position is within bounds, zoom in/out dependant on distance
         if (transform.position.z >= -150 && transform.position.z <= -65)
@@ -84,11 +87,11 @@ public class CameraScript : MonoBehaviour
 
         
         //camera z bounds
-        if (transform.position.z < -150)
+        if (transform.position.z < maxZoom)
         {
             transform.position = new Vector3(transform.position.x, transform.position.y, -150);
         }
-        if (transform.position.z > -65)
+        if (transform.position.z > minZoom)
         {
             transform.position = new Vector3(transform.position.x, transform.position.y, -65);
         }
@@ -143,7 +146,7 @@ public class CameraScript : MonoBehaviour
     //not being used
     IEnumerator camWait(int a_index)
     {
-        gameObject.transform.SetParent(player[a_index].transform);
+        gameObject.transform.SetParent(players[a_index].transform);
         yield return new WaitForSeconds(0.5f);
         gameObject.transform.SetParent(null);
     }
@@ -151,11 +154,6 @@ public class CameraScript : MonoBehaviour
     //sorts the player array by their x position
     public void SortLeader()
     {
-        player = player.OrderBy(player => player.transform.position.x).ToList();
+        players = players.OrderBy(player => player.transform.position.x).ToArray();
     }
-
-    //public GameObject Loser()
-    //{
-    //    retur
-    //}
 }

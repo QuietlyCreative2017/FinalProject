@@ -269,18 +269,23 @@ public class CharacterControls : MonoBehaviour
             Debug.DrawRay(transform.position + Vector3.up * ((i - 1) * 0.5f), Vector3.right * movementRayLength * dirValue, Color.blue);
             if (Physics.Raycast(transform.position + Vector3.up * ((i - 1) * 0.5f), Vector3.right * dirValue, out hit[i], movementRayLength, Ground))
             {
+                //if current rayHit is greater than the leastDist
                 if (hit[i].distance > leastDist.distance)
                 {
+                    //leastDist will always equal the shortest ray
                     leastDist = hit[i];
                 }
             }
         }
 
+        //if leastDist was changed to the length of a raycast
         if (leastDist.distance != 0)
         {
+            //point to move to is now the current position + least distance ray * deltaTime
             return rb.position + Vector3.right * leastDist.distance * Time.deltaTime;
         }
         else
+            //else point to move to stays the same
             return rb.position + transform.right * fInput * speed * Time.fixedDeltaTime;
     }
 
@@ -288,9 +293,7 @@ public class CharacterControls : MonoBehaviour
     //not being used
     bool IsStuckLeft()
     {
-
         // List<RaycastHit> rayList = new List<RaycastHit>();
-
         for (int i = 0; i < 3; i++)
         {
             RaycastHit hit;
@@ -302,7 +305,6 @@ public class CharacterControls : MonoBehaviour
 
                 return true;
             }
-
         }
 
         //Debug.DrawRay(transform.position, Vector3.right * movementRayLength , Color.blue);
@@ -360,15 +362,15 @@ public class CharacterControls : MonoBehaviour
     //cast rays to check if the player is on the ground
     bool IsGrounded()
     {
-        //Debug.DrawRay(transform.position, -Vector3.up);
+        Debug.DrawRay(transform.position, -Vector3.up, Color.black);
         if (Physics.Raycast(transform.position, -Vector3.up, 1.2f, LayerMask))
             return true;
 
-        //Debug.DrawRay(new Vector3(transform.position.x + 0.4f, transform.position.y, transform.position.z), -Vector3.up);
+        Debug.DrawRay(new Vector3(transform.position.x + 0.4f, transform.position.y, transform.position.z), -Vector3.up, Color.black);
         if (Physics.Raycast(new Vector3(transform.position.x + 0.4f, transform.position.y, transform.position.z), -Vector3.up, 1.2f, LayerMask))
             return true;
 
-        //Debug.DrawRay(new Vector3(transform.position.x - 0.4f, transform.position.y, transform.position.z), -Vector3.up);
+        Debug.DrawRay(new Vector3(transform.position.x - 0.4f, transform.position.y, transform.position.z), -Vector3.up, Color.black);
         if (Physics.Raycast(new Vector3(transform.position.x - 0.4f, transform.position.y, transform.position.z), -Vector3.up, 1.2f, LayerMask))
             return true;
 

@@ -21,8 +21,10 @@ public class GameManager : MonoBehaviour
     GameObject P2health;
     GameObject P1health;
     public GameObject DeathTouch;
-
     float deltaTime = 0.0f;
+
+    public AudioSource m_asMainSource;
+    public AudioClip[] m_acAudClips;
 
     public float countDownTimer;
     // Use this for initialization
@@ -37,16 +39,17 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         StartCoroutine("CountDown");
+        
     }
 
     // Update is called once per frame
     void Update()
     {
         deltaTime += (Time.deltaTime - deltaTime) * 0.1f;
-        if(CheckGameOver())
-        {
-            SceneManager.LoadScene(0);
-        }
+       //if(CheckGameOver())
+       //{
+       //    SceneManager.LoadScene(0);
+       //}
         CheckGameOver();
         P1health.GetComponent<Text>().text = player[0].GetComponent<PlayerLives>().Lives().ToString();
         P2health.GetComponent<Text>().text = player[1].GetComponent<PlayerLives>().Lives().ToString();
@@ -131,14 +134,14 @@ public class GameManager : MonoBehaviour
 
     public void SortLeader()
     {
-        //sort the player array depending on x position
+        //sort the player array depending on x positions
         player = player.OrderBy(player => player.transform.position.x).ToArray();
     }
 
+
+    
     IEnumerator CountDown()
     {
-        float Timer = countDownTimer;
-        Timer -= deltaTime;
         Time.timeScale = 0;
         yield return new WaitForSecondsRealtime(countDownTimer);
         Time.timeScale = 1;
