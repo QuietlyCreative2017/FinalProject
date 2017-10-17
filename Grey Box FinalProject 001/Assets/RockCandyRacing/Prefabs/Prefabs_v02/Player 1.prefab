@@ -126,8 +126,6 @@ GameObject:
   - component: {fileID: 114128995842409522}
   - component: {fileID: 114480344330538744}
   - component: {fileID: 54250570022210370}
-  - component: {fileID: 114500713420668172}
-  - component: {fileID: 114496733602982060}
   m_Layer: 8
   m_Name: Player 1
   m_TagString: Player
@@ -654,7 +652,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canUse: 0
-  droppableObject: {fileID: 1027601248027926, guid: d328ab5de3868b144bc9d3f33e98a8c1,
+  droppableObject: {fileID: 1040999638706138, guid: fab85427b972f0646946d7ae473791c0,
     type: 2}
   type: WASD
 --- !u!114 &114177878271563442
@@ -668,8 +666,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79e41fe5c4e32e24ba80de8024039575, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rocket: 0
   rocketPrefab: {fileID: 1654802204762836, guid: 8aa2ce2fa0698fc46bdc957ccc930939,
     type: 2}
+  shot: 0
+  canPickUp: 1
 --- !u!114 &114410468318000692
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -684,7 +685,7 @@ MonoBehaviour:
   fInput: 0
   speed: 50
   JumpVel: 40
-  JumpTime: 0.1
+  JumpTime: 0.2
   LayerMask:
     serializedVersion: 2
     m_Bits: 1024
@@ -712,34 +713,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   StartLives: 3
   Currentlives: 0
---- !u!114 &114496733602982060
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1594824739944906}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb432b6bc94e81498a20a157ae9c103, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  StartLives: 3
-  Currentlives: 0
---- !u!114 &114500713420668172
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1594824739944906}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 637904b3c0c4ac54ebbd275f8071d730, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  canUse: 0
-  droppableObject: {fileID: 1040999638706138, guid: fab85427b972f0646946d7ae473791c0,
-    type: 2}
-  type: WASD
 --- !u!136 &136443191061664894
 CapsuleCollider:
   m_ObjectHideFlags: 1

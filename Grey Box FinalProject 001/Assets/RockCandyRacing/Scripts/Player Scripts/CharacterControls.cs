@@ -363,15 +363,15 @@ public class CharacterControls : MonoBehaviour
     bool IsGrounded()
     {
         Debug.DrawRay(transform.position, -Vector3.up, Color.black);
-        if (Physics.Raycast(transform.position, -Vector3.up, 1.2f, LayerMask))
+        if (Physics.Raycast(transform.position, -Vector3.up, 3, LayerMask))
             return true;
 
         Debug.DrawRay(new Vector3(transform.position.x + 0.4f, transform.position.y, transform.position.z), -Vector3.up, Color.black);
-        if (Physics.Raycast(new Vector3(transform.position.x + 0.4f, transform.position.y, transform.position.z), -Vector3.up, 1.2f, LayerMask))
+        if (Physics.Raycast(new Vector3(transform.position.x + 0.4f, transform.position.y, transform.position.z), -Vector3.up, 3, LayerMask))
             return true;
 
         Debug.DrawRay(new Vector3(transform.position.x - 0.4f, transform.position.y, transform.position.z), -Vector3.up, Color.black);
-        if (Physics.Raycast(new Vector3(transform.position.x - 0.4f, transform.position.y, transform.position.z), -Vector3.up, 1.2f, LayerMask))
+        if (Physics.Raycast(new Vector3(transform.position.x - 0.4f, transform.position.y, transform.position.z), -Vector3.up, 3, LayerMask))
             return true;
 
         return false;

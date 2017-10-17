@@ -29,9 +29,7 @@ public class RocketUpdate : MonoBehaviour
         //}
         //else
         {
-            direction = new Vector3(0, -2, 0);
-            direction *= speed * Time.deltaTime;
-            transform.Translate(direction);
+            transform.Translate(Vector3.right * speed * Time.deltaTime);
         }
 
         //if the rocket has been on screen for deadTime destroy it
