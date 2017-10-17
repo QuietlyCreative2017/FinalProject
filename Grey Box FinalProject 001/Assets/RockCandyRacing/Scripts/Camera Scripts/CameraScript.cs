@@ -82,7 +82,7 @@ public class CameraScript : MonoBehaviour
         distanceX = leader.transform.position.x - loser.transform.position.x;
 
         //if z position is within bounds, zoom in/out dependant on distance
-        if (transform.position.z >= -150 && transform.position.z <= -65)
+        if (transform.position.z >= maxZoom && transform.position.z <= minZoom)
             transform.position = Vector3.SmoothDamp(transform.position, new Vector3(transform.position.x, transform.position.y, /*transform.position.z - */-distanceX * 4 + zOffset), ref velocity, 0.02f);
 
         

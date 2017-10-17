@@ -229,13 +229,14 @@ public class CharacterControls : MonoBehaviour
 
     public void Slow()
     {
-        StartCoroutine("slow");
+        StartCoroutine("Sslow");
         //StopCoroutine("slow");
     }
 
     //divide maxSpeed by whatever wait 2 seconds and restore
-    IEnumerator slow()
+    IEnumerator Sslow()
     {
+        speed /= 2;
         yield return new WaitForSeconds(2f);
     }
 

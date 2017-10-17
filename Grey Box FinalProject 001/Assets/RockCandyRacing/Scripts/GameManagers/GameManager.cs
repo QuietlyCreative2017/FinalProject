@@ -39,17 +39,22 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         StartCoroutine("CountDown");
-        
+        Cursor.visible = false;
+
     }
 
     // Update is called once per frame
     void Update()
     {
+        if(Input.GetKeyDown(KeyCode.Escape))
+        {
+            Application.Quit();
+        }
         deltaTime += (Time.deltaTime - deltaTime) * 0.1f;
-       //if(CheckGameOver())
-       //{
-       //    SceneManager.LoadScene(0);
-       //}
+       if(CheckGameOver())
+       {
+           SceneManager.LoadScene(0);
+       }
         CheckGameOver();
         P1health.GetComponent<Text>().text = player[0].GetComponent<PlayerLives>().Lives().ToString();
         P2health.GetComponent<Text>().text = player[1].GetComponent<PlayerLives>().Lives().ToString();
