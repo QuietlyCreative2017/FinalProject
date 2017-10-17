@@ -19,7 +19,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4737076771989488}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Rampbase_SlopeRight_Prefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -38,7 +38,7 @@ GameObject:
   - component: {fileID: 23191155656632034}
   - component: {fileID: 95116130287767016}
   - component: {fileID: 64014202764450718}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: RampCapMirrored_Mesh_v01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -57,7 +57,7 @@ GameObject:
   - component: {fileID: 23791726198777674}
   - component: {fileID: 95689594022777646}
   - component: {fileID: 64487531864230922}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: RampMirrored_Mesh_v01
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 23463825657390766}
   - component: {fileID: 95615201641871326}
   - component: {fileID: 64776382946654798}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: FloatingRampCapMirrored_Mesh_v01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -42,7 +42,7 @@ GameObject:
   - component: {fileID: 23134950447316068}
   - component: {fileID: 95823113353431664}
   - component: {fileID: 64059314777123838}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: FloatingRampMirrored_Mesh_v01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -57,7 +57,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4671449969061912}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: FloatingRamp_Slope_Right_Prefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}

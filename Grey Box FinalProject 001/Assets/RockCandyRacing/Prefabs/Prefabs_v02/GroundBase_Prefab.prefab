@@ -19,7 +19,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4394773065916630}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: GroundBase_Prefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -37,7 +37,7 @@ GameObject:
   - component: {fileID: 33799162935397480}
   - component: {fileID: 23488989124597656}
   - component: {fileID: 95580195427332646}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: GroundBase_Mesh_v01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -56,7 +56,7 @@ GameObject:
   - component: {fileID: 23954340958349608}
   - component: {fileID: 95405342485634980}
   - component: {fileID: 64037757660043128}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: GroundCap_Mesh_v01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -74,7 +74,7 @@ GameObject:
   - component: {fileID: 33619609430360264}
   - component: {fileID: 65679993223010700}
   - component: {fileID: 23801411250268910}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: GroundBase_Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -114,7 +114,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1059018208386172}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -4, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4199614009244762}
