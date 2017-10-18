@@ -41,6 +41,7 @@ GameObject:
   - component: {fileID: 23481037441615392}
   - component: {fileID: 114116901727926478}
   - component: {fileID: 54190997337569126}
+  - component: {fileID: 135415711795739816}
   m_Layer: 0
   m_Name: Rocket
   m_TagString: Untagged
@@ -68,7 +69,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1703890069281522}
   m_LocalRotation: {x: -0, y: -0, z: -0.70710677, w: 0.7071068}
-  m_LocalPosition: {x: -3, y: -0, z: 0}
+  m_LocalPosition: {x: 159.1028, y: 6.90025, z: -43.552135}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4040074321119548}
@@ -180,6 +181,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 20
+  deadTime: 5
+  followDeadTime: 0.1
+  homing: 1
+--- !u!135 &135415711795739816
+SphereCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1703890069281522}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 10
+  m_Center: {x: 0, y: -11.1, z: -0.00000008940697}
 --- !u!136 &136921812395786594
 CapsuleCollider:
   m_ObjectHideFlags: 1

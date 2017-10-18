@@ -7,9 +7,11 @@ public class RocketUpdate : MonoBehaviour
 
     Vector3 direction;
     public float speed;
-    float deadTime = 5.0f;
+    public float deadTime = 5.0f;
     bool foundEnemy = false;
     GameObject Enemy = null;
+    public float followDeadTime = 0.0f;
+    public bool homing = false;
 
     // Use this for initialization
     void Start()
@@ -18,18 +20,43 @@ public class RocketUpdate : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         deadTime -= Time.deltaTime;
-        //if (foundEnemy)
-        //{
-        //    transform.LookAt(Enemy.transform);
-        //    transform.Rotate(new Vector3(90, 270, 90));
-        //    transform.Translate(-Vector3.up * speed * Time.deltaTime);
-        //}
-        //else
+        if (homing)
         {
-            transform.Translate(Vector3.right * speed * Time.deltaTime);
+            if (foundEnemy)
+            {
+                if (followDeadTime > 0)
+                {
+                    //Transform dir = Quaternion.LookRotation(Enemy.transform.position - transform.position);
+                    //Quaternion rot = Quaternion.LookRotation(dir);
+                    //
+                    //transform.rotation = Quaternion.Slerp(transform.rotation, rot, 1 * Time.deltaTime);
+
+                    //Quaternion rotNeeded = Quaternion.LookRotation(Enemy.transform.position - transform.position);
+                    //Quaternion.Slerp(transform.rotation, rotNeeded, 1 * Time.deltaTime);
+
+                    followDeadTime -= Time.deltaTime;
+                    transform.LookAt(Enemy.transform);
+                    transform.Rotate(new Vector3(90, 270, 90));
+                    transform.Translate(-Vector3.up * speed * Time.deltaTime);
+                }
+                
+                if(followDeadTime <= 0)
+                {
+                    foundEnemy = false;
+                }
+            }
+            else
+            {
+                transform.Translate(-Vector3.up * speed * Time.deltaTime);
+            }
+
+        }
+        else
+        {
+            transform.Translate(-Vector3.up * speed * Time.deltaTime);
         }
 
         //if the rocket has been on screen for deadTime destroy it
@@ -37,7 +64,6 @@ public class RocketUpdate : MonoBehaviour
         {
             Destroy(gameObject);
         }
-
     }
 
     //check for collision with a player
@@ -54,16 +80,16 @@ public class RocketUpdate : MonoBehaviour
 
     private void OnTriggerEnter(Collider col)
     {
-        if(col.gameObject.tag == "Player")
+        if (col.gameObject.tag == "Player")
         {
             foundEnemy = true;
             Enemy = col.gameObject;
         }
     }
 
-   private void OnTriggerExit(Collider col)
+    private void OnTriggerExit(Collider col)
     {
-        if(col.gameObject.tag == "Player")
+        if (col.gameObject.tag == "Player")
         {
             foundEnemy = false;
         }
