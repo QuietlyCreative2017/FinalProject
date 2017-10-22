@@ -89,11 +89,11 @@ public class CameraScript : MonoBehaviour
         //camera z bounds
         if (transform.position.z < maxZoom)
         {
-            transform.position = new Vector3(transform.position.x, transform.position.y, -150);
+            transform.position = new Vector3(transform.position.x, transform.position.y, maxZoom);
         }
         if (transform.position.z > minZoom)
         {
-            transform.position = new Vector3(transform.position.x, transform.position.y, -65);
+            transform.position = new Vector3(transform.position.x, transform.position.y, minZoom);
         }
 
         //zoom in
