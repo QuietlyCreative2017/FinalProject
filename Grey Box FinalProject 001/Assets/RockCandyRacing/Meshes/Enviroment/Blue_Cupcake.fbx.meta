@@ -1,0 +1,181 @@
+fileFormatVersion: 2
+guid: f7817c3b0f2d079459a150eb7cb5e4f7
+timeCreated: 1508711811
+licenseType: Pro
+ModelImporter:
+  serializedVersion: 21
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: Blue_Cupcake
+    100004: Blue_Cupcake1
+    100006: Blue_Cupcake2
+    100008: Cherry_02
+    100010: Cherry_02 1
+    100012: Cherry_02 2
+    100014: Cupcake_02
+    100016: Cupcake_02 1
+    100018: Cupcake_02 2
+    100020: Cupcake_Case_02
+    100022: Cupcake_Case_02 1
+    100024: Cupcake_Case_02 2
+    100026: Icing_02
+    100028: Icing_02 1
+    100030: Icing_02 2
+    100032: Icing_03
+    100034: Icing_03 1
+    100036: Icing_03 2
+    100038: Sprinkles
+    100040: Sprinkles 1
+    100042: Sprinkles 2
+    400000: //RootNode
+    400002: Blue_Cupcake
+    400004: Blue_Cupcake1
+    400006: Blue_Cupcake2
+    400008: Cherry_02
+    400010: Cherry_02 1
+    400012: Cherry_02 2
+    400014: Cupcake_02
+    400016: Cupcake_02 1
+    400018: Cupcake_02 2
+    400020: Cupcake_Case_02
+    400022: Cupcake_Case_02 1
+    400024: Cupcake_Case_02 2
+    400026: Icing_02
+    400028: Icing_02 1
+    400030: Icing_02 2
+    400032: Icing_03
+    400034: Icing_03 1
+    400036: Icing_03 2
+    400038: Sprinkles
+    400040: Sprinkles 1
+    400042: Sprinkles 2
+    2300000: Cherry_02
+    2300002: Cherry_02 1
+    2300004: Cherry_02 2
+    2300006: Cupcake_02
+    2300008: Cupcake_02 1
+    2300010: Cupcake_02 2
+    2300012: Cupcake_Case_02
+    2300014: Cupcake_Case_02 1
+    2300016: Cupcake_Case_02 2
+    2300018: Icing_02
+    2300020: Icing_02 1
+    2300022: Icing_02 2
+    2300024: Icing_03
+    2300026: Icing_03 1
+    2300028: Icing_03 2
+    2300030: Sprinkles
+    2300032: Sprinkles 1
+    2300034: Sprinkles 2
+    3300000: Cherry_02
+    3300002: Cherry_02 1
+    3300004: Cherry_02 2
+    3300006: Cupcake_02
+    3300008: Cupcake_02 1
+    3300010: Cupcake_02 2
+    3300012: Cupcake_Case_02
+    3300014: Cupcake_Case_02 1
+    3300016: Cupcake_Case_02 2
+    3300018: Icing_02
+    3300020: Icing_02 1
+    3300022: Icing_02 2
+    3300024: Icing_03
+    3300026: Icing_03 1
+    3300028: Icing_03 2
+    3300030: Sprinkles
+    3300032: Sprinkles 1
+    3300034: Sprinkles 2
+    4300000: Cupcake_Case_02
+    4300002: Cupcake_02
+    4300004: Icing_02
+    4300006: Cherry_02
+    4300008: Icing_03
+    4300010: Sprinkles
+    4300012: Cupcake_Case_02
+    4300014: Cupcake_02
+    4300016: Icing_02
+    4300018: Cherry_02
+    4300020: Icing_03
+    4300022: Sprinkles
+    4300024: Cupcake_Case_02
+    4300026: Cupcake_02
+    4300028: Icing_02
+    4300030: Cherry_02
+    4300032: Icing_03
+    4300034: Sprinkles
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
