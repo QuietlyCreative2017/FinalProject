@@ -184,6 +184,7 @@ MonoBehaviour:
   deadTime: 5
   followDeadTime: 0.1
   homing: 1
+  SlerpTime: 0
 --- !u!135 &135415711795739816
 SphereCollider:
   m_ObjectHideFlags: 1

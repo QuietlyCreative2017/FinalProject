@@ -55,7 +55,7 @@ public class GameManager : MonoBehaviour
        //{
        //    SceneManager.LoadScene(0);
        //}
-        CheckGameOver();
+        //CheckGameOver();
         P1health.GetComponent<Text>().text = player[0].GetComponent<PlayerLives>().Lives().ToString();
         P2health.GetComponent<Text>().text = player[1].GetComponent<PlayerLives>().Lives().ToString();
 

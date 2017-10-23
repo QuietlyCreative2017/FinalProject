@@ -13,7 +13,7 @@ public class DroppableScript : MonoBehaviour {
     public bool canUse = false;
     public GameObject droppableObject;
     public string type;
-    bool canPickUp = true;
+    public bool canPickUp = true;
     float dirValue;
 
     private void Awake()
@@ -60,7 +60,7 @@ public class DroppableScript : MonoBehaviour {
 
     private void OnTriggerEnter(Collider collision)
     {
-        if(collision.gameObject.tag == "Droppable" && canPickUp)
+        if(collision.gameObject.tag == "Droppable" && canPickUp && isActiveAndEnabled)
         {
             canUse = true;
             Destroy(collision.gameObject);
