@@ -36,7 +36,7 @@ public class RocketScript : MonoBehaviour {
         //input check
         if((currentState.Triggers.Right > 0 || currentState.Buttons.B == ButtonState.Pressed
               || currentState.Buttons.X == ButtonState.Pressed
-               || currentState.Buttons.Y == ButtonState.Pressed) /*&& rocket && !shot*/)
+               || currentState.Buttons.Y == ButtonState.Pressed) && rocket && !shot)
         {
             //shoot the thing
             shot = true;

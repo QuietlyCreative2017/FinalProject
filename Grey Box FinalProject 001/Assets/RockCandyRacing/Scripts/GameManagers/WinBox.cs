@@ -31,4 +31,9 @@ public class WinBox : MonoBehaviour {
     {
         return won;
     }
+
+    public GameObject ReturnWinner()
+    {
+        return Winner;
+    }
 }

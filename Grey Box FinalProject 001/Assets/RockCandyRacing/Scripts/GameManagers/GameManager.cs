@@ -27,6 +27,15 @@ public class GameManager : MonoBehaviour
     public AudioClip[] m_acAudClips;
 
     public float countDownTimer;
+
+    enum GameState
+    {
+        Playing, 
+        GameOver,
+    }
+
+    GameState CurrentState;
+
     // Use this for initialization
     void Awake()
     {
@@ -38,54 +47,77 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        WinTextObj.SetActive(false);
         StartCoroutine("CountDown");
         Cursor.visible = false;
-
+        CurrentState = GameState.Playing;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Escape))
+        switch (CurrentState)
         {
-            Application.Quit();
+            ////////////////////////////////////////Start Playing State//////////////////////////////////////////////////////////
+            case GameState.Playing:
+                if (Input.GetKeyDown(KeyCode.Escape))
+                {
+                    Application.Quit();
+                }
+                deltaTime += (Time.deltaTime - deltaTime) * 0.1f;
+                //if(CheckGameOver())
+                //{
+                //    SceneManager.LoadScene(1);
+                //}
+                CheckGameOver();
+                for (int i = 0; i < player.Length; i++)
+                {
+                    P1health.GetComponent<Text>().text = player[i].GetComponent<PlayerLives>().Lives().ToString();
+                }
+                //P1health.GetComponent<Text>().text = player[0].GetComponent<PlayerLives>().Lives().ToString();
+                //P2health.GetComponent<Text>().text = player[1].GetComponent<PlayerLives>().Lives().ToString();
+
+                SortLeader();
+
+                for (int i = 0; i < player.Length; i++)
+                {
+                    //if a player has fallen to the left of the screen
+                    if (Camera.main.WorldToViewportPoint(player[i].transform.position).x <= 0)
+                    {
+                        //respawn them
+                        Vector3 disPos = Camera.main.ViewportToWorldPoint(new Vector3(1, 1, 0));
+                        newT.Set(SpawnPoint.transform.position.x, disPos.y, 1);
+                        player[i].transform.position = newT;
+                        player[i].GetComponent<PlayerLives>().RemoveLife();
+                        player[i].GetComponent<Rigidbody>().velocity = Vector3.zero;
+                        player[i].GetComponent<CharacterControls>().Respawn();
+                    }
+                    //if a player has touched a death box thing
+                    if (player[i].transform.position.y <= DeathTouch.transform.position.y)
+                    {
+                        //respawn them
+                        newT.Set(SpawnPoint.transform.position.x, 25, 1);
+                        player[i].transform.position = newT;
+                        player[i].GetComponent<PlayerLives>().RemoveLife();
+                        player[i].GetComponent<Rigidbody>().velocity = Vector3.zero;
+                        player[i].GetComponent<CharacterControls>().Respawn();
+                    }
+
+                }
+                break;
+            ////////////////////////////////////////End Playing State//////////////////////////////////////////////////////////
+
+            ////////////////////////////////////////Start Game Over State//////////////////////////////////////////////////////////
+            case GameState.GameOver:
+
+                WinTextObj.SetActive(true);
+                WinTextObj.GetComponent<Text>().text = "Someone won";
+
+                break;
+                ////////////////////////////////////////End Game Over State//////////////////////////////////////////////////////////////
         }
-        deltaTime += (Time.deltaTime - deltaTime) * 0.1f;
-       //if(CheckGameOver())
-       //{
-       //    SceneManager.LoadScene(0);
-       //}
-        //CheckGameOver();
-        P1health.GetComponent<Text>().text = player[0].GetComponent<PlayerLives>().Lives().ToString();
-        P2health.GetComponent<Text>().text = player[1].GetComponent<PlayerLives>().Lives().ToString();
-
-        SortLeader();
-
-        for (int i = 0; i < player.Length; i++)
-        {
-            //if a player has fallen to the left of the screen
-            if (Camera.main.WorldToViewportPoint(player[i].transform.position).x <= 0)
-            {
-                //respawn them
-                Vector3 disPos = Camera.main.ViewportToWorldPoint(new Vector3(1, 1, 0)); 
-                newT.Set(SpawnPoint.transform.position.x, disPos.y, 1);
-                player[i].transform.position = newT;
-                player[i].GetComponent<PlayerLives>().RemoveLife();
-                player[i].GetComponent<Rigidbody>().velocity = Vector3.zero;
-                player[i].GetComponent<CharacterControls>().Respawn();
-            }
-            //if a player has touched a death box thing
-            if(player[i].transform.position.y <= DeathTouch.transform.position.y)
-            {
-                //respawn them
-                newT.Set(SpawnPoint.transform.position.x, 25, 1);
-                player[i].transform.position = newT;
-                player[i].GetComponent<PlayerLives>().RemoveLife();
-                player[i].GetComponent<Rigidbody>().velocity = Vector3.zero;
-                player[i].GetComponent<CharacterControls>().Respawn();
-            }
-
-        }
+    
+       
     }
 
     private void OnGUI()
@@ -118,8 +150,10 @@ public class GameManager : MonoBehaviour
         if(WinObj.GetComponent<WinBox>().HasWon())
         {
             //Time.timeScale = 0;
-            WinTextObj.SetActive(true);
-            WinTextObj.GetComponent<Text>().text = /*"Player " +*/ WinObj.GetComponent<WinBox>().Winner.name + " has won";
+            //WinTextObj.SetActive(true);
+            //WinTextObj.GetComponent<Text>().text = /*"Player " +*/ WinObj.GetComponent<WinBox>().Winner.name + " has won";
+            //Camera.main.transform.position = new Vector3(WinObj.GetComponent<WinBox>().ReturnWinner().transform.position.x, WinObj.GetComponent<WinBox>().ReturnWinner().transform.position.y, -50);
+            CurrentState = GameState.GameOver;
             return true;
         }
         for(int i = 0; i < player.Length; i++)
@@ -128,8 +162,9 @@ public class GameManager : MonoBehaviour
             if (player[i].GetComponent<PlayerLives>().Lives() == 0)
             {
                 //Time.timeScale = 0;
-                WinTextObj.SetActive(true);
-                WinTextObj.GetComponent<Text>().text = "Player " + i + " lost because he died too much";
+                //WinTextObj.SetActive(true);
+                //WinTextObj.GetComponent<Text>().text = "Player " + i + " lost because he died too much";
+                CurrentState = GameState.GameOver;
                 return true;
             }
         }
@@ -148,7 +183,13 @@ public class GameManager : MonoBehaviour
     IEnumerator CountDown()
     {
         Time.timeScale = 0;
-        yield return new WaitForSecondsRealtime(countDownTimer);
+        WinTextObj.SetActive(true);
+        for(float i = countDownTimer; i >= 0; i--)
+        {
+            yield return new WaitForSecondsRealtime(1);
+            WinTextObj.GetComponent<Text>().text = i.ToString();
+        }
+        WinTextObj.SetActive(false);
         Time.timeScale = 1;
     }
 }

@@ -58,6 +58,10 @@ public class CharacterControls : MonoBehaviour
     public float movementRayLength = 2;
     Vector3 movementPosition;
 
+    public float CameraBoost;
+    public float CameraBoostCooldown;
+    float camBoostCD;
+
     public LayerMask Ground;
     private void Awake()
     {
@@ -70,11 +74,13 @@ public class CharacterControls : MonoBehaviour
         JumpTimeCounter = JumpTime;
         speed = maxSpeed / 2;
         InitialMaxSpeed = maxSpeed;
+        camBoostCD = CameraBoostCooldown;
     }
 
     // Update is called once per frame
     void Update()
     {
+        camBoostCD -= Time.deltaTime;
         HandleXinput();
         if (speed > maxSpeed)
         {
@@ -82,6 +88,15 @@ public class CharacterControls : MonoBehaviour
         }
 
         grounded = IsGrounded();
+
+        if (Camera.main.WorldToViewportPoint(transform.position).x <= 0.2f)
+        {
+            if (camBoostCD <= 0)
+            {
+                speedUp(CameraBoost);
+                camBoostCD = CameraBoostCooldown;
+            }
+        }
 
         //transform.Translate(direction);
         if (grounded)
@@ -385,7 +400,7 @@ public class CharacterControls : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-      
+
     }
 
     public void Respawn()

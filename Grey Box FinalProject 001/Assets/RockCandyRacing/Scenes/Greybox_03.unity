@@ -4235,6 +4235,16 @@ Prefab:
       propertyPath: rocket
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114368492133806644, guid: 8794f21e337b6a946bbc201d254a75bf,
+        type: 2}
+      propertyPath: CameraBoost
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114368492133806644, guid: 8794f21e337b6a946bbc201d254a75bf,
+        type: 2}
+      propertyPath: CameraBoostCooldown
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114095770991352546, guid: 8794f21e337b6a946bbc201d254a75bf, type: 2}
     - {fileID: 136693608302445838, guid: 8794f21e337b6a946bbc201d254a75bf, type: 2}
@@ -7927,7 +7937,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Game Over
+  m_Text: 
 --- !u!222 &1297065255
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -12098,7 +12108,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1865236382911550, guid: f708d89361715b848984f6d846eaacda, type: 2}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114916538109664422, guid: f708d89361715b848984f6d846eaacda,
         type: 2}
@@ -12148,6 +12158,16 @@ Prefab:
     - target: {fileID: 1865236382911550, guid: f708d89361715b848984f6d846eaacda, type: 2}
       propertyPath: m_Name
       value: Player 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114916538109664422, guid: f708d89361715b848984f6d846eaacda,
+        type: 2}
+      propertyPath: CameraBoost
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114916538109664422, guid: f708d89361715b848984f6d846eaacda,
+        type: 2}
+      propertyPath: CameraBoostCooldown
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f708d89361715b848984f6d846eaacda, type: 2}
