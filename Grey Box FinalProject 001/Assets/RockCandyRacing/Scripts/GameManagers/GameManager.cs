@@ -67,7 +67,6 @@ public class GameManager : MonoBehaviour
                     Application.Quit();
                 }
                 deltaTime += (Time.deltaTime - deltaTime) * 0.1f;
-                Time.timeScale = 0.2f;
                 //winner = CheckGameOver();
 
                 for (int i = 0; i < player.Length; i++)
@@ -110,6 +109,7 @@ public class GameManager : MonoBehaviour
 
                 StartCoroutine("EndGameCountdown");
                 winner.gameObject.GetComponent<CharacterControls>().PlayWinAnimation();
+                winner.gameObject.GetComponent<CharacterControls>().enabled = false;
                 mainCamera.GetComponent<CameraScript>().enabled = false;
                 WinTextObj.SetActive(true);
                 WinTextObj.GetComponent<Text>().text = winner.name + " won";
@@ -203,7 +203,7 @@ public class GameManager : MonoBehaviour
 
     IEnumerator EndGameCountdown()
     {
-        Time.timeScale = 0f;
+        //Time.timeScale = 0f;
         for (float i = countDownTimer; i >= 0; i--)
         {
             yield return new WaitForSecondsRealtime(1);

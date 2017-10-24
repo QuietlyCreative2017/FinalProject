@@ -12,8 +12,9 @@ public class RocketUpdate : MonoBehaviour
     GameObject Enemy = null;
     public float followDeadTime = 0.0f;
     public bool homing = true;
-    public float SlerpTime; 
+    public float SlerpTime;
 
+    Transform rotNeeded;
     // Use this for initialization
     void Start()
     {
@@ -23,37 +24,32 @@ public class RocketUpdate : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        deadTime -= Time.deltaTime;
+        //deadTime -= Time.deltaTime;
         if (homing)
         {
             if (foundEnemy)
             {
-                if (followDeadTime > 0)
-                {
-                    //Transform dir = Quaternion.LookRotation(Enemy.transform.position - transform.position);
-                    //Quaternion rot = Quaternion.LookRotation(dir);
-                    //
-                    //transform.rotation = Quaternion.Slerp(transform.rotation, rot, 1 * Time.deltaTime);
+                //if (followDeadTime > 0)
+                //{
+                //followDeadTime -= Time.deltaTime;
+                //Quaternion rotNeeded = Quaternion.LookRotation(Enemy.transform.position/* + new Vector3(90, 270, 90)*/);
+                //Quaternion asad = Quaternion.Euler(0, 0, 90);
+                //rotNeeded *= asad;
+                //transform.rotation = Quaternion.Slerp(transform.rotation, rotNeeded, 0.2f);
 
-                    Quaternion rotNeeded = Quaternion.LookRotation(Enemy.transform.position/* + new Vector3(90, 270, 90)*/);
-                    //rotNeeded.SetEulerRotation(new Vector3(rotNeeded.x + 90, rotNeeded.y + 270, rotNeeded.z + 90));
-                    Quaternion asad = Quaternion.Euler(0, 0, 90);
-                    rotNeeded *= asad;
-                    transform.rotation = Quaternion.Slerp(transform.rotation, rotNeeded, 1 * Time.deltaTime);
+                //rotNeeded = this.transform;
+                //rotNeeded.LookAt(Enemy.transform);
+                //rotNeeded.Rotate(new Vector3(0, -90, 0));
 
-                    //transform.LookAt(Enemy.transform);
-                    //transform.Rotate(new Vector3(90, 270, 90));
+                Quaternion rotNeeded = Quaternion.LookRotation(Enemy.transform.position);
 
-                    //followDeadTime -= Time.deltaTime;
-                    //transform.LookAt(Enemy.transform);
-                    //transform.Rotate(new Vector3(90, 270, 90));
-                    //transform.Translate(-Vector3.up * speed * Time.deltaTime);
-                }
+                transform.rotation = Quaternion.Lerp(transform.rotation, rotNeeded, 0.02f);
+                //}
                 
-                if(followDeadTime <= 0)
-                {
-                    foundEnemy = false;
-                }
+                //if(followDeadTime <= 0)
+                //{
+                //    foundEnemy = false;
+                //}
             }
             else
             {
@@ -64,7 +60,7 @@ public class RocketUpdate : MonoBehaviour
         {
         }
 
-        transform.Translate(-Vector3.up * speed * Time.deltaTime);
+        transform.Translate(Vector3.right * speed * Time.deltaTime);
 
         //if the rocket has been on screen for deadTime destroy it
         if (deadTime <= 0)

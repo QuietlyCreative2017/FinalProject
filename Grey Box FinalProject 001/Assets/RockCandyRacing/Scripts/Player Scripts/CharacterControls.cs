@@ -68,7 +68,6 @@ public class CharacterControls : MonoBehaviour
     private void Awake()
     {
         rb = gameObject.GetComponent<Rigidbody>();
-        winAnim = GetComponent<Animation>();
     }
 
     // Use this for initialization
@@ -414,7 +413,11 @@ public class CharacterControls : MonoBehaviour
 
     public void PlayWinAnimation()
     {
-        if(winAnim.isActiveAndEnabled)
-        winAnim.Play();
+        //if(winAnim.isActiveAndEnabled)
+        if (winAnim != null)
+        {
+            winAnim.Play();
+
+        }
     }
 }

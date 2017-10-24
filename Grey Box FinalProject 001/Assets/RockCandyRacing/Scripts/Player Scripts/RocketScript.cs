@@ -41,7 +41,7 @@ public class RocketScript : MonoBehaviour {
             //shoot the thing
             shot = true;
             rocket = false;
-            Instantiate(rocketPrefab, pos, Quaternion.Euler(0, 0, 90));
+            Instantiate(rocketPrefab, pos, Quaternion.Euler(0, 0, 0));
             gameObject.GetComponent<DroppableScript>().enabled = true;
             canPickUp = true;
         }
