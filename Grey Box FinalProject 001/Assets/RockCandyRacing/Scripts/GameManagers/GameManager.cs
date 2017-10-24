@@ -67,7 +67,7 @@ public class GameManager : MonoBehaviour
                     Application.Quit();
                 }
                 deltaTime += (Time.deltaTime - deltaTime) * 0.1f;
-                //winner = CheckGameOver();
+                winner = CheckGameOver();
 
                 for (int i = 0; i < player.Length; i++)
                 {

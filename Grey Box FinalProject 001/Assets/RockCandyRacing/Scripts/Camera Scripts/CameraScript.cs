@@ -13,7 +13,7 @@ public class CameraScript : MonoBehaviour
 
     public float screenPercent;
     float difference;
-    
+
 
     Vector3 offset;
     float distanceX;
@@ -46,8 +46,12 @@ public class CameraScript : MonoBehaviour
     {
         middle.transform.position = new Vector3(gameObject.transform.position.x, middle.transform.position.y, 1);
         SortLeader();
-        leader = players.Last();
-        loser = players.First();
+        if (players != null)
+        {
+            leader = players.Last();
+            loser = players.First();
+
+        }
         yCalc = 0;
 
         /////////////////////////gets the average y position of the players and sets the camera position to it/////////////////////////////////////
@@ -61,7 +65,7 @@ public class CameraScript : MonoBehaviour
         yCalc /= players.Count();
         //set camera position to the current position with average y position of players
         transform.position = new Vector3(transform.position.x, yCalc, transform.position.z);
-        
+
         //Move to the right if the leading player is above screen percent
         if (Camera.main.WorldToViewportPoint(leader.transform.position).x >= screenPercent)
         {
@@ -77,7 +81,7 @@ public class CameraScript : MonoBehaviour
                 gameObject.transform.position = new Vector3(leader.transform.position.x/* - difference*/, gameObject.transform.position.y/*gameObject.transform.position.y*/, gameObject.transform.position.z);
             }
         }
-        
+
         //gets distance between leader and loser
         distanceX = leader.transform.position.x - loser.transform.position.x;
 
@@ -85,7 +89,7 @@ public class CameraScript : MonoBehaviour
         if (transform.position.z >= maxZoom && transform.position.z <= minZoom)
             transform.position = Vector3.SmoothDamp(transform.position, new Vector3(transform.position.x, transform.position.y, /*transform.position.z - */-distanceX * 4 + zOffset), ref velocity, 0.02f);
 
-        
+
         //camera z bounds
         if (transform.position.z < maxZoom)
         {
