@@ -1414,7 +1414,7 @@ GameObject:
   - component: {fileID: 231674322}
   m_Layer: 5
   m_Name: P2Health
-  m_TagString: Untagged
+  m_TagString: PlayerHealth
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10749,7 +10749,7 @@ GameObject:
   - component: {fileID: 1786499924}
   m_Layer: 5
   m_Name: P1Health
-  m_TagString: Untagged
+  m_TagString: PlayerHealth
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -12108,7 +12108,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1865236382911550, guid: f708d89361715b848984f6d846eaacda, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 114916538109664422, guid: f708d89361715b848984f6d846eaacda,
         type: 2}

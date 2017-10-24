@@ -21,7 +21,7 @@ public class CharacterControls : MonoBehaviour
     public float JumpTime;
     [Tooltip("Tracks how long you've been jumping")]
     float JumpTimeCounter;
-    bool StoppedJumping;
+    bool StoppedJumping = true;
 
     public LayerMask LayerMask;
     //////////////Jumping//////////////
@@ -62,10 +62,13 @@ public class CharacterControls : MonoBehaviour
     public float CameraBoostCooldown;
     float camBoostCD;
 
+    public Animation winAnim;
+
     public LayerMask Ground;
     private void Awake()
     {
         rb = gameObject.GetComponent<Rigidbody>();
+        winAnim = GetComponent<Animation>();
     }
 
     // Use this for initialization
@@ -407,5 +410,11 @@ public class CharacterControls : MonoBehaviour
     {
         speed = 0;
         maxSpeed = InitialMaxSpeed;
+    }
+
+    public void PlayWinAnimation()
+    {
+        if(winAnim.isActiveAndEnabled)
+        winAnim.Play();
     }
 }

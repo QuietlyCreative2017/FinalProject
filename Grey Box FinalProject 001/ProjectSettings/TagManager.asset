@@ -10,6 +10,7 @@ TagManager:
   - Droppable
   - Fire
   - test
+  - PlayerHealth
   layers:
   - Default
   - TransparentFX
