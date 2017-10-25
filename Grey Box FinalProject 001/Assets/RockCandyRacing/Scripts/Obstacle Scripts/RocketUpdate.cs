@@ -42,7 +42,7 @@ public class RocketUpdate : MonoBehaviour
                 //rotNeeded.Rotate(new Vector3(0, -90, 0));
 
                 Quaternion rotNeeded = Quaternion.LookRotation(Enemy.transform.position);
-
+                rotNeeded *= new Quaternion(1, 1, 90, 1);
                 transform.rotation = Quaternion.Lerp(transform.rotation, rotNeeded, 0.02f);
                 //}
                 

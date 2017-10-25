@@ -62,7 +62,7 @@ public class CharacterControls : MonoBehaviour
     public float CameraBoostCooldown;
     float camBoostCD;
 
-    public Animation winAnim;
+    public Animator winAnim;
 
     public LayerMask Ground;
     private void Awake()
@@ -416,7 +416,7 @@ public class CharacterControls : MonoBehaviour
         //if(winAnim.isActiveAndEnabled)
         if (winAnim != null)
         {
-            winAnim.Play();
+            winAnim.Play(0);
 
         }
     }

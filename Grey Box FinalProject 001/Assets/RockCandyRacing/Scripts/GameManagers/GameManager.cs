@@ -108,12 +108,13 @@ public class GameManager : MonoBehaviour
             case GameState.GameOver:
 
                 StartCoroutine("EndGameCountdown");
-                winner.gameObject.GetComponent<CharacterControls>().PlayWinAnimation();
+                //winner.gameObject.GetComponent<CharacterControls>().PlayWinAnimation();
                 winner.gameObject.GetComponent<CharacterControls>().enabled = false;
+                winner.gameObject.GetComponent<CharacterControls>().winAnim.SetBool("HasWon", true);
                 mainCamera.GetComponent<CameraScript>().enabled = false;
                 WinTextObj.SetActive(true);
                 WinTextObj.GetComponent<Text>().text = winner.name + " won";
-                mainCamera.transform.position = Vector3.Lerp(mainCamera.transform.position, new Vector3(winner.transform.position.x, winner.transform.position.y, -30), 0.01f);
+                mainCamera.transform.position = Vector3.Lerp(mainCamera.transform.position, new Vector3(winner.transform.position.x, winner.transform.position.y, -40), 0.01f);
                 break;
                 ////////////////////////////////////////End Game Over State//////////////////////////////////////////////////////////////
         }
@@ -203,7 +204,7 @@ public class GameManager : MonoBehaviour
 
     IEnumerator EndGameCountdown()
     {
-        //Time.timeScale = 0f;
+        Time.timeScale = 0f;
         for (float i = countDownTimer; i >= 0; i--)
         {
             yield return new WaitForSecondsRealtime(1);
