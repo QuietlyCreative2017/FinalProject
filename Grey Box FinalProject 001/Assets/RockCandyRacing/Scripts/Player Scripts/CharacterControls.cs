@@ -64,6 +64,8 @@ public class CharacterControls : MonoBehaviour
 
     public Animator winAnim;
 
+    public float speedDecrease;
+
     public LayerMask Ground;
     private void Awake()
     {
@@ -74,7 +76,7 @@ public class CharacterControls : MonoBehaviour
     void Start()
     {
         JumpTimeCounter = JumpTime;
-        speed = maxSpeed / 2;
+        speed = maxSpeed / 4;
         InitialMaxSpeed = maxSpeed;
         camBoostCD = CameraBoostCooldown;
     }
@@ -84,9 +86,21 @@ public class CharacterControls : MonoBehaviour
     {
         camBoostCD -= Time.deltaTime;
         HandleXinput();
+        if (speed > maxSpeed / 2)
+        {
+            if (speed > 20)
+            {
+                speed -= Time.deltaTime * speedDecrease;
+
+            }
+        }
+
         if (speed > maxSpeed)
         {
-            speed -= Time.deltaTime * 5;
+            if(speed > 20)
+            {
+                speed -= Time.deltaTime * (speedDecrease * 2);
+            }
         }
 
         grounded = IsGrounded();
@@ -95,7 +109,8 @@ public class CharacterControls : MonoBehaviour
         {
             if (camBoostCD <= 0)
             {
-                speedUp(CameraBoost);
+                //speedUp(CameraBoost);
+                speed *= CameraBoost;
                 camBoostCD = CameraBoostCooldown;
             }
         }
@@ -152,25 +167,25 @@ public class CharacterControls : MonoBehaviour
         if (currentState.ThumbSticks.Left.X != 0)
         {
             //if current speed isnt maxSpeed
-            if (speed < maxSpeed)
+            if (speed < maxSpeed / 2)
             {
                 //speed up
                 speed += Time.deltaTime * 7;
             }
-            else if (speed > maxSpeed)
-            {
-                speed -= Time.deltaTime;
-            }
+            //else if (speed > maxSpeed)
+            //{
+            //    speed -= Time.deltaTime;
+            //}
         }
         //if you aren't using the stick
         else if (currentState.ThumbSticks.Left.X == 0)
         {
             //if speed is greater than half maxSpeed
-            if (speed > maxSpeed / 2)
-            {
-                //speed = half maxSpeed
-                speed = maxSpeed / 2;
-            }
+            //if (speed > maxSpeed / 2)
+            //{
+            //    //speed = half maxSpeed
+            //    speed = maxSpeed / 2;
+            //}
         }
 
         //jump by pushing A

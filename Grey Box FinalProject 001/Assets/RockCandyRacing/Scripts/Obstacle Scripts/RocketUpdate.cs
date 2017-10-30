@@ -14,6 +14,8 @@ public class RocketUpdate : MonoBehaviour
     public bool homing = true;
     public float SlerpTime;
 
+    public Vector3 v3Rotation;
+
     Transform rotNeeded;
     // Use this for initialization
     void Start()
@@ -41,9 +43,9 @@ public class RocketUpdate : MonoBehaviour
                 //rotNeeded.LookAt(Enemy.transform);
                 //rotNeeded.Rotate(new Vector3(0, -90, 0));
 
-                Quaternion rotNeeded = Quaternion.LookRotation(Enemy.transform.position);
-                rotNeeded *= new Quaternion(1, 1, 90, 1);
-                transform.rotation = Quaternion.Lerp(transform.rotation, rotNeeded, 0.02f);
+                //Quaternion rotNeeded = Quaternion.LookRotation(Enemy.transform.position);
+                //rotNeeded *= new Quaternion(1, 1, 90, 1);
+                //transform.rotation = Quaternion.Lerp(transform.rotation, rotNeeded, 0.02f);
                 //}
                 
                 //if(followDeadTime <= 0)
@@ -61,6 +63,7 @@ public class RocketUpdate : MonoBehaviour
         }
 
         transform.Translate(Vector3.right * speed * Time.deltaTime);
+        RotateRocket();
 
         //if the rocket has been on screen for deadTime destroy it
         if (deadTime <= 0)
@@ -96,5 +99,10 @@ public class RocketUpdate : MonoBehaviour
         {
             foundEnemy = false;
         }
+    }
+
+    private void RotateRocket()
+    {
+        transform.Rotate(v3Rotation.x, v3Rotation.y, v3Rotation.z);
     }
 }
