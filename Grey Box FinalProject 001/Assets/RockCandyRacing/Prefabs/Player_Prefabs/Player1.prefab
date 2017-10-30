@@ -43,6 +43,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4062758572704758}
   - component: {fileID: 111075658413383936}
+  - component: {fileID: 95331174753864188}
   m_Layer: 0
   m_Name: PlayerCharacter_Mesh_Player_01_v02
   m_TagString: Untagged
@@ -142,7 +143,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1087101654316358}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.34999955, z: 0}
+  m_LocalPosition: {x: 0, y: -1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4778597121355274}
@@ -212,7 +213,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1005580329151786}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 21.21, y: 11.74, z: -1}
+  m_LocalPosition: {x: 12.64, y: 13.54, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4062758572704758}
@@ -277,7 +278,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 703dcfd5f0a87aa4ca1b78fdb9f07878, type: 2}
+  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -481,13 +482,30 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 120
   m_CollisionDetection: 1
+--- !u!95 &95331174753864188
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1087101654316358}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: e1322de2cd714e7488c3f85f9f9025e5, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 2
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!111 &111075658413383936
 Animation:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1087101654316358}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Animation: {fileID: 7400000, guid: a8b9a477b9525194d8937271c409277c, type: 3}
   m_Animations:
@@ -524,7 +542,7 @@ MonoBehaviour:
   movementRayLength: 2
   CameraBoost: 0
   CameraBoostCooldown: 0
-  winAnim: {fileID: 0}
+  winAnim: {fileID: 95331174753864188}
   Ground:
     serializedVersion: 2
     m_Bits: 1024
@@ -585,4 +603,4 @@ CapsuleCollider:
   m_Radius: 0.75
   m_Height: 2.8318186
   m_Direction: 1
-  m_Center: {x: 0, y: 1, z: 0}
+  m_Center: {x: 0, y: 0, z: 0}

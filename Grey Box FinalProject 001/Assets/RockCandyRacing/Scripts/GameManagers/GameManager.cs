@@ -207,7 +207,7 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 0f;
         for (float i = countDownTimer; i >= 0; i--)
         {
-            yield return new WaitForSecondsRealtime(1);
+            yield return new WaitForSecondsRealtime(5);
         }
         Time.timeScale = 1;
         SceneManager.LoadScene(1);
