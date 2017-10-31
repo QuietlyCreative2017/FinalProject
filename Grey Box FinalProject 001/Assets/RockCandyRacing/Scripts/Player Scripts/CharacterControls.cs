@@ -67,6 +67,8 @@ public class CharacterControls : MonoBehaviour
     public float speedDecrease;
 
     public LayerMask Ground;
+    public float PickupCD;
+    public float PickupCDA;
     private void Awake()
     {
         rb = gameObject.GetComponent<Rigidbody>();
@@ -79,6 +81,7 @@ public class CharacterControls : MonoBehaviour
         speed = maxSpeed / 4;
         InitialMaxSpeed = maxSpeed;
         camBoostCD = CameraBoostCooldown;
+        PickupCDA = 0;
     }
 
     // Update is called once per frame
@@ -86,6 +89,7 @@ public class CharacterControls : MonoBehaviour
     {
         camBoostCD -= Time.deltaTime;
         HandleXinput();
+        PickupCDA -= Time.deltaTime;
         if (speed > maxSpeed / 2)
         {
             if (speed > 20)
@@ -339,28 +343,7 @@ public class CharacterControls : MonoBehaviour
                 return true;
             }
         }
-
-        //Debug.DrawRay(transform.position, Vector3.right * movementRayLength , Color.blue);
-        //if (Physics.Raycast(transform.position, Vector3.right * movementRayLength , 0.6f, 1))
-        //{
-        //    fInput = 0;
-        //    return true;
-        //}
-
-        //Debug.DrawRay(new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z), Vector3.right * movementRayLength, Color.blue);
-        //if (Physics.Raycast(new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z), Vector3.right, 0.6f, 1))
-        //{
-        //    fInput = 0;
-        //    return true;
-        //}
-
-        //Debug.DrawRay(new Vector3(transform.position.x, transform.position.y - 0.5f, transform.position.z), new Vector3(0.6f, 0, 0), Color.blue);
-        //if (Physics.Raycast(new Vector3(transform.position.x, transform.position.y - 0.5f, transform.position.z), Vector3.right, 0.6f, 1))
-        //{
-        //    fInput = 0;
-        //    return true;
-        //}
-
+        
         return false;
     }
 

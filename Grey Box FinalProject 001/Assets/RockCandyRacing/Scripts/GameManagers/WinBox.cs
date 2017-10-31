@@ -13,6 +13,14 @@ public class WinBox : MonoBehaviour {
         won = false;
 	}
 
+
+    void OnTriggerEnter(Collider collision)
+    {
+        if(collision.gameObject.tag == "Player")
+        {
+            anim.SetBool("HasWon", true);
+        }
+    }
     void OnTriggerExit(Collider collision)
     {
         //if a player enters set the winner
@@ -20,7 +28,6 @@ public class WinBox : MonoBehaviour {
         {
             Winner = collision.gameObject;
             won = true;
-            anim.SetBool("HasWon", true);
         }
     }
 

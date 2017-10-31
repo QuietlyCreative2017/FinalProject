@@ -137,11 +137,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca2fc9a5f6e8e8546a4f08dd2ad0aff7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
+  speed: 75
   deadTime: 5
   followDeadTime: 2
   homing: 1
   SlerpTime: 0
+  v3Rotation: {x: 10, y: 0, z: 0}
 --- !u!135 &135846025790092944
 SphereCollider:
   m_ObjectHideFlags: 1

@@ -30,9 +30,13 @@ public class GameManager : MonoBehaviour
     GameObject winner;
     Camera mainCamera;
 
+    public float EndGameYOffset;
+
+    public bool CheckingGameOver;
+
     enum GameState
     {
-        Playing, 
+        Playing,
         GameOver,
     }
 
@@ -67,7 +71,11 @@ public class GameManager : MonoBehaviour
                     Application.Quit();
                 }
                 deltaTime += (Time.deltaTime - deltaTime) * 0.1f;
-                winner = CheckGameOver();
+                if (CheckingGameOver)
+                {
+                    winner = CheckGameOver();
+
+                }
 
                 for (int i = 0; i < player.Length; i++)
                 {
@@ -83,7 +91,7 @@ public class GameManager : MonoBehaviour
                     {
                         //respawn them
                         Vector3 disPos = Camera.main.ViewportToWorldPoint(new Vector3(1, 1, 0));
-                        newT.Set(SpawnPoint.transform.position.x, disPos.y, 1);
+                        newT.Set(SpawnPoint.transform.position.x, disPos.y, -1);
                         player[i].transform.position = newT;
                         player[i].GetComponent<PlayerLives>().RemoveLife();
                         player[i].GetComponent<Rigidbody>().velocity = Vector3.zero;
@@ -93,7 +101,7 @@ public class GameManager : MonoBehaviour
                     if (player[i].transform.position.y <= DeathTouch.transform.position.y)
                     {
                         //respawn them
-                        newT.Set(SpawnPoint.transform.position.x, 25, 1);
+                        newT.Set(SpawnPoint.transform.position.x, 25, -1);
                         player[i].transform.position = newT;
                         player[i].GetComponent<PlayerLives>().RemoveLife();
                         player[i].GetComponent<Rigidbody>().velocity = Vector3.zero;
@@ -114,12 +122,12 @@ public class GameManager : MonoBehaviour
                 mainCamera.GetComponent<CameraScript>().enabled = false;
                 WinTextObj.SetActive(true);
                 WinTextObj.GetComponent<Text>().text = winner.name + " won";
-                mainCamera.transform.position = Vector3.Lerp(mainCamera.transform.position, new Vector3(winner.transform.position.x, winner.transform.position.y, -40), 0.01f);
+                mainCamera.transform.position = Vector3.Lerp(mainCamera.transform.position, new Vector3(winner.transform.position.x, winner.transform.position.y + EndGameYOffset, -40), 0.01f);
                 break;
                 ////////////////////////////////////////End Game Over State//////////////////////////////////////////////////////////////
         }
-    
-       
+
+
     }
 
     private void OnGUI()
@@ -149,17 +157,17 @@ public class GameManager : MonoBehaviour
     GameObject CheckGameOver()
     {
         //check if a player has hit the end
-        if(WinObj.GetComponent<WinBox>().HasWon())
+        if (WinObj.GetComponent<WinBox>().HasWon())
         {
             //set current state to gameover
             CurrentState = GameState.GameOver;
             //return whomever reached the end point
             return WinObj.GetComponent<WinBox>().Winner;
         }
-        for(int i = 0; i < player.Length; i++)
+        for (int i = 0; i < player.Length; i++)
         {
             //see if a player has run out of lives
-            if (player[i].GetComponent<PlayerLives>().Lives() == 0)
+            if (player[i].GetComponent<PlayerLives>().Lives() <= 0)
             {
                 //Deactivate dead player
                 player[i].SetActive(false);
@@ -168,7 +176,7 @@ public class GameManager : MonoBehaviour
                 //Go through player array and return first player who is still alive
                 for (int j = 0; j < player.Length; j++)
                 {
-                    if(player[j].GetComponent<PlayerLives>().Lives() > 0)
+                    if (player[j].GetComponent<PlayerLives>().Lives() > 0)
                     {
                         return player[j];
                     }
@@ -187,12 +195,12 @@ public class GameManager : MonoBehaviour
     }
 
 
-    
+
     IEnumerator CountDown()
     {
         Time.timeScale = 0;
         WinTextObj.SetActive(true);
-        for(float i = countDownTimer; i >= 0; i--)
+        for (float i = countDownTimer; i >= 0; i--)
         {
             yield return new WaitForSecondsRealtime(1);
             WinTextObj.GetComponent<Text>().text = i.ToString();

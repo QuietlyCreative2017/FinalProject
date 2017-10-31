@@ -16,9 +16,13 @@ public class RocketScript : MonoBehaviour {
     public bool shot = false;
     public bool canPickUp = true;
 
+    CharacterControls PlayerScript;
+    public float PickupCD;
+
     private void Awake()
     {
         playerIndex = gameObject.GetComponent<CharacterControls>().GetPlayerIndex();
+        PlayerScript = gameObject.GetComponent<CharacterControls>();
     }
 
     // Use this for initialization
@@ -29,6 +33,7 @@ public class RocketScript : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         currentState = GamePad.GetState(playerIndex);
+        PickupCD = PlayerScript.PickupCDA; 
 
         //set spawn position
         pos = new Vector3(gameObject.transform.position.x + 5, gameObject.transform.position.y, gameObject.transform.position.z);
@@ -44,6 +49,7 @@ public class RocketScript : MonoBehaviour {
             Instantiate(rocketPrefab, pos, Quaternion.Euler(0, 0, 0));
             gameObject.GetComponent<DroppableScript>().enabled = true;
             canPickUp = true;
+            PlayerScript.PickupCDA = PlayerScript.PickupCD;
         }
         //set previous state to current
         previousState = currentState;
@@ -52,7 +58,7 @@ public class RocketScript : MonoBehaviour {
     private void OnTriggerEnter(Collider col)
     {
         //check if you can pick up a thing
-        if(col.gameObject.tag == "Rocket" && canPickUp && isActiveAndEnabled)
+        if(col.gameObject.tag == "Rocket" && canPickUp && isActiveAndEnabled && PickupCD <= 0 && col.GetComponent<PickUpBool>().Pickupable == true)
         {
             //pick up the thing
             rocket = true;
@@ -60,6 +66,7 @@ public class RocketScript : MonoBehaviour {
             Destroy(col.gameObject);
             gameObject.GetComponent<DroppableScript>().enabled = false;
             canPickUp = false;
+            col.GetComponent<PickUpBool>().Pickupable = false;
         }
     }
 }
