@@ -6,6 +6,7 @@ public class WinBox : MonoBehaviour {
 
     public GameObject Winner;
     bool won;
+    public Animator anim;
 
 	// Use this for initialization
 	void Start () {
@@ -19,6 +20,7 @@ public class WinBox : MonoBehaviour {
         {
             Winner = collision.gameObject;
             won = true;
+            anim.SetBool("HasWon", true);
         }
     }
 
