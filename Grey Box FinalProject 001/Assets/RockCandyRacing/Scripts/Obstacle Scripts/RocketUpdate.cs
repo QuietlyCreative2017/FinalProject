@@ -26,7 +26,7 @@ public class RocketUpdate : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        //deadTime -= Time.deltaTime;
+        deadTime -= Time.deltaTime;
         if (homing)
         {
             if (foundEnemy)
