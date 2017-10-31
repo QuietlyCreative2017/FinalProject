@@ -58,7 +58,7 @@ public class RocketScript : MonoBehaviour {
     private void OnTriggerEnter(Collider col)
     {
         //check if you can pick up a thing
-        if(col.gameObject.tag == "Rocket" && canPickUp && isActiveAndEnabled && PickupCD <= 0 && col.GetComponent<PickUpBool>().Pickupable == true)
+        if(col.gameObject.tag == "Rocket" && canPickUp && isActiveAndEnabled && PickupCD <= 0 && col.gameObject.GetComponent<PickUpBool>().Pickupable == true)
         {
             //pick up the thing
             rocket = true;
@@ -66,7 +66,7 @@ public class RocketScript : MonoBehaviour {
             Destroy(col.gameObject);
             gameObject.GetComponent<DroppableScript>().enabled = false;
             canPickUp = false;
-            col.GetComponent<PickUpBool>().Pickupable = false;
+            col.gameObject.GetComponent<PickUpBool>().Pickupable = false;
         }
     }
 }

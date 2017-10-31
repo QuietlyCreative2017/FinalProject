@@ -25,6 +25,7 @@ public class CameraScript : MonoBehaviour
     public float maxZoom;
     public float minZoom;
 
+    public float yOffset;
     private void Awake()
     {
         players = GameObject.FindGameObjectsWithTag("Player");
@@ -64,7 +65,7 @@ public class CameraScript : MonoBehaviour
         //divide calc by number of players
         yCalc /= players.Count();
         //set camera position to the current position with average y position of players
-        transform.position = new Vector3(transform.position.x, yCalc, transform.position.z);
+        transform.position = new Vector3(transform.position.x, yCalc + yOffset, transform.position.z);
 
         //Move to the right if the leading player is above screen percent
         if (Camera.main.WorldToViewportPoint(leader.transform.position).x >= screenPercent)

@@ -50,13 +50,13 @@ public class DroppableScript : MonoBehaviour {
 
     private void OnTriggerEnter(Collider collision)
     {
-        if(collision.gameObject.tag == "Droppable" && canPickUp && isActiveAndEnabled && PickupCD <= 0 && collision.GetComponent<PickUpBool>().Pickupable == true)
+        if(collision.gameObject.tag == "Droppable" && canPickUp && isActiveAndEnabled && PickupCD <= 0 && collision.gameObject.GetComponent<PickUpBool>().Pickupable == true)
         {
             canUse = true;
             Destroy(collision.gameObject);
             gameObject.GetComponent<RocketScript>().enabled = false;
             canPickUp = false;
-            collision.GetComponent<PickUpBool>().Pickupable = false;
+            collision.gameObject.GetComponent<PickUpBool>().Pickupable = false;
         }
     }
 }
