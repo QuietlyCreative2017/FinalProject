@@ -9,6 +9,9 @@ EditorBuildSettings:
     path: Assets/RockCandyRacing/Scenes/Main Menu.unity
     guid: 39897feb2afb4b34287c534893340caf
   - enabled: 1
+    path: Assets/RockCandyRacing/Scenes/Playground_V03.unity
+    guid: 3075c043ccda1bd4b80509ad6f6940c5
+  - enabled: 1
     path: Assets/RockCandyRacing/Scenes/Playground_V02.unity
     guid: dfcba422879d98244a5014c16186dd9f
   - enabled: 1
