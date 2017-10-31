@@ -101,7 +101,7 @@ public class CharacterControls : MonoBehaviour
 
         if (speed > maxSpeed)
         {
-            if(speed > 20)
+            if (speed > 20)
             {
                 speed -= Time.deltaTime * (speedDecrease * 2);
             }
@@ -111,7 +111,7 @@ public class CharacterControls : MonoBehaviour
 
         if (Camera.main.WorldToViewportPoint(transform.position).x <= 0.2f)
         {
-            if (camBoostCD <= 0)
+            if (camBoostCD <= 0 && speed <= InitialMaxSpeed * 2)
             {
                 //speedUp(CameraBoost);
                 speed *= CameraBoost;
@@ -185,11 +185,11 @@ public class CharacterControls : MonoBehaviour
         else if (currentState.ThumbSticks.Left.X == 0)
         {
             //if speed is greater than half maxSpeed
-            //if (speed > maxSpeed / 2)
-            //{
-            //    //speed = half maxSpeed
-            //    speed = maxSpeed / 2;
-            //}
+            if (speed > maxSpeed / 2)
+            {
+                //speed = half maxSpeed
+                speed = maxSpeed / 2;
+            }
         }
 
         //jump by pushing A
@@ -233,7 +233,9 @@ public class CharacterControls : MonoBehaviour
     private void FixedUpdate()
     {
         //movementPosition = rb.position + transform.right * fInput * speed * Time.fixedDeltaTime;
+
         movementPosition = CheckMovementPosition(movementPosition, Mathf.Sign(fInput));
+
 
         //movement force
         rb.MovePosition(movementPosition);
@@ -279,7 +281,11 @@ public class CharacterControls : MonoBehaviour
     //Multiplied max speed by 2 then waits for 2 seconds 
     public IEnumerator speedUp(float a_SpeedIncrease)
     {
-        speed *= a_SpeedIncrease;
+        if (speed <= InitialMaxSpeed * 2)
+        {
+            speed *= a_SpeedIncrease;
+
+        }
         yield return new WaitForSeconds(0.5f);
     }
 
@@ -316,7 +322,7 @@ public class CharacterControls : MonoBehaviour
         }
 
         //if leastDist was changed to the length of a raycast
-        if (leastDist.distance != 0)
+        if (leastDist.distance != 0 && fInput != 0)
         {
             //point to move to is now the current position + least distance ray * deltaTime
             return rb.position + Vector3.right * leastDist.distance * Time.deltaTime;
@@ -343,7 +349,7 @@ public class CharacterControls : MonoBehaviour
                 return true;
             }
         }
-        
+
         return false;
     }
 

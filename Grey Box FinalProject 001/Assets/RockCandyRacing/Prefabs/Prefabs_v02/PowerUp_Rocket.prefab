@@ -23,6 +23,7 @@ GameObject:
   - component: {fileID: 23711308677087944}
   - component: {fileID: 65830302912460172}
   - component: {fileID: 114622546060182200}
+  - component: {fileID: 114363788636521344}
   m_Layer: 0
   m_Name: PowerUp_RockCandy_Mesh_v01
   m_TagString: Rocket
@@ -152,6 +153,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.4556034, y: 1.389363, z: 2}
   m_Center: {x: 0.0221982, y: 0.055318505, z: 0}
+--- !u!114 &114363788636521344
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1518805802259248}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09215f5f26032c54c8a0b681b808de55, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 30
 --- !u!114 &114622546060182200
 MonoBehaviour:
   m_ObjectHideFlags: 1
