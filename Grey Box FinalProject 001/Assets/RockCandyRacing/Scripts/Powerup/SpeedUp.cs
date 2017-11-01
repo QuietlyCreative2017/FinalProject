@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpeedUp : MonoBehaviour {
+public class SpeedUp : MonoBehaviour
+{
 
     [Tooltip("Speed increase whilst in zone")]
     public float InitialSpeedAmount;
@@ -10,30 +11,39 @@ public class SpeedUp : MonoBehaviour {
     public float ExitSpeedAmount;
 
     // Use this for initialization
-    void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    void Start()
+    {
+
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+
+    }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Player")
         {
-            other.gameObject.GetComponent<CharacterControls>().StartCoroutine(other.gameObject.GetComponent<CharacterControls>().speedUp(InitialSpeedAmount));
+            if (other.gameObject.GetComponent<CharacterControls>().fInput > 0)
+            {
+                other.gameObject.GetComponent<CharacterControls>().StartCoroutine(other.gameObject.GetComponent<CharacterControls>().speedUp(InitialSpeedAmount));
+
+            }
         }
-        
+
     }
 
     private void OnTriggerExit(Collider other)
     {
         if (other.gameObject.tag == "Player")
         {
-            other.gameObject.GetComponent<CharacterControls>().StartCoroutine(other.gameObject.GetComponent<CharacterControls>().speedUp(ExitSpeedAmount));
+            if (other.gameObject.GetComponent<CharacterControls>().fInput > 0)
+            {
+                other.gameObject.GetComponent<CharacterControls>().StartCoroutine(other.gameObject.GetComponent<CharacterControls>().speedUp(ExitSpeedAmount));
+            }
         }
-        
+
     }
 }

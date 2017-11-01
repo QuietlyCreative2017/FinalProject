@@ -34,6 +34,13 @@ public class GameManager : MonoBehaviour
 
     public bool CheckingGameOver;
 
+    public string[] EndBossCode;
+    public int CodeIndex;
+
+    public GameObject EndGameUI;
+    public GameObject InGameUI;
+    public Text endGameText;
+
     enum GameState
     {
         Playing,
@@ -49,6 +56,7 @@ public class GameManager : MonoBehaviour
         player = GameObject.FindGameObjectsWithTag("Player");
         PlayerHealth = GameObject.FindGameObjectsWithTag("PlayerHealth");
         mainCamera = Camera.main;
+        EndGameUI.SetActive(false);
     }
 
     private void Start()
@@ -57,6 +65,8 @@ public class GameManager : MonoBehaviour
         StartCoroutine("CountDown");
         Cursor.visible = false;
         CurrentState = GameState.Playing;
+
+        CodeIndex = 0;
     }
 
     // Update is called once per frame
@@ -66,6 +76,7 @@ public class GameManager : MonoBehaviour
         {
             ////////////////////////////////////////Start Playing State//////////////////////////////////////////////////////////
             case GameState.Playing:
+                EndGameUI.SetActive(false);
                 if (Input.GetKeyDown(KeyCode.Escape))
                 {
                     Application.Quit();
@@ -75,6 +86,29 @@ public class GameManager : MonoBehaviour
                 {
                     winner = CheckGameOver();
 
+                }
+
+                if (Input.anyKeyDown)
+                {
+                    // Check if the next key in the code is pressed
+                    if (Input.GetKeyDown(EndBossCode[CodeIndex]))
+                    {
+                        // Add 1 to index to check the next key in the code
+                        CodeIndex++;
+                    }
+                    // if wrong key is entered, reset the code
+                    else
+                    {
+                        CodeIndex = 0;
+                    }
+                }
+                // If index reaches the length of the cheatCode string, 
+                // the entire code was correctly entered
+                if (CodeIndex == EndBossCode.Length)
+                {
+                    //returns the index to 0 and loads the fps scene
+                    CodeIndex = 0;
+                    SceneManager.LoadScene(2);
                 }
 
                 for (int i = 0; i < player.Length; i++)
@@ -114,7 +148,7 @@ public class GameManager : MonoBehaviour
 
             ////////////////////////////////////////Start Game Over State//////////////////////////////////////////////////////////
             case GameState.GameOver:
-
+                
                 StartCoroutine("EndGameCountdown");
                 //winner.gameObject.GetComponent<CharacterControls>().PlayWinAnimation();
                 winner.gameObject.GetComponent<CharacterControls>().enabled = false;
@@ -213,11 +247,33 @@ public class GameManager : MonoBehaviour
     IEnumerator EndGameCountdown()
     {
         Time.timeScale = 0f;
+        endGameText.text = winner.name + " won";
+        //text1.text = winner.name + " won";
         for (float i = countDownTimer; i >= 0; i--)
         {
-            yield return new WaitForSecondsRealtime(5);
+            yield return new WaitForSecondsRealtime(1);
         }
+        InGameUI.SetActive(false);
+
+        EndGameUI.SetActive(true);
+        for (float j = countDownTimer; j >= 0; j--)
+        {
+            endGameText.text = "Begining in " + j;
+            yield return new WaitForSecondsRealtime(1);
+        }
+        
+
         Time.timeScale = 1;
         SceneManager.LoadScene(1);
+    }
+
+    public void goToMenu()
+    {
+        SceneManager.LoadScene("Main Menu");
+    }
+
+    public void Restart()
+    {
+        SceneManager.LoadScene("Playground_V02");
     }
 }

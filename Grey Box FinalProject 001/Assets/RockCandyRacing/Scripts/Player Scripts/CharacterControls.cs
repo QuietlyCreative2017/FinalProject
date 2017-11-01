@@ -26,8 +26,8 @@ public class CharacterControls : MonoBehaviour
     public LayerMask LayerMask;
     //////////////Jumping//////////////
 
-    [Tooltip("Key input type (WASD / Key(arrows)) for debugging without controller")]
-    public string type;
+    //[Tooltip("Key input type (WASD / Key(arrows)) for debugging without controller")]
+    //public string type;
     [Tooltip("Maximum velocity")]
     public float maxSpeed;
 
@@ -46,10 +46,7 @@ public class CharacterControls : MonoBehaviour
     GamePadState currentState;
     GamePadState previousState;
 
-    public float friction;
-
-    public float SlowPercent;
-    public float AccelAmount;
+   
 
     float InitialMaxSpeed;
 
@@ -64,11 +61,15 @@ public class CharacterControls : MonoBehaviour
 
     public Animator winAnim;
 
+    [Tooltip("How fast the player slows down (multiplier)")]
     public float speedDecrease;
 
     public LayerMask Ground;
     public float PickupCD;
+    [HideInInspector]
     public float PickupCDA;
+
+    public GameObject[] SlowDownParticles;
     private void Awake()
     {
         rb = gameObject.GetComponent<Rigidbody>();
@@ -90,6 +91,10 @@ public class CharacterControls : MonoBehaviour
         camBoostCD -= Time.deltaTime;
         HandleXinput();
         PickupCDA -= Time.deltaTime;
+        if(PickupCDA < 0)
+        {
+            PickupCDA = 0;
+        }
         if (speed > maxSpeed / 2)
         {
             if (speed > 20)
@@ -271,9 +276,25 @@ public class CharacterControls : MonoBehaviour
         //StopCoroutine("slow");
     }
 
+    public void ControllerVibration()
+    {
+        GamePad.SetVibration(playerIndex, 0, 0);
+    }
+
+    public IEnumerator Vibrate(float a_Vibration)
+    {
+        GamePad.SetVibration(playerIndex, a_Vibration, a_Vibration);
+        yield return new WaitForSecondsRealtime(1);
+        GamePad.SetVibration(playerIndex, 0, 0);
+    }
+
     //divide maxSpeed by whatever wait 2 seconds and restore
     IEnumerator Sslow()
     {
+        foreach(GameObject GO in SlowDownParticles)
+        {
+            GO.GetComponent<ParticleSystem>().Play();
+        }
         speed /= 2;
         yield return new WaitForSeconds(2f);
     }

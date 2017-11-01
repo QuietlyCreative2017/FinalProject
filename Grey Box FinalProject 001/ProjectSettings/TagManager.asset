@@ -11,6 +11,7 @@ TagManager:
   - Fire
   - test
   - PlayerHealth
+  - EndGameText
   layers:
   - Default
   - TransparentFX

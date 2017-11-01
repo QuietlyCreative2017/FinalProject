@@ -16,6 +16,8 @@ public class RocketUpdate : MonoBehaviour
 
     public Vector3 v3Rotation;
 
+    public GameObject ParticleEffect;
+
     Transform rotNeeded;
     // Use this for initialization
     void Start()
@@ -31,27 +33,7 @@ public class RocketUpdate : MonoBehaviour
         {
             if (foundEnemy)
             {
-                //if (followDeadTime > 0)
-                //{
-                //followDeadTime -= Time.deltaTime;
-                //Quaternion rotNeeded = Quaternion.LookRotation(Enemy.transform.position/* + new Vector3(90, 270, 90)*/);
-                //Quaternion asad = Quaternion.Euler(0, 0, 90);
-                //rotNeeded *= asad;
-                //transform.rotation = Quaternion.Slerp(transform.rotation, rotNeeded, 0.2f);
-
-                //rotNeeded = this.transform;
-                //rotNeeded.LookAt(Enemy.transform);
-                //rotNeeded.Rotate(new Vector3(0, -90, 0));
-
-                //Quaternion rotNeeded = Quaternion.LookRotation(Enemy.transform.position);
-                //rotNeeded *= new Quaternion(1, 1, 90, 1);
-                //transform.rotation = Quaternion.Lerp(transform.rotation, rotNeeded, 0.02f);
-                //}
                 
-                //if(followDeadTime <= 0)
-                //{
-                //    foundEnemy = false;
-                //}
             }
             else
             {
@@ -75,10 +57,12 @@ public class RocketUpdate : MonoBehaviour
     //check for collision with a player
     private void OnCollisionEnter(Collision collision)
     {
+        Instantiate(ParticleEffect, transform.position, Quaternion.identity);
         Destroy(gameObject);
         if (collision.gameObject.tag == "Player")
         {
             //slow the player it hits
+            collision.gameObject.GetComponent<CharacterControls>().StartCoroutine(collision.gameObject.GetComponent<CharacterControls>().Vibrate(1));
             collision.gameObject.GetComponent<CharacterControls>().Slow();
         }
     }

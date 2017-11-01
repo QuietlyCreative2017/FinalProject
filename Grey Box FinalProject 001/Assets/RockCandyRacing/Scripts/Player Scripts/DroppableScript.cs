@@ -21,7 +21,7 @@ public class DroppableScript : MonoBehaviour {
 
     private void Awake()
     {
-        type = gameObject.GetComponent<CharacterControls>().type;
+        //type = gameObject.GetComponent<CharacterControls>().type;
         PlayerScript = gameObject.GetComponent<CharacterControls>();
     }
 
