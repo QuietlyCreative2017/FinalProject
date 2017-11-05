@@ -62,8 +62,9 @@ public class RocketUpdate : MonoBehaviour
         if (collision.gameObject.tag == "Player")
         {
             //slow the player it hits
-            collision.gameObject.GetComponent<CharacterControls>().StartCoroutine(collision.gameObject.GetComponent<CharacterControls>().Vibrate(1));
-            collision.gameObject.GetComponent<CharacterControls>().Slow();
+            CharacterControls ColControls = collision.gameObject.GetComponent<CharacterControls>();
+            ColControls.StartCoroutine(ColControls.Vibrate(1));
+            ColControls.Slow();
         }
     }
 
