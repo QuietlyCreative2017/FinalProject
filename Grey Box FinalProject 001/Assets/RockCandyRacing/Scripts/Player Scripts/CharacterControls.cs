@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using XboxCtrlrInput;
 using XInputDotNetPure;
+using UnityEngine.UI;
 
 public class CharacterControls : MonoBehaviour
 {
@@ -70,6 +71,14 @@ public class CharacterControls : MonoBehaviour
     public float PickupCDA;
 
     public GameObject[] SlowDownParticles;
+
+    public AudioSource JumpAud;
+    public AudioSource SpeedAud;
+    public AudioSource SlowedAud;
+
+    public TextMesh UIText;
+    string uiTextText;
+
     private void Awake()
     {
         rb = gameObject.GetComponent<Rigidbody>();
@@ -91,6 +100,23 @@ public class CharacterControls : MonoBehaviour
         camBoostCD -= Time.deltaTime;
         HandleXinput();
         PickupCDA -= Time.deltaTime;
+
+        if(GetComponent<RocketScript>().rocket)
+        {
+            UIText.gameObject.SetActive(true);
+            UIText.text = "Rocket";
+        }
+        if(GetComponent<DroppableScript>().canUse)
+        {
+            UIText.gameObject.SetActive(true);
+            UIText.text = "Droppable";
+        }
+        
+        if(!GetComponent<DroppableScript>().canUse && !GetComponent<RocketScript>().rocket)
+        {
+            UIText.gameObject.SetActive(false);
+        }
+
         if(PickupCDA < 0)
         {
             PickupCDA = 0;
@@ -206,6 +232,7 @@ public class CharacterControls : MonoBehaviour
                 rb.velocity = new Vector3(rb.velocity.x, m_JumpVel, 0);
                 StoppedJumping = false;
                 JumpTimeCounter = JumpTime;
+                JumpAud.Play();
             }
         }
 
@@ -305,7 +332,7 @@ public class CharacterControls : MonoBehaviour
         if (speed <= InitialMaxSpeed * 2)
         {
             speed *= a_SpeedIncrease;
-
+            SpeedAud.Play();
         }
         yield return new WaitForSeconds(0.5f);
     }
@@ -444,5 +471,10 @@ public class CharacterControls : MonoBehaviour
             winAnim.Play(0);
 
         }
+    }
+
+    private void OnApplicationQuit()
+    {
+        GamePad.SetVibration(playerIndex, 0, 0);
     }
 }

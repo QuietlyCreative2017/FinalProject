@@ -65,6 +65,7 @@ public class GameManager : MonoBehaviour
         StartCoroutine("CountDown");
         Cursor.visible = false;
         CurrentState = GameState.Playing;
+        InGameUI.SetActive(true);
 
         CodeIndex = 0;
     }
@@ -276,4 +277,5 @@ public class GameManager : MonoBehaviour
     {
         SceneManager.LoadScene("Playground_V02");
     }
+
 }
