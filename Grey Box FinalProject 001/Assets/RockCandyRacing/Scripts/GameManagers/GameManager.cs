@@ -105,12 +105,12 @@ public class GameManager : MonoBehaviour
                 }
                 // If index reaches the length of the cheatCode string, 
                 // the entire code was correctly entered
-                if (CodeIndex == EndBossCode.Length)
-                {
-                    //returns the index to 0 and loads the fps scene
-                    CodeIndex = 0;
-                    SceneManager.LoadScene(2);
-                }
+               // if (CodeIndex == EndBossCode.Length)
+               // {
+               //     //returns the index to 0 and loads the fps scene
+               //     CodeIndex = 0;
+               //     SceneManager.LoadScene(2);
+               // }
 
                 for (int i = 0; i < player.Length; i++)
                 {

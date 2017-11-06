@@ -71,10 +71,7 @@ public class CharacterControls : MonoBehaviour
     public float PickupCDA;
 
     public GameObject[] SlowDownParticles;
-
-    public AudioSource JumpAud;
-    public AudioSource SpeedAud;
-    public AudioSource SlowedAud;
+    
 
     public TextMesh UIText;
     string uiTextText;
@@ -232,7 +229,6 @@ public class CharacterControls : MonoBehaviour
                 rb.velocity = new Vector3(rb.velocity.x, m_JumpVel, 0);
                 StoppedJumping = false;
                 JumpTimeCounter = JumpTime;
-                JumpAud.Play();
             }
         }
 
@@ -332,7 +328,6 @@ public class CharacterControls : MonoBehaviour
         if (speed <= InitialMaxSpeed * 2)
         {
             speed *= a_SpeedIncrease;
-            SpeedAud.Play();
         }
         yield return new WaitForSeconds(0.5f);
     }
