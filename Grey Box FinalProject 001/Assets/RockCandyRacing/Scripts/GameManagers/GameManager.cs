@@ -112,10 +112,7 @@ public class GameManager : MonoBehaviour
                //     SceneManager.LoadScene(2);
                // }
 
-                for (int i = 0; i < player.Length; i++)
-                {
-                    PlayerHealth[i].GetComponent<Text>().text = player[i].GetComponent<PlayerLives>().Lives().ToString();
-                }
+               
 
                 SortLeader();
 
