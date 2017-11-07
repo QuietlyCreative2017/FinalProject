@@ -47,7 +47,7 @@ public class CharacterControls : MonoBehaviour
     GamePadState currentState;
     GamePadState previousState;
 
-   
+
 
     float InitialMaxSpeed;
 
@@ -71,7 +71,7 @@ public class CharacterControls : MonoBehaviour
     public float PickupCDA;
 
     public GameObject[] SlowDownParticles;
-    
+
 
     public TextMesh UIText;
     string uiTextText;
@@ -94,27 +94,37 @@ public class CharacterControls : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Debug.Log(gameObject.GetComponent<Rigidbody>().velocity);
         camBoostCD -= Time.deltaTime;
         HandleXinput();
         PickupCDA -= Time.deltaTime;
 
-        if(GetComponent<RocketScript>().rocket)
+        if (!grounded)
+        {
+            gameObject.layer = LayerMask.NameToLayer("InAir");
+        }
+        else
+        {
+            gameObject.layer = LayerMask.NameToLayer(gameObject.name);
+        }
+
+        if (GetComponent<RocketScript>().rocket)
         {
             UIText.gameObject.SetActive(true);
             UIText.text = "Rocket";
         }
-        if(GetComponent<DroppableScript>().canUse)
+        if (GetComponent<DroppableScript>().canUse)
         {
             UIText.gameObject.SetActive(true);
             UIText.text = "Droppable";
         }
-        
-        if(!GetComponent<DroppableScript>().canUse && !GetComponent<RocketScript>().rocket)
+
+        if (!GetComponent<DroppableScript>().canUse && !GetComponent<RocketScript>().rocket)
         {
             UIText.gameObject.SetActive(false);
         }
 
-        if(PickupCDA < 0)
+        if (PickupCDA < 0)
         {
             PickupCDA = 0;
         }
@@ -314,7 +324,7 @@ public class CharacterControls : MonoBehaviour
     //divide maxSpeed by whatever wait 2 seconds and restore
     IEnumerator Sslow()
     {
-        foreach(GameObject GO in SlowDownParticles)
+        foreach (GameObject GO in SlowDownParticles)
         {
             GO.GetComponent<ParticleSystem>().Play();
         }
@@ -429,15 +439,24 @@ public class CharacterControls : MonoBehaviour
     {
         Debug.DrawRay(transform.position, -Vector3.up, Color.black);
         if (Physics.Raycast(transform.position, -Vector3.up, 3, LayerMask))
-            return true;
+        {
+            //if (gameObject.GetComponent<Rigidbody>().velocity.y <= 0)
+                return true;
+        }
 
         Debug.DrawRay(new Vector3(transform.position.x + 0.4f, transform.position.y, transform.position.z), -Vector3.up, Color.black);
         if (Physics.Raycast(new Vector3(transform.position.x + 0.4f, transform.position.y, transform.position.z), -Vector3.up, 3, LayerMask))
-            return true;
+        {
+            //if (gameObject.GetComponent<Rigidbody>().velocity.y <= 0)
+                return true;
+        }
 
         Debug.DrawRay(new Vector3(transform.position.x - 0.4f, transform.position.y, transform.position.z), -Vector3.up, Color.black);
         if (Physics.Raycast(new Vector3(transform.position.x - 0.4f, transform.position.y, transform.position.z), -Vector3.up, 3, LayerMask))
-            return true;
+        {
+            //if (gameObject.GetComponent<Rigidbody>().velocity.y <= 0)
+                return true;
+        }
 
         return false;
     }

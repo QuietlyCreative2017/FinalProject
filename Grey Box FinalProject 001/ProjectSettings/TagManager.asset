@@ -21,10 +21,10 @@ TagManager:
   - UI
   - 
   - 
-  - player1
-  - player2
+  - Player1
+  - Player2
   - Ground
-  - 
+  - InAir
   - 
   - 
   - 
