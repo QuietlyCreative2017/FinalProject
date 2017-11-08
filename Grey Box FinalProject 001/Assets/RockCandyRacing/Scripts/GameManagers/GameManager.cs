@@ -82,7 +82,6 @@ public class GameManager : MonoBehaviour
                 {
                     Application.Quit();
                 }
-                deltaTime += (Time.deltaTime - deltaTime) * 0.1f;
                 if (CheckingGameOver)
                 {
                     winner = CheckGameOver();
@@ -105,14 +104,14 @@ public class GameManager : MonoBehaviour
                 }
                 // If index reaches the length of the cheatCode string, 
                 // the entire code was correctly entered
-               // if (CodeIndex == EndBossCode.Length)
-               // {
-               //     //returns the index to 0 and loads the fps scene
-               //     CodeIndex = 0;
-               //     SceneManager.LoadScene(2);
-               // }
+                // if (CodeIndex == EndBossCode.Length)
+                // {
+                //     //returns the index to 0 and loads the fps scene
+                //     CodeIndex = 0;
+                //     SceneManager.LoadScene(2);
+                // }
 
-               
+
 
                 SortLeader();
 
@@ -146,14 +145,18 @@ public class GameManager : MonoBehaviour
 
             ////////////////////////////////////////Start Game Over State//////////////////////////////////////////////////////////
             case GameState.GameOver:
-                
+
                 StartCoroutine("EndGameCountdown");
                 //winner.gameObject.GetComponent<CharacterControls>().PlayWinAnimation();
-                winner.gameObject.GetComponent<CharacterControls>().enabled = false;
-                winner.gameObject.GetComponent<CharacterControls>().winAnim.SetBool("HasWon", true);
+                if (winner != null)
+                {
+                    winner.gameObject.GetComponent<CharacterControls>().enabled = false;
+                    winner.gameObject.GetComponent<CharacterControls>().winAnim.SetBool("HasWon", true);
+
+                }
                 mainCamera.GetComponent<CameraScript>().enabled = false;
                 WinTextObj.SetActive(true);
-                WinTextObj.GetComponent<Text>().text = winner.name + " won";
+                if(winner != null)
                 mainCamera.transform.position = Vector3.Lerp(mainCamera.transform.position, new Vector3(winner.transform.position.x, winner.transform.position.y + EndGameYOffset, -40), 0.01f);
                 break;
                 ////////////////////////////////////////End Game Over State//////////////////////////////////////////////////////////////
@@ -164,20 +167,7 @@ public class GameManager : MonoBehaviour
 
     private void OnGUI()
     {
-        //all of this is the fps counter
-
-        int w = Screen.width, h = Screen.height;
-
-        GUIStyle style = new GUIStyle();
-
-        Rect rect = new Rect(0, 15, w, h * 2 / 100);
-        style.alignment = TextAnchor.UpperLeft;
-        style.fontSize = h * 2 / 100;
-        style.normal.textColor = new Color(0.0f, 0.0f, 0.5f, 1.0f);
-        float msec = deltaTime * 1000.0f;
-        float fps = 1.0f / deltaTime;
-        string text = string.Format("{0:0.0} ms ({1:0.} fps)", msec, fps);
-        GUI.Label(rect, text, style);
+        
     }
 
     void OrderCheckpoints()
@@ -194,6 +184,7 @@ public class GameManager : MonoBehaviour
             //set current state to gameover
             CurrentState = GameState.GameOver;
             //return whomever reached the end point
+            WinTextObj.GetComponent<Text>().text = WinObj.GetComponent<WinBox>().Winner.name + " won";
             return WinObj.GetComponent<WinBox>().Winner;
         }
         for (int i = 0; i < player.Length; i++)
@@ -210,6 +201,7 @@ public class GameManager : MonoBehaviour
                 {
                     if (player[j].GetComponent<PlayerLives>().Lives() > 0)
                     {
+                        WinTextObj.GetComponent<Text>().text = player[j].name + " won";
                         return player[j];
                     }
                 }
@@ -232,9 +224,12 @@ public class GameManager : MonoBehaviour
     {
         Time.timeScale = 0;
         WinTextObj.SetActive(true);
+        
+        //do a countdown for countDownTimer seconds
         for (float i = countDownTimer; i >= 0; i--)
         {
             yield return new WaitForSecondsRealtime(1);
+            //display countdown timer
             WinTextObj.GetComponent<Text>().text = i.ToString();
         }
         WinTextObj.SetActive(false);
@@ -244,24 +239,30 @@ public class GameManager : MonoBehaviour
 
     IEnumerator EndGameCountdown()
     {
+        //set timescale to zero
         Time.timeScale = 0f;
-        endGameText.text = winner.name + " won";
-        //text1.text = winner.name + " won";
+
+        //do a countdown for however many seconds to let animation play
         for (float i = countDownTimer; i >= 0; i--)
         {
             yield return new WaitForSecondsRealtime(1);
         }
+        //disable ingameui
         InGameUI.SetActive(false);
 
+        //enable endgameui
         EndGameUI.SetActive(true);
+        
+        //do another countdown for however many seconds
         for (float j = countDownTimer; j >= 0; j--)
         {
-            endGameText.text = "Begining in " + j;
+            endGameText.text = "Beginning in " + j;
             yield return new WaitForSecondsRealtime(1);
         }
-        
 
+        //set timescale to 1
         Time.timeScale = 1;
+        //load play scene again
         SceneManager.LoadScene(1);
     }
 
