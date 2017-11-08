@@ -152,7 +152,6 @@ public class GameManager : MonoBehaviour
                 {
                     winner.gameObject.GetComponent<CharacterControls>().enabled = false;
                     winner.gameObject.GetComponent<CharacterControls>().winAnim.SetBool("HasWon", true);
-
                 }
                 mainCamera.GetComponent<CameraScript>().enabled = false;
                 WinTextObj.SetActive(true);
