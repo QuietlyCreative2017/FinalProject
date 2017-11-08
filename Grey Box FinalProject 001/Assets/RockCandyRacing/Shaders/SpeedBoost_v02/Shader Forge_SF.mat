@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: Shader Forge_SF
+  m_Shader: {fileID: 4800000, guid: b48e9acd148411b42b1054fa0cd53c86, type: 3}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _Arrow_Texture:
+        m_Texture: {fileID: 2800000, guid: 0958b5d3fddbf8a4598c3f759d32b5a1, type: 3}
+        m_Scale: {x: 7.5, y: 7.5}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - _ArrowSpeed_Large: 0.43
+    - _ArrowSpeed_Small: 0.208
+    - _ArrowsSmall_Opacity: 0.554
+    - _Cutoff: 0.5
+    m_Colors:
+    - _ArrowSmall_Color: {r: 0.1490196, g: 0.7490196, b: 0.8745098, a: 0.2509804}

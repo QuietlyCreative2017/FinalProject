@@ -273,7 +273,7 @@ public class GameManager : MonoBehaviour
 
     public void Restart()
     {
-        SceneManager.LoadScene("Playground_V02");
+        SceneManager.LoadScene("Playground_V03");
     }
 
 }
