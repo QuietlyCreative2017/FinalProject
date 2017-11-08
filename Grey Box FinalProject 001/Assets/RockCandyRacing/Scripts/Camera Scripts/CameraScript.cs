@@ -26,6 +26,11 @@ public class CameraScript : MonoBehaviour
     public float minZoom;
 
     public float yOffset;
+
+    public float ShakeAmount;
+    public float Shaking;
+    public float decreaseAmount;
+
     private void Awake()
     {
         players = GameObject.FindGameObjectsWithTag("Player");
@@ -98,7 +103,7 @@ public class CameraScript : MonoBehaviour
             gameObject.transform.position = new Vector3(transform.position.x, transform.position.y, minZoom);
         }
 
-        
+
     }
 
     //not being used
@@ -113,5 +118,20 @@ public class CameraScript : MonoBehaviour
     public void SortLeader()
     {
         players = players.OrderBy(player => player.transform.position.x).ToArray();
+    }
+
+    public IEnumerator ScreenShake(float ShakeAmount, float ShakeTime, float DecreaseAmount)
+    {
+        if (ShakeTime > 0)
+        {
+            gameObject.transform.localPosition = Random.insideUnitSphere * ShakeAmount;
+            ShakeTime -= Time.deltaTime * DecreaseAmount;
+        }
+        else
+        {
+            ShakeTime = 0.0f;
+            yield return null;
+        }
+
     }
 }

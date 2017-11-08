@@ -6,6 +6,7 @@ using XInputDotNetPure;
 using System.Linq;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.EventSystems;
 
 public class GameManager : MonoBehaviour
 {
@@ -40,6 +41,9 @@ public class GameManager : MonoBehaviour
     public GameObject EndGameUI;
     public GameObject InGameUI;
     public Text endGameText;
+
+    public EventSystem m_ESystem;
+    public Button m_BFirstButton;
 
     enum GameState
     {
@@ -86,6 +90,12 @@ public class GameManager : MonoBehaviour
                 {
                     winner = CheckGameOver();
 
+                }
+
+                if(Input.GetKeyDown(KeyCode.W))
+                {
+                    CameraScript camScript = mainCamera.GetComponent<CameraScript>();
+                    camScript.StartCoroutine(camScript.ScreenShake(1, 5, 1));
                 }
 
                 if (Input.anyKeyDown)
@@ -273,6 +283,22 @@ public class GameManager : MonoBehaviour
     public void Restart()
     {
         SceneManager.LoadScene("Playground_V03");
+    }
+
+
+    void OnApplicationFocus(bool focus)
+    {
+        if(focus)
+        {
+            StartCoroutine("SetSelectedGameobject");
+        }
+    }
+
+    IEnumerator SetSelectedGameobject()
+    {
+        m_ESystem.SetSelectedGameObject(null);
+        yield return new WaitForEndOfFrame();
+        m_ESystem.SetSelectedGameObject(m_BFirstButton.gameObject);
     }
 
 }

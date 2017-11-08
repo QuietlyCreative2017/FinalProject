@@ -5,14 +5,18 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using XInputDotNetPure;
 using XboxCtrlrInput;
+using UnityEngine.EventSystems;
 
 public class MenuManager : MonoBehaviour {
 
     public GameObject LoadScreen;
     public Slider slider;
 
-	// Use this for initialization
-	void Start () {
+    public EventSystem m_ESystem;
+    public Button m_BFirstButton;
+
+    // Use this for initialization
+    void Start () {
         
 	}
 	
@@ -46,5 +50,20 @@ public class MenuManager : MonoBehaviour {
             slider.value = progress;
             yield return null;
         }
+    }
+
+    void OnApplicationFocus(bool focus)
+    {
+        if (focus)
+        {
+            StartCoroutine("SetSelectedGameobject");
+        }
+    }
+
+    IEnumerator SetSelectedGameobject()
+    {
+        m_ESystem.SetSelectedGameObject(null);
+        yield return new WaitForEndOfFrame();
+        m_ESystem.SetSelectedGameObject(m_BFirstButton.gameObject);
     }
 }

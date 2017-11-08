@@ -1564,6 +1564,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LoadScreen: {fileID: 1994396604}
   slider: {fileID: 1756559677}
+  m_ESystem: {fileID: 256516875}
+  m_BFirstButton: {fileID: 891282877}
 --- !u!4 &2117794233
 Transform:
   m_ObjectHideFlags: 0
