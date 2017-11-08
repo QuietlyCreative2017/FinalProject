@@ -36,7 +36,7 @@ public class RocketScript : MonoBehaviour {
         PickupCD = PlayerScript.PickupCDA; 
 
         //set spawn position
-        pos = new Vector3(gameObject.transform.position.x + 5, gameObject.transform.position.y, gameObject.transform.position.z);
+        pos = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, gameObject.transform.position.z);
 
         //input check
         if((currentState.Triggers.Right > 0 || currentState.Buttons.B == ButtonState.Pressed

@@ -99,14 +99,14 @@ public class CharacterControls : MonoBehaviour
         HandleXinput();
         PickupCDA -= Time.deltaTime;
 
-        if (!grounded)
-        {
-            gameObject.layer = LayerMask.NameToLayer("InAir");
-        }
-        else
-        {
-            gameObject.layer = LayerMask.NameToLayer(gameObject.name);
-        }
+       //if (!grounded)
+       //{
+       //    gameObject.layer = LayerMask.NameToLayer("InAir");
+       //}
+       //else
+       //{
+       //    gameObject.layer = LayerMask.NameToLayer(gameObject.name);
+       //}
 
         if (GetComponent<RocketScript>().rocket)
         {
