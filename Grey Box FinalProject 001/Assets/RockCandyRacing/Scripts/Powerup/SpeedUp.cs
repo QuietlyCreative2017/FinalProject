@@ -28,7 +28,7 @@ public class SpeedUp : MonoBehaviour
         {
             if (other.gameObject.GetComponent<CharacterControls>().fInput > 0)
             {
-                other.gameObject.GetComponent<CharacterControls>().StartCoroutine(other.gameObject.GetComponent<CharacterControls>().speedUp(InitialSpeedAmount));
+                other.gameObject.GetComponent<CharacterControls>().StartCoroutine(other.gameObject.GetComponent<CharacterControls>().speedUp(InitialSpeedAmount, false));
 
             }
         }
@@ -41,7 +41,7 @@ public class SpeedUp : MonoBehaviour
         {
             if (other.gameObject.GetComponent<CharacterControls>().fInput > 0)
             {
-                other.gameObject.GetComponent<CharacterControls>().StartCoroutine(other.gameObject.GetComponent<CharacterControls>().speedUp(ExitSpeedAmount));
+                other.gameObject.GetComponent<CharacterControls>().StartCoroutine(other.gameObject.GetComponent<CharacterControls>().speedUp(ExitSpeedAmount, true));
             }
         }
 

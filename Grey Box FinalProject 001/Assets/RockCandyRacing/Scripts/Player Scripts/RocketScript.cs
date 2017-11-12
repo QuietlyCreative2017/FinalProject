@@ -19,10 +19,12 @@ public class RocketScript : MonoBehaviour {
     CharacterControls PlayerScript;
     public float PickupCD;
 
+    public AudioManager AudManager;
     private void Awake()
     {
         playerIndex = gameObject.GetComponent<CharacterControls>().GetPlayerIndex();
         PlayerScript = gameObject.GetComponent<CharacterControls>();
+        AudManager = GetComponent<AudioManager>();
     }
 
     // Use this for initialization
@@ -46,6 +48,7 @@ public class RocketScript : MonoBehaviour {
             //shoot the thing
             shot = true;
             rocket = false;
+            AudManager.PlaySound("Rocket_Pickup_SFX", false, 0.2f, 128);
             Instantiate(rocketPrefab, pos, Quaternion.Euler(0, 0, 0));
             gameObject.GetComponent<DroppableScript>().enabled = true;
             canPickUp = true;

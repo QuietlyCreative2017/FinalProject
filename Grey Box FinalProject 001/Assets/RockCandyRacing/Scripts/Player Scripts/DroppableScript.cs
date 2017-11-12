@@ -19,10 +19,12 @@ public class DroppableScript : MonoBehaviour {
     CharacterControls PlayerScript;
     public float PickupCD;
 
+    public AudioManager AudManager;
     private void Awake()
     {
         //type = gameObject.GetComponent<CharacterControls>().type;
         PlayerScript = gameObject.GetComponent<CharacterControls>();
+        AudManager = GetComponent<AudioManager>();
     }
 
     // Use this for initialization

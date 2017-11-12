@@ -76,9 +76,12 @@ public class CharacterControls : MonoBehaviour
     public TextMesh UIText;
     string uiTextText;
 
+    public AudioManager AudManager;
+
     private void Awake()
     {
         rb = gameObject.GetComponent<Rigidbody>();
+        AudManager = gameObject.GetComponent<AudioManager>();
     }
 
     // Use this for initialization
@@ -94,7 +97,6 @@ public class CharacterControls : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(gameObject.GetComponent<Rigidbody>().velocity);
         camBoostCD -= Time.deltaTime;
         HandleXinput();
         PickupCDA -= Time.deltaTime;
@@ -239,6 +241,7 @@ public class CharacterControls : MonoBehaviour
                 rb.velocity = new Vector3(rb.velocity.x, m_JumpVel, 0);
                 StoppedJumping = false;
                 JumpTimeCounter = JumpTime;
+                AudManager.PlaySound("Jump_SFX", false, 0.2f, 128);
             }
         }
 
@@ -328,15 +331,20 @@ public class CharacterControls : MonoBehaviour
         {
             GO.GetComponent<ParticleSystem>().Play();
         }
+        AudManager.PlaySound("Daze_SFX", false, 0.2f, 128);
         speed /= 2;
         yield return new WaitForSeconds(2f);
     }
 
     //Multiplied max speed by 2 then waits for 2 seconds 
-    public IEnumerator speedUp(float a_SpeedIncrease)
+    public IEnumerator speedUp(float a_SpeedIncrease, bool playSound)
     {
         if (speed <= InitialMaxSpeed * 2)
         {
+            if(playSound)
+            {
+                AudManager.PlaySound("Speed_Boost_Temp_SFX", false, 0.5f, 128);
+            }
             speed *= a_SpeedIncrease;
         }
         yield return new WaitForSeconds(0.5f);
