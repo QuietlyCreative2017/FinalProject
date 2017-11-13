@@ -28,4 +28,4 @@ Material:
     - _ArrowsSmall_Opacity: 0.554
     - _Cutoff: 0.5
     m_Colors:
-    - _ArrowSmall_Color: {r: 0.1490196, g: 0.7490196, b: 0.8745098, a: 0.2509804}
+    - _ArrowSmall_Color: {r: 0.15862082, g: 0, b: 1, a: 0.2509804}

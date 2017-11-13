@@ -1,0 +1,206 @@
+fileFormatVersion: 2
+guid: 6182eb7be2b3aa14abbfe0affa544ed9
+timeCreated: 1510531684
+licenseType: Pro
+ModelImporter:
+  serializedVersion: 21
+  fileIDToRecycleName:
+    100000: Frosting02
+    100002: Frosting_01
+    100004: Frosting_bakenorm1
+    100006: Ginger_Bread_House
+    100008: GingerBread_House_Base_01
+    100010: GingerBread_House_Chimney_01
+    100012: GingerBread_House_Frosting_01
+    100014: GingerBread_House_Frosting_01 1
+    100016: GingerBread_House_Frosting_010
+    100018: GingerBread_House_Frosting_011
+    100020: GingerBread_House_Frosting_02
+    100022: GingerBread_House_Frosting_03
+    100024: GingerBread_House_Frosting_04
+    100026: GingerBread_House_Frosting_05
+    100028: GingerBread_House_Frosting_06
+    100030: GingerBread_House_Frosting_07
+    100032: GingerBread_House_Frosting_08
+    100034: GingerBread_House_Frosting_09
+    100036: GingerBread_House_Roof_01
+    100038: Gingerbread_House_Sugar_Cane1
+    100040: Gingerbread_House_Sugar_Cane2
+    100042: //RootNode
+    100044: GingerBread_Sugar_Bead_01
+    100046: GingerBread_Sugar_Bead_02
+    100048: GingerBread_Sugar_Bead_03
+    100050: GingerBread_Sugar_Bead_04
+    100052: GingerBread_Sugar_Bead_05
+    400000: Frosting02
+    400002: Frosting_01
+    400004: Frosting_bakenorm1
+    400006: Ginger_Bread_House
+    400008: GingerBread_House_Base_01
+    400010: GingerBread_House_Chimney_01
+    400012: GingerBread_House_Frosting_01
+    400014: GingerBread_House_Frosting_01 1
+    400016: GingerBread_House_Frosting_010
+    400018: GingerBread_House_Frosting_011
+    400020: GingerBread_House_Frosting_02
+    400022: GingerBread_House_Frosting_03
+    400024: GingerBread_House_Frosting_04
+    400026: GingerBread_House_Frosting_05
+    400028: GingerBread_House_Frosting_06
+    400030: GingerBread_House_Frosting_07
+    400032: GingerBread_House_Frosting_08
+    400034: GingerBread_House_Frosting_09
+    400036: GingerBread_House_Roof_01
+    400038: Gingerbread_House_Sugar_Cane1
+    400040: Gingerbread_House_Sugar_Cane2
+    400042: //RootNode
+    400044: GingerBread_Sugar_Bead_01
+    400046: GingerBread_Sugar_Bead_02
+    400048: GingerBread_Sugar_Bead_03
+    400050: GingerBread_Sugar_Bead_04
+    400052: GingerBread_Sugar_Bead_05
+    2300000: Frosting_bakenorm1
+    2300002: GingerBread_House_Base_01
+    2300004: GingerBread_House_Chimney_01
+    2300006: GingerBread_House_Frosting_01
+    2300008: GingerBread_House_Frosting_01 1
+    2300010: GingerBread_House_Frosting_010
+    2300012: GingerBread_House_Frosting_011
+    2300014: GingerBread_House_Frosting_02
+    2300016: GingerBread_House_Frosting_03
+    2300018: GingerBread_House_Frosting_04
+    2300020: GingerBread_House_Frosting_05
+    2300022: GingerBread_House_Frosting_06
+    2300024: GingerBread_House_Frosting_07
+    2300026: GingerBread_House_Frosting_08
+    2300028: GingerBread_House_Frosting_09
+    2300030: GingerBread_House_Roof_01
+    2300032: Gingerbread_House_Sugar_Cane1
+    2300034: Gingerbread_House_Sugar_Cane2
+    2300036: GingerBread_Sugar_Bead_01
+    2300038: GingerBread_Sugar_Bead_02
+    2300040: GingerBread_Sugar_Bead_03
+    2300042: GingerBread_Sugar_Bead_04
+    2300044: GingerBread_Sugar_Bead_05
+    3300000: Frosting_bakenorm1
+    3300002: GingerBread_House_Base_01
+    3300004: GingerBread_House_Chimney_01
+    3300006: GingerBread_House_Frosting_01
+    3300008: GingerBread_House_Frosting_01 1
+    3300010: GingerBread_House_Frosting_010
+    3300012: GingerBread_House_Frosting_011
+    3300014: GingerBread_House_Frosting_02
+    3300016: GingerBread_House_Frosting_03
+    3300018: GingerBread_House_Frosting_04
+    3300020: GingerBread_House_Frosting_05
+    3300022: GingerBread_House_Frosting_06
+    3300024: GingerBread_House_Frosting_07
+    3300026: GingerBread_House_Frosting_08
+    3300028: GingerBread_House_Frosting_09
+    3300030: GingerBread_House_Roof_01
+    3300032: Gingerbread_House_Sugar_Cane1
+    3300034: Gingerbread_House_Sugar_Cane2
+    3300036: GingerBread_Sugar_Bead_01
+    3300038: GingerBread_Sugar_Bead_02
+    3300040: GingerBread_Sugar_Bead_03
+    3300042: GingerBread_Sugar_Bead_04
+    3300044: GingerBread_Sugar_Bead_05
+    4300000: Frosting_bakenorm1
+    4300002: GingerBread_Sugar_Bead_01
+    4300004: GingerBread_Sugar_Bead_02
+    4300006: GingerBread_Sugar_Bead_03
+    4300008: GingerBread_Sugar_Bead_04
+    4300010: GingerBread_Sugar_Bead_05
+    4300012: GingerBread_House_Base_01
+    4300014: GingerBread_House_Roof_01
+    4300016: GingerBread_House_Chimney_01
+    4300018: GingerBread_House_Frosting_01
+    4300020: GingerBread_House_Frosting_02
+    4300022: GingerBread_House_Frosting_03
+    4300024: GingerBread_House_Frosting_04
+    4300026: GingerBread_House_Frosting_05
+    4300028: GingerBread_House_Frosting_06
+    4300030: GingerBread_House_Frosting_01
+    4300032: GingerBread_House_Frosting_07
+    4300034: GingerBread_House_Frosting_08
+    4300036: GingerBread_House_Frosting_09
+    4300038: GingerBread_House_Frosting_010
+    4300040: GingerBread_House_Frosting_011
+    4300042: Gingerbread_House_Sugar_Cane2
+    4300044: Gingerbread_House_Sugar_Cane1
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
