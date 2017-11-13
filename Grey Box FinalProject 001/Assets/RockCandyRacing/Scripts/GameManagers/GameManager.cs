@@ -48,11 +48,9 @@ public class GameManager : MonoBehaviour
 
     public AudioManager audManager;
 
-    //public GameObject readyGameobject;
-    //public GameObject setGO;
-    //public GameObject goGO;
-    //
-    //public GameObject[] EndGameUIPics;
+    public GameObject[] CountDownUIPics;
+    
+    public GameObject[] EndGameUIPics;
     enum GameState
     {
         Playing,
@@ -75,7 +73,7 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         WinTextObj.SetActive(false);
-        StartCoroutine("CountDown");
+        StartCoroutine("NewCountdown");
         Cursor.visible = false;
         CurrentState = GameState.Playing;
         InGameUI.SetActive(true);
@@ -125,7 +123,7 @@ public class GameManager : MonoBehaviour
                 // the entire code was correctly entered
                 // if (CodeIndex == EndBossCode.Length)
                 // {
-                //     //returns the index to 0 and loads the fps scene
+                //     //returns the index to 0
                 //     CodeIndex = 0;
                 //     SceneManager.LoadScene(2);
                 // }
@@ -143,6 +141,7 @@ public class GameManager : MonoBehaviour
                         Vector3 disPos = Camera.main.ViewportToWorldPoint(new Vector3(1, 1, 0));
                         newT.Set(SpawnPoint.transform.position.x, disPos.y, -1);
                         player[i].transform.position = newT;
+                        audManager.PlaySound("Cat_Death_SFX", false, 0.2f, 128);
                         player[i].GetComponent<PlayerLives>().RemoveLife();
                         player[i].GetComponent<Rigidbody>().velocity = Vector3.zero;
                         player[i].GetComponent<CharacterControls>().Respawn();
@@ -165,7 +164,7 @@ public class GameManager : MonoBehaviour
             ////////////////////////////////////////Start Game Over State//////////////////////////////////////////////////////////
             case GameState.GameOver:
 
-                StartCoroutine("EndGameCountdown");
+                //StartCoroutine("NewEndGameCountdown");
                 //winner.gameObject.GetComponent<CharacterControls>().PlayWinAnimation();
                 if (winner != null)
                 {
@@ -204,6 +203,7 @@ public class GameManager : MonoBehaviour
             //return whomever reached the end point
             WinTextObj.GetComponent<Text>().text = WinObj.GetComponent<WinBox>().Winner.name + " won";
             audManager.PlaySound("Studio crowd celebration cheer clap_BLASTWAVEFX_12945", false, 0.2f, 128);
+            StartCoroutine("NewEndGameCountdown");
             return WinObj.GetComponent<WinBox>().Winner;
         }
         for (int i = 0; i < player.Length; i++)
@@ -221,7 +221,7 @@ public class GameManager : MonoBehaviour
                     if (player[j].GetComponent<PlayerLives>().Lives() > 0)
                     {
                         WinTextObj.GetComponent<Text>().text = player[j].name + " won";
-                        audManager.PlaySound("Studio crowd celebration cheer clap_BLASTWAVEFX_12945", false, 0.2f, 128);
+                        StartCoroutine("NewEndGameCountdown");
                         return player[j];
                     }
                 }
@@ -321,50 +321,48 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(sceneName);
     }
 
-    //IEnumerator NewCountdown()
-    //{
-    //    Time.timeScale = 0;
-    //    readyGameobject.SetActive(true);
-    //    yield return new WaitForSecondsRealtime(1);
-    //    readyGameobject.SetActive(false);
-    //    setGO.SetActive(true);
-    //    yield return new WaitForSecondsRealtime(1);
-    //    setGO.SetActive(false);
-    //    goGO.SetActive(true);
-    //    yield return new WaitForSecondsRealtime(1);
-    //    goGO.SetActive(false);
-    //    Time.timeScale = 1;
-    //}
-    //
-    //IEnumerator NewEndGameCountdown()
-    //{
-    //    //set timescale to zero
-    //    Time.timeScale = 0f;
-    //
-    //    //do a countdown for however many seconds to let animation play
-    //    for (float i = countDownTimer; i >= 0; i--)
-    //    {
-    //        yield return new WaitForSecondsRealtime(1);
-    //    }
-    //    //disable ingameui
-    //    InGameUI.SetActive(false);
-    //
-    //    //enable endgameui
-    //    EndGameUI.SetActive(true);
-    //    
-    //    for (int i = 0; i < 3; i++)
-    //    {
-    //        if(2 - i + 1 < 3)
-    //        {
-    //            EndGameUIPics[2 - i + 1].SetActive(false);
-    //        }
-    //        EndGameUIPics[2 - i].SetActive(true);
-    //        yield return new WaitForSecondsRealtime(1);
-    //    }
-    //
-    //    //set timescale to 1
-    //    Time.timeScale = 1;
-    //    //load play scene again
-    //    SceneManager.LoadScene(1);
-    //}
+    IEnumerator NewCountdown()
+    {
+        Time.timeScale = 0;
+        for (int i = 0; i < 3; i++)
+        {
+            CountDownUIPics[i].SetActive(true);
+            audManager.PlaySound("Timer_Beep_" + (3 - i), false, 0.2f, 128);
+            yield return new WaitForSecondsRealtime(1);
+            CountDownUIPics[i].SetActive(false);
+        }
+        Time.timeScale = 1;
+    }
+    
+    IEnumerator NewEndGameCountdown()
+    {
+        //set timescale to zero
+        Time.timeScale = 0f;
+
+
+        yield return new WaitForSecondsRealtime(1);
+        audManager.PlaySound("Studio crowd celebration cheer clap_BLASTWAVEFX_12945", false, 0.2f, 128);
+        //do a countdown for however many seconds to let animation play
+        for (float i = countDownTimer; i >= 0; i--)
+        {
+            yield return new WaitForSecondsRealtime(1);
+        }
+        //disable ingameui
+        InGameUI.SetActive(false);
+    
+        //enable endgameui
+        EndGameUI.SetActive(true);
+        
+        for (int i = 0; i < 3; i++)
+        {
+            EndGameUIPics[i].SetActive(true);
+            yield return new WaitForSecondsRealtime(1);
+            EndGameUIPics[i].SetActive(false);
+        }
+    
+        //set timescale to 1
+        Time.timeScale = 1;
+        //load play scene again
+        SceneManager.LoadScene(1);
+    }
 }

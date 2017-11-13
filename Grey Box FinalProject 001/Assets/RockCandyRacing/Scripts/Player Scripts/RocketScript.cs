@@ -48,7 +48,7 @@ public class RocketScript : MonoBehaviour {
             //shoot the thing
             shot = true;
             rocket = false;
-            AudManager.PlaySound("Rocket_launch_SFX_v3", false, 0.2f, 128);
+            //AudManager.PlaySound("Rocket_launch_SFX_v3", false, 0.2f, 128);
             Instantiate(rocketPrefab, pos, Quaternion.Euler(0, 0, 0));
             gameObject.GetComponent<DroppableScript>().enabled = true;
             canPickUp = true;

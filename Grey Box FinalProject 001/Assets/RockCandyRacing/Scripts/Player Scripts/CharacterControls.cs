@@ -100,7 +100,7 @@ public class CharacterControls : MonoBehaviour
         camBoostCD -= Time.deltaTime;
         HandleXinput();
         PickupCDA -= Time.deltaTime;
-        
+
         if (!grounded)
         {
             gameObject.layer = LayerMask.NameToLayer("InAir");
@@ -133,20 +133,17 @@ public class CharacterControls : MonoBehaviour
         {
             PickupCDA = 0;
         }
+        //if speed is greater than max / 2
         if (speed > maxSpeed / 2)
         {
-            if (speed > 20)
-            {
-                speed -= Time.deltaTime * speedDecrease;
-
-            }
+            speed -= Time.deltaTime * speedDecrease;
         }
 
         if (speed > maxSpeed)
         {
             if (speed > 20)
             {
-                speed -= Time.deltaTime * (speedDecrease * 2);
+                speed -= Time.deltaTime * (speedDecrease * 4);
             }
         }
 
@@ -248,16 +245,16 @@ public class CharacterControls : MonoBehaviour
             }
         }
 
-        if (!StoppedJumping)
-        {
-            //and your counter hasn't reached zero...
-            if (JumpTimeCounter > 0)
-            {
-                //keep jumping!
-                rb.velocity = new Vector3(rb.velocity.x, m_JumpVel, 0);
-                JumpTimeCounter -= Time.deltaTime;
-            }
-        }
+        //if (!StoppedJumping)
+        //{
+        //    //and your counter hasn't reached zero...
+        //    if (JumpTimeCounter > 0)
+        //    {
+        //        //keep jumping!
+        //        rb.velocity = new Vector3(rb.velocity.x, m_JumpVel, 0);
+        //        JumpTimeCounter -= Time.deltaTime;
+        //    }
+        //}
 
         //if you have released a and minimum jump is reached
         //or you jump for the full time
@@ -373,7 +370,7 @@ public class CharacterControls : MonoBehaviour
         RaycastHit[] hit = new RaycastHit[3];
         RaycastHit leastDist = new RaycastHit();
 
-        for (int i = 0; i < 3; i++)
+        for (int i = 0; i < 2; i++)
         {
             Debug.DrawRay(transform.position + Vector3.up * ((i - 1) * 0.5f), Vector3.right * movementRayLength * dirValue, Color.blue);
             if (Physics.Raycast(transform.position + Vector3.up * ((i - 1) * 0.5f), Vector3.right * dirValue, out hit[i], movementRayLength, Ground))
@@ -386,7 +383,7 @@ public class CharacterControls : MonoBehaviour
                 }
             }
         }
-        
+
         //if leastDist was changed to the length of a raycast
         if (leastDist.distance != 0 && fInput != 0 && grounded && StoppedJumping)
         {
@@ -471,7 +468,7 @@ public class CharacterControls : MonoBehaviour
         {
             //if (gameObject.GetComponent<Rigidbody>().velocity.y <= 0)
             //if (gameObject.GetComponent<Rigidbody>().velocity.y == 0 || Mathf.Sign(gameObject.GetComponent<Rigidbody>().velocity.y) == -1)
-                return true;
+            return true;
         }
 
         Debug.DrawRay(new Vector3(transform.position.x - 0.4f, transform.position.y, transform.position.z), -Vector3.up, Color.black);
@@ -479,7 +476,7 @@ public class CharacterControls : MonoBehaviour
         {
             //if (gameObject.GetComponent<Rigidbody>().velocity.y <= 0)
             //if (gameObject.GetComponent<Rigidbody>().velocity.y == 0 || Mathf.Sign(gameObject.GetComponent<Rigidbody>().velocity.y) == -1)
-                return true;
+            return true;
         }
 
         return false;
