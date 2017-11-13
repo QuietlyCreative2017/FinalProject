@@ -47,6 +47,12 @@ public class GameManager : MonoBehaviour
 
 
     public AudioManager audManager;
+
+    //public GameObject readyGameobject;
+    //public GameObject setGO;
+    //public GameObject goGO;
+    //
+    //public GameObject[] EndGameUIPics;
     enum GameState
     {
         Playing,
@@ -314,4 +320,51 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSecondsRealtime(seconds);
         SceneManager.LoadScene(sceneName);
     }
+
+    //IEnumerator NewCountdown()
+    //{
+    //    Time.timeScale = 0;
+    //    readyGameobject.SetActive(true);
+    //    yield return new WaitForSecondsRealtime(1);
+    //    readyGameobject.SetActive(false);
+    //    setGO.SetActive(true);
+    //    yield return new WaitForSecondsRealtime(1);
+    //    setGO.SetActive(false);
+    //    goGO.SetActive(true);
+    //    yield return new WaitForSecondsRealtime(1);
+    //    goGO.SetActive(false);
+    //    Time.timeScale = 1;
+    //}
+    //
+    //IEnumerator NewEndGameCountdown()
+    //{
+    //    //set timescale to zero
+    //    Time.timeScale = 0f;
+    //
+    //    //do a countdown for however many seconds to let animation play
+    //    for (float i = countDownTimer; i >= 0; i--)
+    //    {
+    //        yield return new WaitForSecondsRealtime(1);
+    //    }
+    //    //disable ingameui
+    //    InGameUI.SetActive(false);
+    //
+    //    //enable endgameui
+    //    EndGameUI.SetActive(true);
+    //    
+    //    for (int i = 0; i < 3; i++)
+    //    {
+    //        if(2 - i + 1 < 3)
+    //        {
+    //            EndGameUIPics[2 - i + 1].SetActive(false);
+    //        }
+    //        EndGameUIPics[2 - i].SetActive(true);
+    //        yield return new WaitForSecondsRealtime(1);
+    //    }
+    //
+    //    //set timescale to 1
+    //    Time.timeScale = 1;
+    //    //load play scene again
+    //    SceneManager.LoadScene(1);
+    //}
 }

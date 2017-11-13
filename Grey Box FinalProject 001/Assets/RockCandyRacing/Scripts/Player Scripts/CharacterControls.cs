@@ -100,7 +100,7 @@ public class CharacterControls : MonoBehaviour
         camBoostCD -= Time.deltaTime;
         HandleXinput();
         PickupCDA -= Time.deltaTime;
-
+        
         if (!grounded)
         {
             gameObject.layer = LayerMask.NameToLayer("InAir");
@@ -386,9 +386,9 @@ public class CharacterControls : MonoBehaviour
                 }
             }
         }
-
+        
         //if leastDist was changed to the length of a raycast
-        if (leastDist.distance != 0 && fInput != 0 && !grounded)
+        if (leastDist.distance != 0 && fInput != 0 && grounded && StoppedJumping)
         {
             //point to move to is now the current position + least distance ray * deltaTime
             return rb.position + Vector3.right * leastDist.distance * Time.deltaTime;
