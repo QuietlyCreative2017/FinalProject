@@ -54,6 +54,7 @@ public class DroppableScript : MonoBehaviour {
     {
         if(collision.gameObject.tag == "Droppable" && canPickUp && isActiveAndEnabled && PickupCD <= 0 && collision.gameObject.GetComponent<PickUpBool>().Pickupable == true)
         {
+            AudManager.PlaySound("Rocket_Pickup_SFX", false, 0.2f, 128);
             canUse = true;
             Destroy(collision.gameObject);
             gameObject.GetComponent<RocketScript>().enabled = false;

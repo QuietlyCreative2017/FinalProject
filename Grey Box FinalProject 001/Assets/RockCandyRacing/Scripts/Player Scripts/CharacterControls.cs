@@ -101,14 +101,14 @@ public class CharacterControls : MonoBehaviour
         HandleXinput();
         PickupCDA -= Time.deltaTime;
 
-        //if (!grounded)
-        //{
-        //    gameObject.layer = LayerMask.NameToLayer("InAir");
-        //}
-        //else
-        //{
-        //    gameObject.layer = LayerMask.NameToLayer(gameObject.name);
-        //}
+        if (!grounded)
+        {
+            gameObject.layer = LayerMask.NameToLayer("InAir");
+        }
+        else
+        {
+            gameObject.layer = LayerMask.NameToLayer(gameObject.name);
+        }
 
 
         KeepGrounded();
@@ -388,7 +388,7 @@ public class CharacterControls : MonoBehaviour
         }
 
         //if leastDist was changed to the length of a raycast
-        if (leastDist.distance != 0 && fInput != 0)
+        if (leastDist.distance != 0 && fInput != 0 && !grounded)
         {
             //point to move to is now the current position + least distance ray * deltaTime
             return rb.position + Vector3.right * leastDist.distance * Time.deltaTime;
@@ -462,7 +462,7 @@ public class CharacterControls : MonoBehaviour
         Debug.DrawRay(transform.position, -Vector3.up, Color.black);
         if (Physics.Raycast(transform.position, -Vector3.up, 3, LayerMask))
         {
-            //if (gameObject.GetComponent<Rigidbody>().velocity.y <= 0)
+            //if (gameObject.GetComponent<Rigidbody>().velocity.y == 0 || Mathf.Sign(gameObject.GetComponent<Rigidbody>().velocity.y) == -1)
             return true;
         }
 
@@ -470,14 +470,16 @@ public class CharacterControls : MonoBehaviour
         if (Physics.Raycast(new Vector3(transform.position.x + 0.4f, transform.position.y, transform.position.z), -Vector3.up, 3, LayerMask))
         {
             //if (gameObject.GetComponent<Rigidbody>().velocity.y <= 0)
-            return true;
+            //if (gameObject.GetComponent<Rigidbody>().velocity.y == 0 || Mathf.Sign(gameObject.GetComponent<Rigidbody>().velocity.y) == -1)
+                return true;
         }
 
         Debug.DrawRay(new Vector3(transform.position.x - 0.4f, transform.position.y, transform.position.z), -Vector3.up, Color.black);
         if (Physics.Raycast(new Vector3(transform.position.x - 0.4f, transform.position.y, transform.position.z), -Vector3.up, 3, LayerMask))
         {
             //if (gameObject.GetComponent<Rigidbody>().velocity.y <= 0)
-            return true;
+            //if (gameObject.GetComponent<Rigidbody>().velocity.y == 0 || Mathf.Sign(gameObject.GetComponent<Rigidbody>().velocity.y) == -1)
+                return true;
         }
 
         return false;
