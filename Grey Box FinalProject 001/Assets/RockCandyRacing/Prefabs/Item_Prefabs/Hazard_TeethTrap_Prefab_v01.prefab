@@ -54,7 +54,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4462696875784000}
   - component: {fileID: 65465421024190038}
-  - component: {fileID: 114639409857525222}
+  - component: {fileID: 114749741993868832}
   m_Layer: 0
   m_Name: Hazard_TeethTrap_Prefab_v01
   m_TagString: Untagged
@@ -273,7 +273,7 @@ Animator:
   m_GameObject: {fileID: 1511676051895424}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: d04f891a86c365b4893716e4e3bc1db5, type: 3}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 3fe21b97522daa54d8a4a523fb7161fc, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -281,7 +281,7 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!114 &114639409857525222
+--- !u!114 &114749741993868832
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -289,7 +289,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1130850309055520}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b863e4114996c424698feff0ad3590f5, type: 3}
+  m_Script: {fileID: 11500000, guid: 4e362446c92733842a9eec0033aceeb3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SlowToPercent: 0.7
+  anim: {fileID: 95936348235423244}
