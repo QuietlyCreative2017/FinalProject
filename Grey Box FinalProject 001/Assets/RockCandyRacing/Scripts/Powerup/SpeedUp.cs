@@ -26,9 +26,10 @@ public class SpeedUp : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
-            if (other.gameObject.GetComponent<CharacterControls>().fInput > 0)
+            CharacterControls colControls = other.gameObject.GetComponent<CharacterControls>();
+            if (colControls.fInput > 0)
             {
-                other.gameObject.GetComponent<CharacterControls>().StartCoroutine(other.gameObject.GetComponent<CharacterControls>().speedUp(InitialSpeedAmount, false));
+                colControls.StartCoroutine(colControls.speedUp(InitialSpeedAmount, false));
 
             }
         }
@@ -39,9 +40,10 @@ public class SpeedUp : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
-            if (other.gameObject.GetComponent<CharacterControls>().fInput > 0)
+            CharacterControls colControls = other.gameObject.GetComponent<CharacterControls>();
+            if (colControls.fInput > 0)
             {
-                other.gameObject.GetComponent<CharacterControls>().StartCoroutine(other.gameObject.GetComponent<CharacterControls>().speedUp(ExitSpeedAmount, true));
+                colControls.StartCoroutine(colControls.speedUp(ExitSpeedAmount, true));
             }
         }
 

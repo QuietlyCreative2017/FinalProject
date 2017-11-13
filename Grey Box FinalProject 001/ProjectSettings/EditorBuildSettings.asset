@@ -8,7 +8,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/RockCandyRacing/Scenes/Main Menu.unity
     guid: 39897feb2afb4b34287c534893340caf
-  - enabled: 0
+  - enabled: 1
     path: Assets/RockCandyRacing/Scenes/Playground_V02.unity
     guid: dfcba422879d98244a5014c16186dd9f
   - enabled: 1
@@ -21,5 +21,5 @@ EditorBuildSettings:
     path: Assets/RockCandyRacing/Scenes/Playground_V03.unity
     guid: f7fa28787e832ec43993c71417373113
   - enabled: 0
-    path: Assets/RockCandyRacing/Scenes/Greybox_03.unity
+    path: 
     guid: af243a5f053afaa46b3e37b7c7455fed

@@ -101,14 +101,17 @@ public class CharacterControls : MonoBehaviour
         HandleXinput();
         PickupCDA -= Time.deltaTime;
 
-       //if (!grounded)
-       //{
-       //    gameObject.layer = LayerMask.NameToLayer("InAir");
-       //}
-       //else
-       //{
-       //    gameObject.layer = LayerMask.NameToLayer(gameObject.name);
-       //}
+        //if (!grounded)
+        //{
+        //    gameObject.layer = LayerMask.NameToLayer("InAir");
+        //}
+        //else
+        //{
+        //    gameObject.layer = LayerMask.NameToLayer(gameObject.name);
+        //}
+
+
+        KeepGrounded();
 
         if (GetComponent<RocketScript>().rocket)
         {
@@ -341,22 +344,24 @@ public class CharacterControls : MonoBehaviour
     {
         if (speed <= InitialMaxSpeed * 2)
         {
-            if(playSound)
+            if (playSound)
             {
-                AudManager.PlaySound("Speed_Boost_Temp_SFX", false, 0.5f, 128);
+                AudManager.PlaySound("Turbo_Boost_SFX_v2", false, 0.05f, 128);
             }
             speed *= a_SpeedIncrease;
         }
         yield return new WaitForSeconds(0.5f);
     }
 
-
-    //doesnt do anything yet
-    IEnumerator stun()
+    void KeepGrounded()
     {
-        yield return new WaitForSeconds(5f);
+        RaycastHit hit = new RaycastHit();
+        Debug.DrawRay(transform.position + Vector3.up * -1.75f, Vector3.right * movementRayLength, Color.red);
+        if (Physics.Raycast(transform.position + Vector3.up * -1.75f, Vector3.right * movementRayLength, out hit, 1, LayerMask.NameToLayer("Ground")))
+        {
+            gravity = new Vector3(0, -100, 0);
+        }
     }
-
 
     //Casts 3 rays to the right or left depending on current direction
     //Checks if any rays hit a wall
@@ -389,8 +394,17 @@ public class CharacterControls : MonoBehaviour
             return rb.position + Vector3.right * leastDist.distance * Time.deltaTime;
         }
         else
+        {
             //else point to move to stays the same
-            return rb.position + transform.right * fInput * speed * Time.fixedDeltaTime;
+            if (Mathf.Sign(fInput) == 1)
+            {
+                return rb.position + transform.right * fInput * speed * Time.fixedDeltaTime;
+            }
+            else
+            {
+                return rb.position + transform.right * fInput * (speed * 0.5f) * Time.fixedDeltaTime;
+            }
+        }
     }
 
     //cast a ray to the see if the player is stuck to the left of an objcet
@@ -449,21 +463,21 @@ public class CharacterControls : MonoBehaviour
         if (Physics.Raycast(transform.position, -Vector3.up, 3, LayerMask))
         {
             //if (gameObject.GetComponent<Rigidbody>().velocity.y <= 0)
-                return true;
+            return true;
         }
 
         Debug.DrawRay(new Vector3(transform.position.x + 0.4f, transform.position.y, transform.position.z), -Vector3.up, Color.black);
         if (Physics.Raycast(new Vector3(transform.position.x + 0.4f, transform.position.y, transform.position.z), -Vector3.up, 3, LayerMask))
         {
             //if (gameObject.GetComponent<Rigidbody>().velocity.y <= 0)
-                return true;
+            return true;
         }
 
         Debug.DrawRay(new Vector3(transform.position.x - 0.4f, transform.position.y, transform.position.z), -Vector3.up, Color.black);
         if (Physics.Raycast(new Vector3(transform.position.x - 0.4f, transform.position.y, transform.position.z), -Vector3.up, 3, LayerMask))
         {
             //if (gameObject.GetComponent<Rigidbody>().velocity.y <= 0)
-                return true;
+            return true;
         }
 
         return false;

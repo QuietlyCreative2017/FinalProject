@@ -45,6 +45,8 @@ public class GameManager : MonoBehaviour
     public EventSystem m_ESystem;
     public Button m_BFirstButton;
 
+
+    public AudioManager audManager;
     enum GameState
     {
         Playing,
@@ -60,6 +62,7 @@ public class GameManager : MonoBehaviour
         player = GameObject.FindGameObjectsWithTag("Player");
         PlayerHealth = GameObject.FindGameObjectsWithTag("PlayerHealth");
         mainCamera = Camera.main;
+        audManager = GetComponent<AudioManager>();
         EndGameUI.SetActive(false);
     }
 
@@ -194,6 +197,7 @@ public class GameManager : MonoBehaviour
             CurrentState = GameState.GameOver;
             //return whomever reached the end point
             WinTextObj.GetComponent<Text>().text = WinObj.GetComponent<WinBox>().Winner.name + " won";
+            audManager.PlaySound("Studio crowd celebration cheer clap_BLASTWAVEFX_12945", false, 0.2f, 128);
             return WinObj.GetComponent<WinBox>().Winner;
         }
         for (int i = 0; i < player.Length; i++)
@@ -211,6 +215,7 @@ public class GameManager : MonoBehaviour
                     if (player[j].GetComponent<PlayerLives>().Lives() > 0)
                     {
                         WinTextObj.GetComponent<Text>().text = player[j].name + " won";
+                        audManager.PlaySound("Studio crowd celebration cheer clap_BLASTWAVEFX_12945", false, 0.2f, 128);
                         return player[j];
                     }
                 }
@@ -277,12 +282,14 @@ public class GameManager : MonoBehaviour
 
     public void goToMenu()
     {
-        SceneManager.LoadScene("Main Menu");
+        audManager.PlaySound("Menu_Select_SFX", false, 1, 128);
+        StartCoroutine(WaitForSecondsThenLoadScene(1, "Main Menu"));
     }
 
     public void Restart()
     {
-        SceneManager.LoadScene("Playground_V03");
+        audManager.PlaySound("Menu_Select_SFX", false, 1, 128);
+        StartCoroutine(WaitForSecondsThenLoadScene(1, "Playground_V02"));
     }
 
 
@@ -301,4 +308,10 @@ public class GameManager : MonoBehaviour
         m_ESystem.SetSelectedGameObject(m_BFirstButton.gameObject);
     }
 
+
+    IEnumerator WaitForSecondsThenLoadScene(int seconds, string sceneName)
+    {
+        yield return new WaitForSecondsRealtime(seconds);
+        SceneManager.LoadScene(sceneName);
+    }
 }

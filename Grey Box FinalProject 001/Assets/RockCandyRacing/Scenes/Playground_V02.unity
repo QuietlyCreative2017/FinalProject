@@ -748,7 +748,7 @@ Prefab:
     - target: {fileID: 114792623139783924, guid: ee674907572a3f34a9c2995be8804759,
         type: 2}
       propertyPath: CheckingGameOver
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 114792623139783924, guid: ee674907572a3f34a9c2995be8804759,
         type: 2}
@@ -760,7 +760,23 @@ Prefab:
       propertyPath: m_ESystem
       value: 
       objectReference: {fileID: 1831076165}
-    m_RemovedComponents: []
+    - target: {fileID: 82391274675982680, guid: ee674907572a3f34a9c2995be8804759,
+        type: 2}
+      propertyPath: Loop
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 82391274675982680, guid: ee674907572a3f34a9c2995be8804759,
+        type: 2}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 82e1ba9f83a82d242a81f93e474b4e72, type: 3}
+    - target: {fileID: 82391274675982680, guid: ee674907572a3f34a9c2995be8804759,
+        type: 2}
+      propertyPath: m_Volume
+      value: 0.2
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 82391274675982680, guid: ee674907572a3f34a9c2995be8804759, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: ee674907572a3f34a9c2995be8804759, type: 2}
   m_IsPrefabParent: 0
 --- !u!4 &181055159 stripped
@@ -1165,6 +1181,10 @@ Prefab:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 703dcfd5f0a87aa4ca1b78fdb9f07878, type: 2}
+    - target: {fileID: 1005580329151786, guid: 1caaf5d2ae626514bb24dc97e57f651f, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1caaf5d2ae626514bb24dc97e57f651f, type: 2}
   m_IsPrefabParent: 0
@@ -1294,6 +1314,7 @@ GameObject:
   - component: {fileID: 546855567}
   - component: {fileID: 546855566}
   - component: {fileID: 546855565}
+  - component: {fileID: 546855571}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1395,6 +1416,86 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &546855571
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 546855564}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 288dc3cef32e3434096e16998b15dd09, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 0.05
+  m_Pitch: 1
+  Loop: 1
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
 --- !u!1001 &550166452
 Prefab:
   m_ObjectHideFlags: 0
@@ -2531,6 +2632,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ce36a69895676cf4393758014065fab9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1007059097
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1007059093}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b617b4136a93cb43bdefd9ccb3fb32b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &1029859685

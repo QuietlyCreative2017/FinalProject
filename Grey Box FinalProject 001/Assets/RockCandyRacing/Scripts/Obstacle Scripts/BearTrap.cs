@@ -22,20 +22,7 @@ public class BearTrap : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Physics.Raycast(transform.position, -Vector3.up, 3, LayerMask.NameToLayer("Ground")))
-        {
-            anim.SetBool("HasHitFloor", true);
-            falling = false;
-        }
-
-        if(falling)
-        {
-            //Debug.DrawRay();
-            if(!Physics.Raycast(transform.position, -Vector3.up, 3, LayerMask.NameToLayer("Ground")))
-            {
-                transform.Translate(-Vector3.up * 0.5f);
-            }
-        }
+        
     }
 
     void OnTriggerEnter(Collider col)
@@ -43,6 +30,8 @@ public class BearTrap : MonoBehaviour
         if (col.gameObject.layer == LayerMask.NameToLayer("Ground"))
         {
             anim.SetBool("HasHitFloor", true);
+            GetComponent<Rigidbody>().useGravity = false;
+            GetComponent<Rigidbody>().velocity = Vector3.zero;
         }
         if (col.gameObject.tag == "Player")
         {
