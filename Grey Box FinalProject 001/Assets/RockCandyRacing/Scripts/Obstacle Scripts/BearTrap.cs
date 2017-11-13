@@ -30,7 +30,7 @@ public class BearTrap : MonoBehaviour
 
         if(falling)
         {
-            Debug.DrawRay()
+            //Debug.DrawRay();
             if(!Physics.Raycast(transform.position, -Vector3.up, 3, LayerMask.NameToLayer("Ground")))
             {
                 transform.Translate(-Vector3.up * 0.5f);
