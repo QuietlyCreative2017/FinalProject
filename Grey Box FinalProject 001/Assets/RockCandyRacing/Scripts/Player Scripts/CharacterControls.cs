@@ -76,6 +76,9 @@ public class CharacterControls : MonoBehaviour
     public TextMesh UIText;
     string uiTextText;
 
+    public GameObject RocketImage;
+    public GameObject TrapImage; 
+
     public AudioManager AudManager;
 
     public float backwardsSpeedReduction;
@@ -117,18 +120,17 @@ public class CharacterControls : MonoBehaviour
 
         if (GetComponent<RocketScript>().rocket)
         {
-            UIText.gameObject.SetActive(true);
-            UIText.text = "Rocket";
+            RocketImage.SetActive(true);
         }
         if (GetComponent<DroppableScript>().canUse)
         {
-            UIText.gameObject.SetActive(true);
-            UIText.text = "Droppable";
+            TrapImage.SetActive(true);
         }
 
         if (!GetComponent<DroppableScript>().canUse && !GetComponent<RocketScript>().rocket)
         {
-            UIText.gameObject.SetActive(false);
+            TrapImage.SetActive(false);
+            RocketImage.SetActive(false);
         }
 
         if (PickupCDA < 0)

@@ -46,6 +46,9 @@ public class GameManager : MonoBehaviour
     public GameObject[] CountDownUIPics;
     
     public GameObject[] EndGameUIPics;
+
+    public GameObject[] PlayerUI;
+
     enum GameState
     {
         Playing,
@@ -132,6 +135,7 @@ public class GameManager : MonoBehaviour
             ////////////////////////////////////////Start Game Over State//////////////////////////////////////////////////////////
             case GameState.GameOver:
 
+                WinTextObj.SetActive(false);
                 //StartCoroutine("NewEndGameCountdown");
                 stopVibration();
                 //winner.gameObject.GetComponent<CharacterControls>().PlayWinAnimation();
@@ -141,7 +145,6 @@ public class GameManager : MonoBehaviour
                     winner.gameObject.GetComponent<CharacterControls>().winAnim.SetBool("HasWon", true);
                 }
                 mainCamera.GetComponent<CameraScript>().enabled = false;
-                WinTextObj.SetActive(true);
                 if(winner != null)
                 mainCamera.transform.position = Vector3.Lerp(mainCamera.transform.position, new Vector3(winner.transform.position.x, winner.transform.position.y + EndGameYOffset, -40), 0.01f);
                 break;
@@ -170,7 +173,6 @@ public class GameManager : MonoBehaviour
             //set current state to gameover
             CurrentState = GameState.GameOver;
             //return whomever reached the end point
-            WinTextObj.GetComponent<Text>().text = WinObj.GetComponent<WinBox>().Winner.name + " won";
             audManager.PlaySound("Studio crowd celebration cheer clap_BLASTWAVEFX_12945", false, 0.2f, 128);
             StartCoroutine("NewEndGameCountdown");
             return WinObj.GetComponent<WinBox>().Winner;
@@ -189,7 +191,6 @@ public class GameManager : MonoBehaviour
                 {
                     if (player[j].GetComponent<PlayerLives>().Lives() > 0)
                     {
-                        WinTextObj.GetComponent<Text>().text = player[j].name + " won";
                         StartCoroutine("NewEndGameCountdown");
                         return player[j];
                     }
@@ -320,8 +321,6 @@ public class GameManager : MonoBehaviour
         {
             yield return new WaitForSecondsRealtime(1);
         }
-        //disable ingameui
-        InGameUI.SetActive(false);
     
         //enable endgameui
         EndGameUI.SetActive(true);
