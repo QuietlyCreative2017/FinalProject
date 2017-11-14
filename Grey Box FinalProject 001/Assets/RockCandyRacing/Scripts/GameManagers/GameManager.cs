@@ -135,7 +135,7 @@ public class GameManager : MonoBehaviour
             ////////////////////////////////////////Start Game Over State//////////////////////////////////////////////////////////
             case GameState.GameOver:
 
-                WinTextObj.SetActive(false);
+                WinTextObj.SetActive(true);
                 //StartCoroutine("NewEndGameCountdown");
                 stopVibration();
                 //winner.gameObject.GetComponent<CharacterControls>().PlayWinAnimation();
@@ -143,6 +143,15 @@ public class GameManager : MonoBehaviour
                 {
                     winner.gameObject.GetComponent<CharacterControls>().enabled = false;
                     winner.gameObject.GetComponent<CharacterControls>().winAnim.SetBool("HasWon", true);
+
+                    if(winner.name == "Player1")
+                    {
+                        PlayerUI[1].SetActive(false);
+                    }
+                    else
+                    {
+                        PlayerUI[0].SetActive(false);
+                    }
                 }
                 mainCamera.GetComponent<CameraScript>().enabled = false;
                 if(winner != null)
