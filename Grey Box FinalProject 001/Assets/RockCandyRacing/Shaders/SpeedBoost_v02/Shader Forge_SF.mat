@@ -19,13 +19,13 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _Arrow_Texture:
-        m_Texture: {fileID: 2800000, guid: 0958b5d3fddbf8a4598c3f759d32b5a1, type: 3}
-        m_Scale: {x: 7.5, y: 7.5}
+        m_Texture: {fileID: 2800000, guid: 80306a0f50f0958429a2b50ec3c82557, type: 3}
+        m_Scale: {x: 2.5, y: 2.5}
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - _ArrowSpeed_Large: 0.43
     - _ArrowSpeed_Small: 0.208
-    - _ArrowsSmall_Opacity: 0.554
+    - _ArrowsSmall_Opacity: 0.582
     - _Cutoff: 0.5
     m_Colors:
-    - _ArrowSmall_Color: {r: 0.15862082, g: 0, b: 1, a: 0.2509804}
+    - _ArrowSmall_Color: {r: 0, g: 0.13103437, b: 1, a: 0.2509804}

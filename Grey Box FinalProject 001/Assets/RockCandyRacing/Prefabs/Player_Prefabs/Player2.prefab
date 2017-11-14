@@ -1621,7 +1621,7 @@ MonoBehaviour:
   RocketImage: {fileID: 0}
   TrapImage: {fileID: 0}
   AudManager: {fileID: 0}
-  backwardsSpeedReduction: 1.5
+  backwardsSpeedReduction: 0.5
 --- !u!114 &114616323000120118
 MonoBehaviour:
   m_ObjectHideFlags: 1

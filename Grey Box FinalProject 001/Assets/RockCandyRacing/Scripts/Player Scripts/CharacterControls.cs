@@ -326,7 +326,7 @@ public class CharacterControls : MonoBehaviour
     public IEnumerator Vibrate(float a_Vibration)
     {
         GamePad.SetVibration(playerIndex, a_Vibration, a_Vibration);
-        yield return new WaitForSecondsRealtime(0.2f);
+        yield return new WaitForSecondsRealtime(5);
         GamePad.SetVibration(playerIndex, 0, 0);
     }
 

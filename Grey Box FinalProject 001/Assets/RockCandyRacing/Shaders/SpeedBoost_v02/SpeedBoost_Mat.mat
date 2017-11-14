@@ -20,7 +20,7 @@ Material:
     m_TexEnvs:
     - _ArrowTexture:
         m_Texture: {fileID: 2800000, guid: 0958b5d3fddbf8a4598c3f759d32b5a1, type: 3}
-        m_Scale: {x: 5, y: 5}
+        m_Scale: {x: 3, y: 3}
         m_Offset: {x: 0, y: 0}
     - _ArrowTexture_copy:
         m_Texture: {fileID: 2800000, guid: 725456a204ff5764fa0556c0de5a15bf, type: 3}
