@@ -1,0 +1,223 @@
+fileFormatVersion: 2
+guid: eaee9732c0c46f340a672090af3fb031
+timeCreated: 1510632578
+licenseType: Pro
+ModelImporter:
+  serializedVersion: 21
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: Pudding_Mountain
+    100004: Pudding_Mountain 1
+    100006: Pudding_Mountain5
+    100008: Pudding_Mountain5 1
+    100010: Pudding_Mountain5 2
+    100012: Pudding_Mountain6
+    100014: Pudding_Mountain6 1
+    100016: Pudding_Mountain6 2
+    100018: Pudding_Mountain7
+    100020: Pudding_Mountain7 1
+    100022: Pudding_Mountain7 2
+    100024: Pudding_Mountain_Front_Row
+    100026: Pudding_Mountain_Second_Row
+    100028: Pudding_Mountain_Thrid_Row
+    100030: PuddingCake_Cake_01
+    100032: PuddingCake_Cake_01 1
+    100034: PuddingCake_Cake_01 10
+    100036: PuddingCake_Cake_01 2
+    100038: PuddingCake_Cake_01 3
+    100040: PuddingCake_Cake_01 4
+    100042: PuddingCake_Cake_01 5
+    100044: PuddingCake_Cake_01 6
+    100046: PuddingCake_Cake_01 7
+    100048: PuddingCake_Cake_01 8
+    100050: PuddingCake_Cake_01 9
+    100052: PuddingCake_Icing_Drip_01
+    100054: PuddingCake_Icing_Drip_01 1
+    100056: PuddingCake_Icing_Drip_01 10
+    100058: PuddingCake_Icing_Drip_01 2
+    100060: PuddingCake_Icing_Drip_01 3
+    100062: PuddingCake_Icing_Drip_01 4
+    100064: PuddingCake_Icing_Drip_01 5
+    100066: PuddingCake_Icing_Drip_01 6
+    100068: PuddingCake_Icing_Drip_01 7
+    100070: PuddingCake_Icing_Drip_01 8
+    100072: PuddingCake_Icing_Drip_01 9
+    400000: //RootNode
+    400002: Pudding_Mountain
+    400004: Pudding_Mountain 1
+    400006: Pudding_Mountain5
+    400008: Pudding_Mountain5 1
+    400010: Pudding_Mountain5 2
+    400012: Pudding_Mountain6
+    400014: Pudding_Mountain6 1
+    400016: Pudding_Mountain6 2
+    400018: Pudding_Mountain7
+    400020: Pudding_Mountain7 1
+    400022: Pudding_Mountain7 2
+    400024: Pudding_Mountain_Front_Row
+    400026: Pudding_Mountain_Second_Row
+    400028: Pudding_Mountain_Thrid_Row
+    400030: PuddingCake_Cake_01
+    400032: PuddingCake_Cake_01 1
+    400034: PuddingCake_Cake_01 10
+    400036: PuddingCake_Cake_01 2
+    400038: PuddingCake_Cake_01 3
+    400040: PuddingCake_Cake_01 4
+    400042: PuddingCake_Cake_01 5
+    400044: PuddingCake_Cake_01 6
+    400046: PuddingCake_Cake_01 7
+    400048: PuddingCake_Cake_01 8
+    400050: PuddingCake_Cake_01 9
+    400052: PuddingCake_Icing_Drip_01
+    400054: PuddingCake_Icing_Drip_01 1
+    400056: PuddingCake_Icing_Drip_01 10
+    400058: PuddingCake_Icing_Drip_01 2
+    400060: PuddingCake_Icing_Drip_01 3
+    400062: PuddingCake_Icing_Drip_01 4
+    400064: PuddingCake_Icing_Drip_01 5
+    400066: PuddingCake_Icing_Drip_01 6
+    400068: PuddingCake_Icing_Drip_01 7
+    400070: PuddingCake_Icing_Drip_01 8
+    400072: PuddingCake_Icing_Drip_01 9
+    2300000: PuddingCake_Cake_01
+    2300002: PuddingCake_Cake_01 1
+    2300004: PuddingCake_Cake_01 10
+    2300006: PuddingCake_Cake_01 2
+    2300008: PuddingCake_Cake_01 3
+    2300010: PuddingCake_Cake_01 4
+    2300012: PuddingCake_Cake_01 5
+    2300014: PuddingCake_Cake_01 6
+    2300016: PuddingCake_Cake_01 7
+    2300018: PuddingCake_Cake_01 8
+    2300020: PuddingCake_Cake_01 9
+    2300022: PuddingCake_Icing_Drip_01
+    2300024: PuddingCake_Icing_Drip_01 1
+    2300026: PuddingCake_Icing_Drip_01 10
+    2300028: PuddingCake_Icing_Drip_01 2
+    2300030: PuddingCake_Icing_Drip_01 3
+    2300032: PuddingCake_Icing_Drip_01 4
+    2300034: PuddingCake_Icing_Drip_01 5
+    2300036: PuddingCake_Icing_Drip_01 6
+    2300038: PuddingCake_Icing_Drip_01 7
+    2300040: PuddingCake_Icing_Drip_01 8
+    2300042: PuddingCake_Icing_Drip_01 9
+    3300000: PuddingCake_Cake_01
+    3300002: PuddingCake_Cake_01 1
+    3300004: PuddingCake_Cake_01 10
+    3300006: PuddingCake_Cake_01 2
+    3300008: PuddingCake_Cake_01 3
+    3300010: PuddingCake_Cake_01 4
+    3300012: PuddingCake_Cake_01 5
+    3300014: PuddingCake_Cake_01 6
+    3300016: PuddingCake_Cake_01 7
+    3300018: PuddingCake_Cake_01 8
+    3300020: PuddingCake_Cake_01 9
+    3300022: PuddingCake_Icing_Drip_01
+    3300024: PuddingCake_Icing_Drip_01 1
+    3300026: PuddingCake_Icing_Drip_01 10
+    3300028: PuddingCake_Icing_Drip_01 2
+    3300030: PuddingCake_Icing_Drip_01 3
+    3300032: PuddingCake_Icing_Drip_01 4
+    3300034: PuddingCake_Icing_Drip_01 5
+    3300036: PuddingCake_Icing_Drip_01 6
+    3300038: PuddingCake_Icing_Drip_01 7
+    3300040: PuddingCake_Icing_Drip_01 8
+    3300042: PuddingCake_Icing_Drip_01 9
+    4300000: PuddingCake_Cake_01
+    4300002: PuddingCake_Icing_Drip_01
+    4300004: PuddingCake_Cake_01
+    4300006: PuddingCake_Icing_Drip_01
+    4300008: PuddingCake_Cake_01
+    4300010: PuddingCake_Icing_Drip_01
+    4300012: PuddingCake_Cake_01
+    4300014: PuddingCake_Icing_Drip_01
+    4300016: PuddingCake_Cake_01
+    4300018: PuddingCake_Icing_Drip_01
+    4300020: PuddingCake_Cake_01
+    4300022: PuddingCake_Icing_Drip_01
+    4300024: PuddingCake_Cake_01
+    4300026: PuddingCake_Icing_Drip_01
+    4300028: PuddingCake_Cake_01
+    4300030: PuddingCake_Icing_Drip_01
+    4300032: PuddingCake_Cake_01
+    4300034: PuddingCake_Icing_Drip_01
+    4300036: PuddingCake_Cake_01
+    4300038: PuddingCake_Icing_Drip_01
+    4300040: PuddingCake_Cake_01
+    4300042: PuddingCake_Icing_Drip_01
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
