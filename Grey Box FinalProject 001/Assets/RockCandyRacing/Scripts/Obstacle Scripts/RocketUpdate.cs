@@ -9,7 +9,6 @@ public class RocketUpdate : MonoBehaviour
     public float speed;
     public float deadTime = 5.0f;
     bool foundEnemy = false;
-    GameObject Enemy = null;
     public float followDeadTime = 0.0f;
     public bool homing = true;
     public float SlerpTime;
@@ -73,8 +72,6 @@ public class RocketUpdate : MonoBehaviour
         if (col.gameObject.tag == "Player")
         {
             //homing = false;
-            foundEnemy = true;
-            Enemy = col.gameObject;
         }
     }
 

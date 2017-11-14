@@ -1545,6 +1545,7 @@ GameObject:
   - component: {fileID: 2117794233}
   - component: {fileID: 2117794232}
   - component: {fileID: 2117794234}
+  - component: {fileID: 2117794235}
   m_Layer: 0
   m_Name: MenuManager
   m_TagString: Untagged
@@ -1567,6 +1568,7 @@ MonoBehaviour:
   slider: {fileID: 1756559677}
   m_ESystem: {fileID: 256516875}
   m_BFirstButton: {fileID: 891282877}
+  audManager: {fileID: 0}
 --- !u!4 &2117794233
 Transform:
   m_ObjectHideFlags: 0
@@ -1592,7 +1594,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   uiObj: {fileID: 0}
-  sizeIncrease: 1.2
   increasing: 0
   duration: 2
+  sizeToGoTo: 1.2
   eSystem: {fileID: 256516875}
+--- !u!114 &2117794235
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2117794231}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b617b4136a93cb43bdefd9ccb3fb32b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -7,14 +7,15 @@ using UnityEngine.EventSystems;
 public class ScaleLerp : MonoBehaviour {
 
     public GameObject uiObj;
-    public float sizeIncrease;
     public bool increasing;
 
     Vector3 scale;
     Vector3 original;
 
     float lerp;
-    public float duration = 4.0f;
+    public float duration;
+
+    public float sizeToGoTo;
 
     public EventSystem eSystem;
 	// Use this for initialization
@@ -23,20 +24,21 @@ public class ScaleLerp : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void Update ()
+    {
         lerp += Time.deltaTime / duration;
         uiObj = eSystem.currentSelectedGameObject;
 
 		if(increasing)
         {
-            uiObj.transform.localScale = Vector3.Lerp(uiObj.transform.localScale, new Vector3(2, 2, 2), lerp);
+            uiObj.transform.localScale = Vector3.Lerp(uiObj.transform.localScale, new Vector3(sizeToGoTo, sizeToGoTo, sizeToGoTo), lerp);
         }
         else
         {
             uiObj.transform.localScale = Vector3.Lerp(uiObj.transform.localScale, new Vector3(1, 1, 1), lerp);
         }
 
-        if (uiObj.transform.localScale == new Vector3(2, 2, 2))
+        if (uiObj.transform.localScale == new Vector3(sizeToGoTo, sizeToGoTo, sizeToGoTo))
         {
             increasing = false;
             lerp = 0;

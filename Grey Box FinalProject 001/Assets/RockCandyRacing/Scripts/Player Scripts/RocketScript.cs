@@ -8,7 +8,6 @@ public class RocketScript : MonoBehaviour {
     //XINPUT REQS
     PlayerIndex playerIndex;
     GamePadState currentState;
-    GamePadState previousState;
 
     public bool rocket = false;
     public GameObject rocketPrefab;
@@ -54,8 +53,6 @@ public class RocketScript : MonoBehaviour {
             canPickUp = true;
             PlayerScript.PickupCDA = PlayerScript.PickupCD;
         }
-        //set previous state to current
-        previousState = currentState;
 	}
 
     private void OnTriggerEnter(Collider col)

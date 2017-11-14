@@ -6,7 +6,6 @@ public class BearTrap : MonoBehaviour
 {
 
     public Animator anim;
-    bool falling = true;
 
     void Awake()
     {
@@ -16,7 +15,6 @@ public class BearTrap : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        falling = true;
     }
 
     // Update is called once per frame
@@ -38,6 +36,14 @@ public class BearTrap : MonoBehaviour
             CharacterControls colControls = col.gameObject.GetComponent<CharacterControls>();
             anim.SetBool("HasHitPlay", true);
             colControls.Slow();
+            StartCoroutine(WaitAndDestroy());
+
         }
+    }
+
+    IEnumerator WaitAndDestroy()
+    {
+        yield return new WaitForSecondsRealtime(1);
+        Destroy(gameObject);
     }
 }

@@ -19,9 +19,7 @@ public class GameManager : MonoBehaviour
     Vector3 newT;
     public GameObject WinTextObj;
     public GameObject WinObj;
-    GameObject[] PlayerHealth;
     public GameObject DeathTouch;
-    float deltaTime = 0.0f;
 
     public AudioSource m_asMainSource;
     public AudioClip[] m_acAudClips;
@@ -34,9 +32,6 @@ public class GameManager : MonoBehaviour
     public float EndGameYOffset;
 
     public bool CheckingGameOver;
-
-    public string[] EndBossCode;
-    public int CodeIndex;
 
     public GameObject EndGameUI;
     public GameObject InGameUI;
@@ -64,7 +59,6 @@ public class GameManager : MonoBehaviour
     {
         Checkpoints = GameObject.FindGameObjectsWithTag("Checkpoints");
         player = GameObject.FindGameObjectsWithTag("Player");
-        PlayerHealth = GameObject.FindGameObjectsWithTag("PlayerHealth");
         mainCamera = Camera.main;
         audManager = GetComponent<AudioManager>();
         EndGameUI.SetActive(false);
@@ -77,8 +71,7 @@ public class GameManager : MonoBehaviour
         Cursor.visible = false;
         CurrentState = GameState.Playing;
         InGameUI.SetActive(true);
-
-        CodeIndex = 0;
+        
     }
 
     // Update is called once per frame
@@ -96,7 +89,6 @@ public class GameManager : MonoBehaviour
                 if (CheckingGameOver)
                 {
                     winner = CheckGameOver();
-
                 }
 
                 if(Input.GetKeyDown(KeyCode.W))
@@ -104,31 +96,7 @@ public class GameManager : MonoBehaviour
                     CameraScript camScript = mainCamera.GetComponent<CameraScript>();
                     camScript.StartCoroutine(camScript.ScreenShake(1, 5, 1));
                 }
-
-                if (Input.anyKeyDown)
-                {
-                    // Check if the next key in the code is pressed
-                    if (Input.GetKeyDown(EndBossCode[CodeIndex]))
-                    {
-                        // Add 1 to index to check the next key in the code
-                        CodeIndex++;
-                    }
-                    // if wrong key is entered, reset the code
-                    else
-                    {
-                        CodeIndex = 0;
-                    }
-                }
-                // If index reaches the length of the cheatCode string, 
-                // the entire code was correctly entered
-                // if (CodeIndex == EndBossCode.Length)
-                // {
-                //     //returns the index to 0
-                //     CodeIndex = 0;
-                //     SceneManager.LoadScene(2);
-                // }
-
-
+               
 
                 SortLeader();
 
@@ -165,6 +133,7 @@ public class GameManager : MonoBehaviour
             case GameState.GameOver:
 
                 //StartCoroutine("NewEndGameCountdown");
+                stopVibration();
                 //winner.gameObject.GetComponent<CharacterControls>().PlayWinAnimation();
                 if (winner != null)
                 {
@@ -288,14 +257,14 @@ public class GameManager : MonoBehaviour
 
     public void goToMenu()
     {
-        audManager.PlaySound("Menu_Select_SFX", false, 1, 128);
-        StartCoroutine(WaitForSecondsThenLoadScene(1, "Main Menu"));
+        audManager.PlaySound("Nav_Menu_SFX", false, 0.2f, 128);
+        StartCoroutine(WaitForSecondsThenLoadScene(0, "Main Menu"));
     }
 
     public void Restart()
     {
-        audManager.PlaySound("Menu_Select_SFX", false, 1, 128);
-        StartCoroutine(WaitForSecondsThenLoadScene(1, "Playground_V02"));
+        audManager.PlaySound("Nav_Menu_SFX", false, 0.2f, 128);
+        StartCoroutine(WaitForSecondsThenLoadScene(0, "Playground_V03"));
     }
 
 
@@ -304,6 +273,10 @@ public class GameManager : MonoBehaviour
         if(focus)
         {
             StartCoroutine("SetSelectedGameobject");
+        }
+        if(!focus)
+        {
+            stopVibration();
         }
     }
 
@@ -364,5 +337,11 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1;
         //load play scene again
         SceneManager.LoadScene(1);
+    }
+
+    void stopVibration()
+    {
+        GamePad.SetVibration(PlayerIndex.One, 0, 0);
+        GamePad.SetVibration(PlayerIndex.Two, 0, 0);
     }
 }

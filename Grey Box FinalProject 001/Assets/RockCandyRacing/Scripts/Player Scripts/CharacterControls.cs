@@ -78,6 +78,8 @@ public class CharacterControls : MonoBehaviour
 
     public AudioManager AudManager;
 
+    public float backwardsSpeedReduction;
+
     private void Awake()
     {
         rb = gameObject.GetComponent<Rigidbody>();
@@ -238,6 +240,7 @@ public class CharacterControls : MonoBehaviour
             if (grounded)
             {
                 //jump!
+                //rb.AddForce(new Vector3(0, m_JumpVel, 0)); 
                 rb.velocity = new Vector3(rb.velocity.x, m_JumpVel, 0);
                 StoppedJumping = false;
                 JumpTimeCounter = JumpTime;
@@ -258,7 +261,7 @@ public class CharacterControls : MonoBehaviour
 
         //if you have released a and minimum jump is reached
         //or you jump for the full time
-        if ((previousState.Buttons.A == ButtonState.Released && currentState.Buttons.A == ButtonState.Released && JumpTimeCounter <= JumpTime - Time.deltaTime) || JumpTimeCounter <= 0)
+        if ((previousState.Buttons.A == ButtonState.Released && currentState.Buttons.A == ButtonState.Released/* && JumpTimeCounter <= JumpTime - Time.deltaTime*/) || JumpTimeCounter <= 0)
         {
             //stop jumping
             JumpTimeCounter = 0;
@@ -309,6 +312,7 @@ public class CharacterControls : MonoBehaviour
     public void Slow()
     {
         StartCoroutine("Sslow");
+        StartCoroutine(Vibrate(1));
         //StopCoroutine("slow");
     }
 
@@ -320,7 +324,7 @@ public class CharacterControls : MonoBehaviour
     public IEnumerator Vibrate(float a_Vibration)
     {
         GamePad.SetVibration(playerIndex, a_Vibration, a_Vibration);
-        yield return new WaitForSecondsRealtime(1);
+        yield return new WaitForSecondsRealtime(0.2f);
         GamePad.SetVibration(playerIndex, 0, 0);
     }
 
@@ -399,7 +403,7 @@ public class CharacterControls : MonoBehaviour
             }
             else
             {
-                return rb.position + transform.right * fInput * (speed * 0.5f) * Time.fixedDeltaTime;
+                return rb.position + transform.right * fInput * (speed * backwardsSpeedReduction) * Time.fixedDeltaTime;
             }
         }
     }

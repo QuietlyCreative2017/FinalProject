@@ -15,6 +15,13 @@ public class MenuManager : MonoBehaviour {
     public EventSystem m_ESystem;
     public Button m_BFirstButton;
 
+    public AudioManager audManager;
+
+    void Awake()
+    {
+        audManager = GetComponent<AudioManager>();
+    }
+
     // Use this for initialization
     void Start () {
         
@@ -32,16 +39,19 @@ public class MenuManager : MonoBehaviour {
 
     public void Credits()
     {
-
+        audManager.PlaySound("Nav_Menu_SFX", false, 0.2f, 128);
     }
 
     public void Exit()
     {
+        audManager.PlaySound("Nav_Menu_SFX", false, 0.2f, 128);
         Application.Quit();
     }
 
     IEnumerator LoadASynchronously()
     {
+
+        audManager.PlaySound("Menu_Select_SFX", false, 0.2f, 128);
         AsyncOperation operation = SceneManager.LoadSceneAsync(1);
         LoadScreen.SetActive(true);
         while (!operation.isDone)
@@ -59,6 +69,7 @@ public class MenuManager : MonoBehaviour {
             StartCoroutine("SetSelectedGameobject");
         }
     }
+
 
     IEnumerator SetSelectedGameobject()
     {
