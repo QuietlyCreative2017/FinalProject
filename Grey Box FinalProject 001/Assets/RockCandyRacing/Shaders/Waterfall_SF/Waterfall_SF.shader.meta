@@ -1,0 +1,12 @@
+fileFormatVersion: 2
+guid: c0c70b273913ae34b836fc933c7db863
+timeCreated: 1510612421
+licenseType: Pro
+ShaderImporter:
+  defaultTextures:
+  - _StreakTexture1: {fileID: 2800000, guid: 680f914764403184b86e8a49604a0a7e, type: 3}
+  - _StreakTexture2: {fileID: 2800000, guid: 976537ccc033cc04aa64790592980fbe, type: 3}
+  - _RefractionMap: {fileID: 2800000, guid: ea89a2f026950f44a9515274ae49c092, type: 3}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
