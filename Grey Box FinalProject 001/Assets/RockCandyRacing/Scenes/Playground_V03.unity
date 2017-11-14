@@ -37426,17 +37426,6 @@ Prefab:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 703dcfd5f0a87aa4ca1b78fdb9f07878, type: 2}
-    - target: {fileID: 114234721082850854, guid: 1caaf5d2ae626514bb24dc97e57f651f,
-        type: 2}
-      propertyPath: JumpVel
-      value: 40
-      objectReference: {fileID: 0}
-    - target: {fileID: 114819681009537564, guid: 1caaf5d2ae626514bb24dc97e57f651f,
-        type: 2}
-      propertyPath: droppableObject
-      value: 
-      objectReference: {fileID: 1130850309055520, guid: b7aff55154130c0419657754f494ea25,
-        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1caaf5d2ae626514bb24dc97e57f651f, type: 2}
   m_IsPrefabParent: 0
@@ -38116,16 +38105,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 5
       objectReference: {fileID: 0}
-    - target: {fileID: 1014724580387522, guid: 04f3a18e26720204a9f0256a9f833b47, type: 2}
-      propertyPath: m_IsActive
-      value: 0
+    - target: {fileID: 198518146041817234, guid: 04f3a18e26720204a9f0256a9f833b47,
+        type: 2}
+      propertyPath: VelocityModule.inWorldSpace
+      value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 114143073558074948, guid: 04f3a18e26720204a9f0256a9f833b47,
-        type: 2}
-      propertyPath: droppableObject
-      value: 
-      objectReference: {fileID: 1130850309055520, guid: b7aff55154130c0419657754f494ea25,
-        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 04f3a18e26720204a9f0256a9f833b47, type: 2}
   m_IsPrefabParent: 0
