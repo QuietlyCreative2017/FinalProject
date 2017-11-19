@@ -26,7 +26,7 @@ public class ScaleLerp : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
-        lerp += Time.deltaTime / duration;
+        lerp += Time.unscaledDeltaTime / duration;
         uiObj = eSystem.currentSelectedGameObject;
 
 		if(increasing)

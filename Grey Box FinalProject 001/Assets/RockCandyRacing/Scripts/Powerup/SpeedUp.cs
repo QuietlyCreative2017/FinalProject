@@ -6,9 +6,7 @@ public class SpeedUp : MonoBehaviour
 {
 
     [Tooltip("Speed increase whilst in zone")]
-    public float InitialSpeedAmount;
-    [Tooltip("Speed increase as you leave the zone(to shoot out)")]
-    public float ExitSpeedAmount;
+    public float BoostAmount;
 
     // Use this for initialization
     void Start()
@@ -27,11 +25,8 @@ public class SpeedUp : MonoBehaviour
         if (other.gameObject.tag == "Player")
         {
             CharacterControls colControls = other.gameObject.GetComponent<CharacterControls>();
-            if (colControls.fInput > 0)
-            {
-                colControls.StartCoroutine(colControls.speedUp(InitialSpeedAmount, false));
+            colControls.StartCoroutine(colControls.speedUp(BoostAmount, false));
 
-            }
         }
 
     }
@@ -41,11 +36,18 @@ public class SpeedUp : MonoBehaviour
         if (other.gameObject.tag == "Player")
         {
             CharacterControls colControls = other.gameObject.GetComponent<CharacterControls>();
-            if (colControls.fInput > 0)
-            {
-                colControls.StartCoroutine(colControls.speedUp(ExitSpeedAmount, true));
-            }
+            colControls.inZone = false;
         }
+    
+    }
 
+    void OnTriggerStay(Collider col)
+    {
+        if (col.gameObject.tag == "Player")
+        {
+            CharacterControls colControls = col.gameObject.GetComponent<CharacterControls>();
+            colControls.fInput = 1;
+            colControls.inZone = true;
+        }
     }
 }

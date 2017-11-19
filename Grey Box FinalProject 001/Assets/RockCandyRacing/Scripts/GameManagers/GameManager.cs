@@ -80,15 +80,16 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Application.Quit();
+        }
         switch (CurrentState)
         {
             ////////////////////////////////////////Start Playing State//////////////////////////////////////////////////////////
             case GameState.Playing:
                 EndGameUI.SetActive(false);
-                if (Input.GetKeyDown(KeyCode.Escape))
-                {
-                    Application.Quit();
-                }
+                
                 if (CheckingGameOver)
                 {
                     winner = CheckGameOver();
@@ -134,8 +135,7 @@ public class GameManager : MonoBehaviour
 
             ////////////////////////////////////////Start Game Over State//////////////////////////////////////////////////////////
             case GameState.GameOver:
-
-                WinTextObj.SetActive(true);
+                
                 //StartCoroutine("NewEndGameCountdown");
                 stopVibration();
                 //winner.gameObject.GetComponent<CharacterControls>().PlayWinAnimation();
@@ -315,13 +315,17 @@ public class GameManager : MonoBehaviour
             CountDownUIPics[i].SetActive(false);
         }
         Time.timeScale = 1;
+        for (int i = 0; i < player.Length; i++)
+        {
+            player[i].GetComponent<CharacterControls>().RefreshInputState();
+        }
     }
     
     IEnumerator NewEndGameCountdown()
     {
         //set timescale to zero
         Time.timeScale = 0f;
-
+        WinTextObj.SetActive(true);
 
         yield return new WaitForSecondsRealtime(1);
         audManager.PlaySound("Studio crowd celebration cheer clap_BLASTWAVEFX_12945", false, 0.2f, 128);
@@ -330,9 +334,12 @@ public class GameManager : MonoBehaviour
         {
             yield return new WaitForSecondsRealtime(1);
         }
-    
+
         //enable endgameui
+        WinTextObj.SetActive(false);
         EndGameUI.SetActive(true);
+
+        m_ESystem.SetSelectedGameObject(m_BFirstButton.gameObject);
         
         for (int i = 0; i < 3; i++)
         {
@@ -342,9 +349,9 @@ public class GameManager : MonoBehaviour
         }
     
         //set timescale to 1
-        Time.timeScale = 1;
+        //Time.timeScale = 1;
         //load play scene again
-        SceneManager.LoadScene(1);
+        //SceneManager.LoadScene(1);
     }
 
     void stopVibration()

@@ -5445,12 +5445,12 @@ Prefab:
     - target: {fileID: 114641676928021338, guid: 152080668690ac441b64a44d9394e565,
         type: 2}
       propertyPath: ExitSpeedAmount
-      value: 1.3
+      value: 1.1
       objectReference: {fileID: 0}
     - target: {fileID: 114641676928021338, guid: 152080668690ac441b64a44d9394e565,
         type: 2}
       propertyPath: InitialSpeedAmount
-      value: 1.3
+      value: 1.1
       objectReference: {fileID: 0}
     - target: {fileID: 1496012031474270, guid: 152080668690ac441b64a44d9394e565, type: 2}
       propertyPath: m_Name
@@ -5475,6 +5475,11 @@ Prefab:
     - target: {fileID: 4417353123919572, guid: 152080668690ac441b64a44d9394e565, type: 2}
       propertyPath: m_LocalPosition.x
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114641676928021338, guid: 152080668690ac441b64a44d9394e565,
+        type: 2}
+      propertyPath: BoostAmount
+      value: 2.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 152080668690ac441b64a44d9394e565, type: 2}
@@ -12176,12 +12181,17 @@ Prefab:
     - target: {fileID: 114641676928021338, guid: 152080668690ac441b64a44d9394e565,
         type: 2}
       propertyPath: InitialSpeedAmount
-      value: 1.3
+      value: 1.1
       objectReference: {fileID: 0}
     - target: {fileID: 114641676928021338, guid: 152080668690ac441b64a44d9394e565,
         type: 2}
       propertyPath: ExitSpeedAmount
-      value: 1.3
+      value: 1.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114641676928021338, guid: 152080668690ac441b64a44d9394e565,
+        type: 2}
+      propertyPath: BoostAmount
+      value: 2.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 152080668690ac441b64a44d9394e565, type: 2}
@@ -13825,12 +13835,17 @@ Prefab:
     - target: {fileID: 114641676928021338, guid: 152080668690ac441b64a44d9394e565,
         type: 2}
       propertyPath: InitialSpeedAmount
-      value: 1.3
+      value: 1.1
       objectReference: {fileID: 0}
     - target: {fileID: 114641676928021338, guid: 152080668690ac441b64a44d9394e565,
         type: 2}
       propertyPath: ExitSpeedAmount
-      value: 1.3
+      value: 1.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114641676928021338, guid: 152080668690ac441b64a44d9394e565,
+        type: 2}
+      propertyPath: BoostAmount
+      value: 2.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 152080668690ac441b64a44d9394e565, type: 2}
@@ -15056,12 +15071,12 @@ Prefab:
     - target: {fileID: 114641676928021338, guid: 152080668690ac441b64a44d9394e565,
         type: 2}
       propertyPath: ExitSpeedAmount
-      value: 1.3
+      value: 1.1
       objectReference: {fileID: 0}
     - target: {fileID: 114641676928021338, guid: 152080668690ac441b64a44d9394e565,
         type: 2}
       propertyPath: InitialSpeedAmount
-      value: 1.3
+      value: 1.1
       objectReference: {fileID: 0}
     - target: {fileID: 1496012031474270, guid: 152080668690ac441b64a44d9394e565, type: 2}
       propertyPath: m_Name
@@ -15078,6 +15093,11 @@ Prefab:
     - target: {fileID: 4788944720702178, guid: 152080668690ac441b64a44d9394e565, type: 2}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114641676928021338, guid: 152080668690ac441b64a44d9394e565,
+        type: 2}
+      propertyPath: BoostAmount
+      value: 2.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 152080668690ac441b64a44d9394e565, type: 2}
@@ -15888,12 +15908,17 @@ Prefab:
     - target: {fileID: 114641676928021338, guid: 152080668690ac441b64a44d9394e565,
         type: 2}
       propertyPath: InitialSpeedAmount
-      value: 1.3
+      value: 1.1
       objectReference: {fileID: 0}
     - target: {fileID: 114641676928021338, guid: 152080668690ac441b64a44d9394e565,
         type: 2}
       propertyPath: ExitSpeedAmount
-      value: 1.3
+      value: 1.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114641676928021338, guid: 152080668690ac441b64a44d9394e565,
+        type: 2}
+      propertyPath: BoostAmount
+      value: 2.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 152080668690ac441b64a44d9394e565, type: 2}
@@ -22406,12 +22431,12 @@ Prefab:
     - target: {fileID: 114641676928021338, guid: 152080668690ac441b64a44d9394e565,
         type: 2}
       propertyPath: ExitSpeedAmount
-      value: 1.3
+      value: 1.1
       objectReference: {fileID: 0}
     - target: {fileID: 114641676928021338, guid: 152080668690ac441b64a44d9394e565,
         type: 2}
       propertyPath: InitialSpeedAmount
-      value: 1.3
+      value: 1.1
       objectReference: {fileID: 0}
     - target: {fileID: 1496012031474270, guid: 152080668690ac441b64a44d9394e565, type: 2}
       propertyPath: m_Name
@@ -22428,6 +22453,11 @@ Prefab:
     - target: {fileID: 4788944720702178, guid: 152080668690ac441b64a44d9394e565, type: 2}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114641676928021338, guid: 152080668690ac441b64a44d9394e565,
+        type: 2}
+      propertyPath: BoostAmount
+      value: 2.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 152080668690ac441b64a44d9394e565, type: 2}
@@ -23241,12 +23271,12 @@ Prefab:
     - target: {fileID: 114641676928021338, guid: 152080668690ac441b64a44d9394e565,
         type: 2}
       propertyPath: ExitSpeedAmount
-      value: 1.3
+      value: 1.1
       objectReference: {fileID: 0}
     - target: {fileID: 114641676928021338, guid: 152080668690ac441b64a44d9394e565,
         type: 2}
       propertyPath: InitialSpeedAmount
-      value: 1.3
+      value: 1.1
       objectReference: {fileID: 0}
     - target: {fileID: 1496012031474270, guid: 152080668690ac441b64a44d9394e565, type: 2}
       propertyPath: m_Name
@@ -23263,6 +23293,11 @@ Prefab:
     - target: {fileID: 4788944720702178, guid: 152080668690ac441b64a44d9394e565, type: 2}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114641676928021338, guid: 152080668690ac441b64a44d9394e565,
+        type: 2}
+      propertyPath: BoostAmount
+      value: 2.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 152080668690ac441b64a44d9394e565, type: 2}
@@ -28678,12 +28713,12 @@ Prefab:
     - target: {fileID: 114641676928021338, guid: 152080668690ac441b64a44d9394e565,
         type: 2}
       propertyPath: ExitSpeedAmount
-      value: 1.3
+      value: 1.1
       objectReference: {fileID: 0}
     - target: {fileID: 114641676928021338, guid: 152080668690ac441b64a44d9394e565,
         type: 2}
       propertyPath: InitialSpeedAmount
-      value: 1.3
+      value: 1.1
       objectReference: {fileID: 0}
     - target: {fileID: 1496012031474270, guid: 152080668690ac441b64a44d9394e565, type: 2}
       propertyPath: m_Name
@@ -28700,6 +28735,11 @@ Prefab:
     - target: {fileID: 4788944720702178, guid: 152080668690ac441b64a44d9394e565, type: 2}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114641676928021338, guid: 152080668690ac441b64a44d9394e565,
+        type: 2}
+      propertyPath: BoostAmount
+      value: 2.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 152080668690ac441b64a44d9394e565, type: 2}
@@ -28960,12 +29000,12 @@ Prefab:
     - target: {fileID: 114641676928021338, guid: 152080668690ac441b64a44d9394e565,
         type: 2}
       propertyPath: ExitSpeedAmount
-      value: 1.3
+      value: 1.1
       objectReference: {fileID: 0}
     - target: {fileID: 114641676928021338, guid: 152080668690ac441b64a44d9394e565,
         type: 2}
       propertyPath: InitialSpeedAmount
-      value: 1.3
+      value: 1.1
       objectReference: {fileID: 0}
     - target: {fileID: 1496012031474270, guid: 152080668690ac441b64a44d9394e565, type: 2}
       propertyPath: m_Name
@@ -28982,6 +29022,11 @@ Prefab:
     - target: {fileID: 4788944720702178, guid: 152080668690ac441b64a44d9394e565, type: 2}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114641676928021338, guid: 152080668690ac441b64a44d9394e565,
+        type: 2}
+      propertyPath: BoostAmount
+      value: 2.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 152080668690ac441b64a44d9394e565, type: 2}
@@ -33068,12 +33113,12 @@ Prefab:
     - target: {fileID: 114641676928021338, guid: 152080668690ac441b64a44d9394e565,
         type: 2}
       propertyPath: ExitSpeedAmount
-      value: 1.3
+      value: 1.1
       objectReference: {fileID: 0}
     - target: {fileID: 114641676928021338, guid: 152080668690ac441b64a44d9394e565,
         type: 2}
       propertyPath: InitialSpeedAmount
-      value: 1.3
+      value: 1.1
       objectReference: {fileID: 0}
     - target: {fileID: 1496012031474270, guid: 152080668690ac441b64a44d9394e565, type: 2}
       propertyPath: m_Name
@@ -33090,6 +33135,11 @@ Prefab:
     - target: {fileID: 4788944720702178, guid: 152080668690ac441b64a44d9394e565, type: 2}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114641676928021338, guid: 152080668690ac441b64a44d9394e565,
+        type: 2}
+      propertyPath: BoostAmount
+      value: 2.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 152080668690ac441b64a44d9394e565, type: 2}
@@ -34082,6 +34132,7 @@ GameObject:
   - component: {fileID: 1796631159}
   - component: {fileID: 1796631161}
   - component: {fileID: 1796631162}
+  - component: {fileID: 1796631163}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -34231,6 +34282,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b617b4136a93cb43bdefd9ccb3fb32b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1796631163
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1796631158}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b64dc4ce2005df4a888bd9a1c6f2759, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uiObj: {fileID: 0}
+  increasing: 0
+  duration: 4
+  sizeToGoTo: 1.2
+  eSystem: {fileID: 1831076165}
 --- !u!1 &1799582516 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1333097626202910, guid: 2944b6d23ba29334ca6a0879bd5c2eb6,
@@ -39612,12 +39679,12 @@ Prefab:
     - target: {fileID: 114641676928021338, guid: 152080668690ac441b64a44d9394e565,
         type: 2}
       propertyPath: ExitSpeedAmount
-      value: 1.3
+      value: 1.1
       objectReference: {fileID: 0}
     - target: {fileID: 114641676928021338, guid: 152080668690ac441b64a44d9394e565,
         type: 2}
       propertyPath: InitialSpeedAmount
-      value: 1.3
+      value: 1.1
       objectReference: {fileID: 0}
     - target: {fileID: 1496012031474270, guid: 152080668690ac441b64a44d9394e565, type: 2}
       propertyPath: m_Name
@@ -39634,6 +39701,11 @@ Prefab:
     - target: {fileID: 4788944720702178, guid: 152080668690ac441b64a44d9394e565, type: 2}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114641676928021338, guid: 152080668690ac441b64a44d9394e565,
+        type: 2}
+      propertyPath: BoostAmount
+      value: 2.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 152080668690ac441b64a44d9394e565, type: 2}
@@ -39848,12 +39920,12 @@ Prefab:
     - target: {fileID: 114641676928021338, guid: 152080668690ac441b64a44d9394e565,
         type: 2}
       propertyPath: ExitSpeedAmount
-      value: 1.3
+      value: 1.1
       objectReference: {fileID: 0}
     - target: {fileID: 114641676928021338, guid: 152080668690ac441b64a44d9394e565,
         type: 2}
       propertyPath: InitialSpeedAmount
-      value: 1.3
+      value: 1.1
       objectReference: {fileID: 0}
     - target: {fileID: 1496012031474270, guid: 152080668690ac441b64a44d9394e565, type: 2}
       propertyPath: m_Name
@@ -39870,6 +39942,11 @@ Prefab:
     - target: {fileID: 4788944720702178, guid: 152080668690ac441b64a44d9394e565, type: 2}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114641676928021338, guid: 152080668690ac441b64a44d9394e565,
+        type: 2}
+      propertyPath: BoostAmount
+      value: 2.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 152080668690ac441b64a44d9394e565, type: 2}

@@ -83,6 +83,9 @@ public class CharacterControls : MonoBehaviour
 
     public float backwardsSpeedReduction;
 
+    [HideInInspector]
+    public bool inZone;
+
     private void Awake()
     {
         rb = gameObject.GetComponent<Rigidbody>();
@@ -178,6 +181,7 @@ public class CharacterControls : MonoBehaviour
     void HandleXinput()
     {
         //get controller state
+        if(Time.timeScale != 0)
         currentState = GamePad.GetState(playerIndex);
         lerp = 0.02f;
 
@@ -200,7 +204,7 @@ public class CharacterControls : MonoBehaviour
         //end bounds
 
         //if fInput is within bounds
-        if (fInput <= 1 && fInput >= -1)
+        if (fInput <= 1 && fInput >= -1 && !inZone)
         {
             //add current stick input to fInput
             fInput += currentState.ThumbSticks.Left.X;
@@ -345,7 +349,7 @@ public class CharacterControls : MonoBehaviour
     //Multiplied max speed by 2 then waits for 2 seconds 
     public IEnumerator speedUp(float a_SpeedIncrease, bool playSound)
     {
-        if (speed <= InitialMaxSpeed * 2)
+        if (speed <= InitialMaxSpeed * 1.5f)
         {
             if (playSound)
             {
@@ -512,6 +516,11 @@ public class CharacterControls : MonoBehaviour
             winAnim.Play(0);
 
         }
+    }
+
+    public void RefreshInputState()
+    {
+        currentState = GamePad.GetState(playerIndex);
     }
 
     private void OnApplicationQuit()
