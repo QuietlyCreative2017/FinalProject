@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviour
 
     public GameObject[] Checkpoints;
     GameObject[] ToggledCheckpoints;
-    
+
     public GameObject[] player;
     Vector3 camView;
     public GameObject SpawnPoint;
@@ -45,7 +45,7 @@ public class GameManager : MonoBehaviour
     public AudioManager audManager;
 
     public GameObject[] CountDownUIPics;
-    
+
     public GameObject[] EndGameUIPics;
 
     public GameObject[] PlayerUI;
@@ -75,7 +75,7 @@ public class GameManager : MonoBehaviour
         Cursor.visible = false;
         CurrentState = GameState.Playing;
         InGameUI.SetActive(true);
-        
+
     }
 
     // Update is called once per frame
@@ -90,18 +90,18 @@ public class GameManager : MonoBehaviour
             ////////////////////////////////////////Start Playing State//////////////////////////////////////////////////////////
             case GameState.Playing:
                 EndGameUI.SetActive(false);
-                
+
                 if (CheckingGameOver)
                 {
                     winner = CheckGameOver();
                 }
 
-                if(Input.GetKeyDown(KeyCode.W))
+                if (Input.GetKeyDown(KeyCode.W))
                 {
                     CameraScript camScript = mainCamera.GetComponent<CameraScript>();
                     camScript.StartCoroutine(camScript.ScreenShake(1, 5, 1));
                 }
-               
+
 
                 SortLeader();
 
@@ -136,7 +136,6 @@ public class GameManager : MonoBehaviour
 
             ////////////////////////////////////////Start Game Over State//////////////////////////////////////////////////////////
             case GameState.GameOver:
-                
                 //StartCoroutine("NewEndGameCountdown");
                 stopVibration();
                 //winner.gameObject.GetComponent<CharacterControls>().PlayWinAnimation();
@@ -145,7 +144,7 @@ public class GameManager : MonoBehaviour
                     winner.gameObject.GetComponent<CharacterControls>().enabled = false;
                     winner.gameObject.GetComponent<CharacterControls>().winAnim.SetBool("HasWon", true);
 
-                    if(winner.name == "Player1")
+                    if (winner.name == "Player1")
                     {
                         PlayerUI[1].SetActive(false);
                     }
@@ -154,9 +153,16 @@ public class GameManager : MonoBehaviour
                         PlayerUI[0].SetActive(false);
                     }
                 }
+                else
+                {
+                    for (int i = 0; i < PlayerUI.Length; i++)
+                    {
+                        PlayerUI[i].SetActive(false);
+                    }
+                }
                 mainCamera.GetComponent<CameraScript>().enabled = false;
-                if(winner != null)
-                mainCamera.transform.position = Vector3.Lerp(mainCamera.transform.position, new Vector3(winner.transform.position.x, winner.transform.position.y + EndGameYOffset, -40), 0.01f);
+                if (winner != null)
+                    mainCamera.transform.position = Vector3.Lerp(mainCamera.transform.position, new Vector3(winner.transform.position.x, winner.transform.position.y + EndGameYOffset, -40), 0.01f);
                 break;
                 ////////////////////////////////////////End Game Over State//////////////////////////////////////////////////////////////
         }
@@ -166,7 +172,7 @@ public class GameManager : MonoBehaviour
 
     private void OnGUI()
     {
-        
+
     }
 
     void OrderCheckpoints()
@@ -177,6 +183,7 @@ public class GameManager : MonoBehaviour
 
     GameObject CheckGameOver()
     {
+        float deathCount = 0;
         //check if a player has hit the end
         if (WinObj.GetComponent<WinBox>().HasWon())
         {
@@ -192,6 +199,7 @@ public class GameManager : MonoBehaviour
             //see if a player has run out of lives
             if (player[i].GetComponent<PlayerLives>().Lives() <= 0)
             {
+                deathCount++;
                 //Deactivate dead player
                 player[i].SetActive(false);
                 //Set current state to GameOver
@@ -206,6 +214,12 @@ public class GameManager : MonoBehaviour
                     }
                 }
             }
+        }
+
+        if (deathCount == player.Length)
+        {
+            StartCoroutine("NewEndGameCountdown");
+            return null;
         }
 
         //else return null
@@ -224,7 +238,7 @@ public class GameManager : MonoBehaviour
     {
         Time.timeScale = 0;
         WinTextObj.SetActive(true);
-        
+
         //do a countdown for countDownTimer seconds
         for (float i = countDownTimer; i >= 0; i--)
         {
@@ -252,7 +266,7 @@ public class GameManager : MonoBehaviour
 
         //enable endgameui
         EndGameUI.SetActive(true);
-        
+
         //do another countdown for however many seconds
         for (float j = countDownTimer; j >= 0; j--)
         {
@@ -281,11 +295,11 @@ public class GameManager : MonoBehaviour
 
     void OnApplicationFocus(bool focus)
     {
-        if(focus)
+        if (focus)
         {
             StartCoroutine("SetSelectedGameobject");
         }
-        if(!focus)
+        if (!focus)
         {
             stopVibration();
         }
@@ -321,34 +335,46 @@ public class GameManager : MonoBehaviour
             player[i].GetComponent<CharacterControls>().RefreshInputState();
         }
     }
-    
+
     IEnumerator NewEndGameCountdown()
     {
         //set timescale to zero
         Time.timeScale = 0f;
-        WinTextObj.SetActive(true);
-
-        yield return new WaitForSecondsRealtime(1);
-        audManager.PlaySound("Studio crowd celebration cheer clap_BLASTWAVEFX_12945", false, 0.2f, 128);
-        //do a countdown for however many seconds to let animation play
-        for (float i = countDownTimer; i >= 0; i--)
+        if (winner != null)
         {
-            yield return new WaitForSecondsRealtime(1);
-        }
+            if (winner != null)
+            {
+                WinTextObj.SetActive(true);
 
-        //enable endgameui
-        WinTextObj.SetActive(false);
+            }
+            else
+            {
+                //show draw image
+            }
+
+            yield return new WaitForSecondsRealtime(1);
+            audManager.PlaySound("Studio crowd celebration cheer clap_BLASTWAVEFX_12945", false, 0.2f, 128);
+            //do a countdown for however many seconds to let animation play
+            for (float i = countDownTimer; i >= 0; i--)
+            {
+                yield return new WaitForSecondsRealtime(1);
+            }
+
+            //enable endgameui
+            WinTextObj.SetActive(false);
+
+        }
         EndGameUI.SetActive(true);
 
         m_ESystem.SetSelectedGameObject(m_BFirstButton.gameObject);
-        
+
         for (int i = 0; i < 3; i++)
         {
             EndGameUIPics[i].SetActive(true);
             yield return new WaitForSecondsRealtime(1);
             EndGameUIPics[i].SetActive(false);
         }
-    
+
         //set timescale to 1
         Time.timeScale = 1;
         //load play scene again
@@ -365,7 +391,7 @@ public class GameManager : MonoBehaviour
     {
         for (int i = 0; i < player.Length; i++)
         {
-            if(player[i].name == a_playerName)
+            if (player[i].name == a_playerName)
             {
                 return i;
             }
