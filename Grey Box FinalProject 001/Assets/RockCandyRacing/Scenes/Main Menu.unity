@@ -1592,7 +1592,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   uiObj: {fileID: 0}
   increasing: 0
-  duration: 2
+  duration: 7
   sizeToGoTo: 1.2
   eSystem: {fileID: 256516875}
 --- !u!114 &2117794235
