@@ -25,9 +25,9 @@ TagManager:
   - Player2
   - Ground
   - InAir
-  - 
-  - 
-  - 
+  - LightIgnoreForeground
+  - PlayerLight_Player1
+  - PlayerLight_Player2
   - 
   - 
   - 

@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4035725569304796}
   - component: {fileID: 33041016351709952}
   - component: {fileID: 23589087470528028}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: CurvedRamp_Mesh_v01_White
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -36,7 +36,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4757798825112056}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: CurvedRamp_Prefab_UpRight_White
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -54,7 +54,7 @@ GameObject:
   - component: {fileID: 33585864981810662}
   - component: {fileID: 23002313876743976}
   - component: {fileID: 64556023551979758}
-  m_Layer: 10
+  m_Layer: 12
   m_Name: CurvedRampCap_Mesh_v04
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -81,7 +81,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1727348623027774}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 70, y: -3, z: -23}
+  m_LocalPosition: {x: 40, y: -3, z: -15}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4783403755596134}
