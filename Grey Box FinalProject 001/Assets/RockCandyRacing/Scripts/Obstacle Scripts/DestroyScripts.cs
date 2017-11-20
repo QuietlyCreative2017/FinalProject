@@ -35,7 +35,7 @@ public class DestroyScripts : MonoBehaviour
             Destroy(gameObject);
             CharacterControls ColControls = collision.gameObject.GetComponent<CharacterControls>();
             ColControls.StartCoroutine(ColControls.Vibrate(1));
-            ColControls.Slow();
+            ColControls.Slow(2);
             //collision.gameObject.GetComponent<CharacterControls>().StartCoroutine("stun");
         }
 

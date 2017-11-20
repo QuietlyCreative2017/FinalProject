@@ -20,7 +20,8 @@ public class SlowDown : MonoBehaviour {
     {
         if (other.gameObject.tag == "Player")
         {
-            other.gameObject.GetComponent<CharacterControls>().maxSpeed *= SlowToPercent;
+            CharacterControls colControls = other.gameObject.GetComponent<CharacterControls>();
+            colControls.Slow(2);
         }
         
     }
@@ -29,7 +30,7 @@ public class SlowDown : MonoBehaviour {
     {
         if (other.gameObject.tag == "Player")
         {
-            other.gameObject.GetComponent<CharacterControls>().maxSpeed /= SlowToPercent;
+            CharacterControls colControls = other.gameObject.GetComponent<CharacterControls>();
         }
         
     }

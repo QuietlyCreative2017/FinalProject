@@ -10,10 +10,7 @@ public class CharacterControls : MonoBehaviour
     [HideInInspector]
     public float fInput;
     Vector3 direction;
-    [SerializeField]
-    public float speed;
-
-
+    
     //////////////Jumping//////////////
     bool grounded;
     [Tooltip("How fast the player jumps")]
@@ -29,8 +26,6 @@ public class CharacterControls : MonoBehaviour
 
     //[Tooltip("Key input type (WASD / Key(arrows)) for debugging without controller")]
     //public string type;
-    [Tooltip("Maximum velocity")]
-    public float maxSpeed;
     [Tooltip("Maximum speed to get a boost")]
     public float maxBoostSpeed;
 
@@ -49,9 +44,6 @@ public class CharacterControls : MonoBehaviour
     public PlayerIndex playerIndex;
     GamePadState currentState;
     GamePadState previousState;
-
-
-
     float InitialMaxSpeed;
 
     float lerp = 0.0f;
@@ -59,15 +51,7 @@ public class CharacterControls : MonoBehaviour
     public float movementRayLength = 2;
     Vector3 movementPosition;
 
-    public float CameraBoost;
-    public float CameraBoostCooldown;
-    float camBoostCD;
-
     public Animator winAnim;
-
-    [Tooltip("How fast the player slows down (multiplier)")]
-    public float speedDecrease;
-
     public LayerMask Ground;
     public float PickupCD;
     [HideInInspector]
@@ -112,9 +96,6 @@ public class CharacterControls : MonoBehaviour
     void Start()
     {
         JumpTimeCounter = JumpTime;
-        speed = maxSpeed / 4;
-        InitialMaxSpeed = maxSpeed;
-        camBoostCD = CameraBoostCooldown;
         PickupCDA = 0;
 
         //speed take two
@@ -127,7 +108,7 @@ public class CharacterControls : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        camBoostCD -= Time.deltaTime;
+        //camBoostCD -= Time.deltaTime;
         HandleXinput();
         PickupCDA -= Time.deltaTime;
 
@@ -211,15 +192,15 @@ public class CharacterControls : MonoBehaviour
 
         grounded = IsGrounded();
 
-        if (Camera.main.WorldToViewportPoint(transform.position).x <= 0.2f)
-        {
-            if (camBoostCD <= 0 && speed <= InitialMaxSpeed * 2)
-            {
-                //speedUp(CameraBoost);
-                speed *= CameraBoost;
-                camBoostCD = CameraBoostCooldown;
-            }
-        }
+        //if (Camera.main.WorldToViewportPoint(transform.position).x <= 0.2f)
+        //{
+        //    if (camBoostCD <= 0 && currentSpeed <= InitialMaxSpeed * 2)
+        //    {
+        //        //speedUp(CameraBoost);
+        //        currentSpeed *= CameraBoost;
+        //        camBoostCD = CameraBoostCooldown;
+        //    }
+        //}
 
         //transform.Translate(direction);
         if (grounded)
@@ -273,13 +254,6 @@ public class CharacterControls : MonoBehaviour
         //if you're using the stick
         if (currentState.ThumbSticks.Left.X != 0)
         {
-            //if current speed isnt maxSpeed
-            if (speed < maxSpeed / 2)
-            {
-                //speed up
-                speed += Time.deltaTime * 7;
-            }
-
             //speed take two
 
             if (currentSpeed <= maxSpeedTwo)
@@ -292,13 +266,6 @@ public class CharacterControls : MonoBehaviour
         //if you aren't using the stick
         else if (currentState.ThumbSticks.Left.X == 0)
         {
-            //if speed is greater than half maxSpeed
-            if (speed > maxSpeed / 2)
-            {
-                //speed = half maxSpeed
-                speed = maxSpeed / 2;
-            }
-
             //speed take two
 
             if (currentSpeed > initialSpeed)
@@ -384,9 +351,9 @@ public class CharacterControls : MonoBehaviour
         ////////////////////////End jump reduction////////////////////////
     }
 
-    public void Slow()
+    public void Slow(float reduction)
     {
-        StartCoroutine("Sslow");
+        StartCoroutine(Sslow(reduction));
         StartCoroutine(Vibrate(1));
         //StopCoroutine("slow");
     }
@@ -399,19 +366,19 @@ public class CharacterControls : MonoBehaviour
     public IEnumerator Vibrate(float a_Vibration)
     {
         GamePad.SetVibration(playerIndex, a_Vibration, a_Vibration);
-        yield return new WaitForSecondsRealtime(5);
+        yield return new WaitForSecondsRealtime(1);
         GamePad.SetVibration(playerIndex, 0, 0);
     }
 
     //divide maxSpeed by whatever wait 2 seconds and restore
-    IEnumerator Sslow()
+    IEnumerator Sslow(float reduction)
     {
         foreach (GameObject GO in SlowDownParticles)
         {
             GO.GetComponent<ParticleSystem>().Play();
         }
         AudManager.PlaySound("Daze_SFX", false, 0.2f, 128);
-        speed /= 2;
+        currentSpeed /= reduction;
         yield return new WaitForSeconds(2f);
     }
 
@@ -592,8 +559,7 @@ public class CharacterControls : MonoBehaviour
 
     public void Respawn()
     {
-        speed = 0;
-        maxSpeed = InitialMaxSpeed;
+
     }
 
     public void PlayWinAnimation()

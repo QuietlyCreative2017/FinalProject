@@ -63,7 +63,7 @@ public class RocketUpdate : MonoBehaviour
             //slow the player it hits
             CharacterControls ColControls = collision.gameObject.GetComponent<CharacterControls>();
             ColControls.StartCoroutine(ColControls.Vibrate(1));
-            ColControls.Slow();
+            ColControls.Slow(2);
         }
     }
 

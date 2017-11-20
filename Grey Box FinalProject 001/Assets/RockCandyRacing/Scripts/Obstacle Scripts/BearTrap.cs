@@ -35,7 +35,7 @@ public class BearTrap : MonoBehaviour
         {
             CharacterControls colControls = col.gameObject.GetComponent<CharacterControls>();
             anim.SetBool("HasHitPlay", true);
-            colControls.Slow();
+            colControls.Slow(2);
             StartCoroutine(WaitAndDestroy());
 
         }
