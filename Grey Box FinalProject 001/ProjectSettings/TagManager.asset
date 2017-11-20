@@ -28,8 +28,8 @@ TagManager:
   - LightIgnoreForeground
   - PlayerLight_Player1
   - PlayerLight_Player2
-  - 
-  - 
+  - CloudsLightIgnore
+  - MountainLightIgnore
   - 
   - 
   - 
