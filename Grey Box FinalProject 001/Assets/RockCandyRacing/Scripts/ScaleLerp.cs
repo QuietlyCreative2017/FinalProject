@@ -4,7 +4,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public class ScaleLerp : MonoBehaviour {
+public class ScaleLerp : MonoBehaviour
+{
 
     public GameObject uiObj;
     public bool increasing;
@@ -18,35 +19,67 @@ public class ScaleLerp : MonoBehaviour {
     public float sizeToGoTo;
 
     public EventSystem eSystem;
-	// Use this for initialization
-	void Start () {
 
-	}
-	
-	// Update is called once per frame
-	void Update ()
+    float previousTime;
+    float currentTime;
+    float deltaTime;
+
+    float startTime;
+    // Use this for initialization
+    void Start()
     {
-        lerp += Time.unscaledDeltaTime / duration;
-        uiObj = eSystem.currentSelectedGameObject;
+        previousTime = Time.timeSinceLevelLoad;
+        startTime = Time.time;
+    }
 
-		if(increasing)
+    // Update is called once per frame
+    void Update()
+    {
+        uiObj = eSystem.currentSelectedGameObject;
+        
+        //
+
+
+        //currentTime = Time.timeSinceLevelLoad;
+        //deltaTime = currentTime - previousTime;
+        if (Time.deltaTime != 0)
         {
-            uiObj.transform.localScale = Vector3.Lerp(uiObj.transform.localScale, new Vector3(sizeToGoTo, sizeToGoTo, sizeToGoTo), lerp);
+            lerp += Time.deltaTime / duration;
         }
         else
         {
-            uiObj.transform.localScale = Vector3.Lerp(uiObj.transform.localScale, new Vector3(1, 1, 1), lerp);
+            lerp += deltaTime / duration;
         }
+        
+        if (uiObj != null)
+        {
+            if (increasing)
+            {
+                uiObj.transform.localScale = Vector3.Lerp(uiObj.transform.localScale, new Vector3(sizeToGoTo, sizeToGoTo, sizeToGoTo), Time.unscaledDeltaTime * duration);
+            }
+            else
+            {
+                uiObj.transform.localScale = Vector3.Lerp(uiObj.transform.localScale, new Vector3(1, 1, 1), Time.unscaledDeltaTime * duration);
+            }
+        
 
-        if (uiObj.transform.localScale == new Vector3(sizeToGoTo, sizeToGoTo, sizeToGoTo))
-        {
-            increasing = false;
-            lerp = 0;
+            if (uiObj.transform.localScale == new Vector3(sizeToGoTo, sizeToGoTo, sizeToGoTo))
+            {
+                increasing = false;
+                lerp = 0;
+            }
+            if (uiObj.transform.localScale == new Vector3(1, 1, 1))
+            {
+                increasing = true;
+                lerp = 0;
+            }
+
         }
-        if(uiObj.transform.localScale == new Vector3(1, 1, 1))
-        {
-            increasing = true;
-            lerp = 0;
-        }
-	}
+        previousTime = Time.timeSinceLevelLoad;
+    }
+
+    bool isApproximate(float inputA, float inputB, float tollerance)
+    {
+        return inputA - inputB < tollerance;
+    }
 }

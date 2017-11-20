@@ -31,6 +31,9 @@ public class CharacterControls : MonoBehaviour
     //public string type;
     [Tooltip("Maximum velocity")]
     public float maxSpeed;
+    [Tooltip("Maximum speed to get a boost")]
+    public float maxBoostSpeed;
+
 
     Rigidbody rb;
     [Tooltip("How much gravity you want")]
@@ -77,7 +80,7 @@ public class CharacterControls : MonoBehaviour
     string uiTextText;
 
     public GameObject RocketImage;
-    public GameObject TrapImage; 
+    public GameObject TrapImage;
 
     public AudioManager AudManager;
 
@@ -85,6 +88,16 @@ public class CharacterControls : MonoBehaviour
 
     [HideInInspector]
     public bool inZone;
+
+    //speed take two
+    public float currentSpeed;
+    public float initialSpeed;
+    public float maxSpeedTwo;
+    public float speedBoostMax;
+    public float backwardsReduction;
+    public float speedIncreaseTwo;
+    public float speedReductionTwo;
+
 
     private void Awake()
     {
@@ -100,6 +113,12 @@ public class CharacterControls : MonoBehaviour
         InitialMaxSpeed = maxSpeed;
         camBoostCD = CameraBoostCooldown;
         PickupCDA = 0;
+
+        //speed take two
+
+        currentSpeed = initialSpeed;
+
+        //end speed take two
     }
 
     // Update is called once per frame
@@ -140,19 +159,50 @@ public class CharacterControls : MonoBehaviour
         {
             PickupCDA = 0;
         }
+
         //if speed is greater than max / 2
-        if (speed > maxSpeed / 2)
+        //if (speed > maxSpeed / 2)
+        //{
+        //    speed -= Time.deltaTime * speedDecrease;
+        //}
+        //
+        //
+        //if (speed > maxSpeed)
+        //{
+        //    if (speed > InitialMaxSpeed / 2)
+        //    {
+        //        speed -= Time.deltaTime * (speedDecrease * 4);
+        //    }
+        //}
+        //
+        //if(speed > maxSpeed * 2)
+        //{
+        //    speed = maxSpeed * 2;
+        //}
+
+        //speed take two
+
+        if (currentSpeed > maxSpeedTwo)
         {
-            speed -= Time.deltaTime * speedDecrease;
+            currentSpeed -= Time.deltaTime * (speedReductionTwo * 2);
         }
 
-        if (speed > maxSpeed)
+        if (currentSpeed > speedBoostMax)
         {
-            if (speed > 20)
-            {
-                speed -= Time.deltaTime * (speedDecrease * 4);
-            }
+            currentSpeed -= Time.deltaTime * (speedReductionTwo * 10) ;
         }
+
+        //end speed take two
+
+        //if (speed > maxSpeed / 2)
+        //{
+        //    float difference = maxSpeed - speed;
+        //    speed -= (maxSpeed - difference) * Time.deltaTime;
+        //
+        //}
+
+
+        //speed end
 
         grounded = IsGrounded();
 
@@ -181,8 +231,8 @@ public class CharacterControls : MonoBehaviour
     void HandleXinput()
     {
         //get controller state
-        if(Time.timeScale != 0)
-        currentState = GamePad.GetState(playerIndex);
+        if (Time.timeScale != 0)
+            currentState = GamePad.GetState(playerIndex);
         lerp = 0.02f;
 
         //if controller index isn't connected
@@ -224,10 +274,15 @@ public class CharacterControls : MonoBehaviour
                 //speed up
                 speed += Time.deltaTime * 7;
             }
-            //else if (speed > maxSpeed)
-            //{
-            //    speed -= Time.deltaTime;
-            //}
+
+            //speed take two
+
+            if (currentSpeed <= maxSpeedTwo)
+            {
+                currentSpeed += Time.deltaTime * speedIncreaseTwo;
+            }
+
+            //end speed take two
         }
         //if you aren't using the stick
         else if (currentState.ThumbSticks.Left.X == 0)
@@ -238,6 +293,15 @@ public class CharacterControls : MonoBehaviour
                 //speed = half maxSpeed
                 speed = maxSpeed / 2;
             }
+
+            //speed take two
+
+            if (currentSpeed > initialSpeed)
+            {
+                currentSpeed -= Time.deltaTime * speedReductionTwo;
+            }
+
+            //end speed take two
         }
 
         //jump by pushing A
@@ -349,13 +413,22 @@ public class CharacterControls : MonoBehaviour
     //Multiplied max speed by 2 then waits for 2 seconds 
     public IEnumerator speedUp(float a_SpeedIncrease, bool playSound)
     {
-        if (speed <= InitialMaxSpeed * 1.5f)
+        //if (speed <= maxBoostSpeed)
+        //{
+        //    if (playSound)
+        //    {
+        //        AudManager.PlaySound("Turbo_Boost_SFX_v2", false, 0.05f, 128);
+        //    }
+        //    speed *= a_SpeedIncrease;
+        //}
+
+        if (currentSpeed <= speedBoostMax)
         {
             if (playSound)
             {
                 AudManager.PlaySound("Turbo_Boost_SFX_v2", false, 0.05f, 128);
             }
-            speed *= a_SpeedIncrease;
+            currentSpeed *= a_SpeedIncrease;
         }
         yield return new WaitForSeconds(0.5f);
     }
@@ -405,11 +478,11 @@ public class CharacterControls : MonoBehaviour
             //else point to move to stays the same
             if (Mathf.Sign(fInput) == 1)
             {
-                return rb.position + transform.right * fInput * speed * Time.fixedDeltaTime;
+                return rb.position + transform.right * fInput * currentSpeed * Time.fixedDeltaTime;
             }
             else
             {
-                return rb.position + transform.right * fInput * (speed * backwardsSpeedReduction) * Time.fixedDeltaTime;
+                return rb.position + transform.right * fInput * (currentSpeed * backwardsSpeedReduction) * Time.fixedDeltaTime;
             }
         }
     }
