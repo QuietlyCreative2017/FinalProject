@@ -350,9 +350,9 @@ public class GameManager : MonoBehaviour
         }
     
         //set timescale to 1
-        //Time.timeScale = 1;
+        Time.timeScale = 1;
         //load play scene again
-        //SceneManager.LoadScene(1);
+        SceneManager.LoadScene(1);
     }
 
     void stopVibration()

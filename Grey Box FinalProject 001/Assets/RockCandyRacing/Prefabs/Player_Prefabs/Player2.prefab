@@ -1628,9 +1628,10 @@ MonoBehaviour:
   initialSpeed: 10
   maxSpeedTwo: 20
   speedBoostMax: 40
-  backwardsReduction: 0.5
   speedIncreaseTwo: 5
   speedReductionTwo: 5
+  loserSpeedIncrease: 1.1
+  GM: {fileID: 0}
 --- !u!114 &114616323000120118
 MonoBehaviour:
   m_ObjectHideFlags: 1
