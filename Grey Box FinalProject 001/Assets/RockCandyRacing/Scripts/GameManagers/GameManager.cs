@@ -13,7 +13,8 @@ public class GameManager : MonoBehaviour
 
     public GameObject[] Checkpoints;
     GameObject[] ToggledCheckpoints;
-    GameObject[] player;
+    
+    public GameObject[] player;
     Vector3 camView;
     public GameObject SpawnPoint;
     Vector3 newT;
@@ -358,5 +359,17 @@ public class GameManager : MonoBehaviour
     {
         GamePad.SetVibration(PlayerIndex.One, 0, 0);
         GamePad.SetVibration(PlayerIndex.Two, 0, 0);
+    }
+
+    public int returnIndex(string a_playerName)
+    {
+        for (int i = 0; i < player.Length; i++)
+        {
+            if(player[i].name == a_playerName)
+            {
+                return i;
+            }
+        }
+        return int.MaxValue;
     }
 }

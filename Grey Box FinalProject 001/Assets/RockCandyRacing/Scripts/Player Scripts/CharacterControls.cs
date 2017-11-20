@@ -94,15 +94,18 @@ public class CharacterControls : MonoBehaviour
     public float initialSpeed;
     public float maxSpeedTwo;
     public float speedBoostMax;
-    public float backwardsReduction;
     public float speedIncreaseTwo;
     public float speedReductionTwo;
+    public float loserSpeedIncrease;
 
+    public GameObject GM;
+    private GameManager gm;
 
     private void Awake()
     {
         rb = gameObject.GetComponent<Rigidbody>();
         AudManager = gameObject.GetComponent<AudioManager>();
+        gm = GM.GetComponent<GameManager>();
     }
 
     // Use this for initialization
@@ -189,8 +192,10 @@ public class CharacterControls : MonoBehaviour
 
         if (currentSpeed > speedBoostMax)
         {
-            currentSpeed -= Time.deltaTime * (speedReductionTwo * 10) ;
+            currentSpeed -= Time.deltaTime * (speedReductionTwo * 10);
         }
+
+
 
         //end speed take two
 
@@ -478,10 +483,20 @@ public class CharacterControls : MonoBehaviour
             //else point to move to stays the same
             if (Mathf.Sign(fInput) == 1)
             {
-                return rb.position + transform.right * fInput * currentSpeed * Time.fixedDeltaTime;
+                if (gm.returnIndex(gameObject.name) == 0)
+                {
+                    return rb.position + transform.right * fInput * (currentSpeed * loserSpeedIncrease) * Time.fixedDeltaTime;
+
+                }
+                else return rb.position + transform.right * fInput * (currentSpeed) * Time.fixedDeltaTime;
             }
             else
             {
+                if (gm.returnIndex(gameObject.name) == 0)
+                {
+                    return rb.position + transform.right * fInput * ((currentSpeed * backwardsSpeedReduction) * loserSpeedIncrease) * Time.fixedDeltaTime;
+
+                }
                 return rb.position + transform.right * fInput * (currentSpeed * backwardsSpeedReduction) * Time.fixedDeltaTime;
             }
         }
