@@ -60,7 +60,7 @@ GameObject:
   - component: {fileID: 4162239958600248}
   - component: {fileID: 33671899037741610}
   - component: {fileID: 23649319018142650}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Character_01_Icecream_Eye_01_02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -77,7 +77,7 @@ GameObject:
   - component: {fileID: 4674659894818546}
   - component: {fileID: 33501893078104680}
   - component: {fileID: 23558723848146950}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Character_01_Icecream_Ear_01_02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -128,7 +128,7 @@ GameObject:
   - component: {fileID: 4198410775719128}
   - component: {fileID: 33961393523478768}
   - component: {fileID: 23220671891097508}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Character_01_Icecream_Face_01_06
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -143,7 +143,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4666136564288730}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Character_01_Icecream_face
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -177,7 +177,7 @@ GameObject:
   - component: {fileID: 4502936777692560}
   - component: {fileID: 33802742717754716}
   - component: {fileID: 23505628479097370}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Character_01_Icecream_Ear_01_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -211,7 +211,7 @@ GameObject:
   - component: {fileID: 4694339195530950}
   - component: {fileID: 33689893401493464}
   - component: {fileID: 23424695051857358}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Character_01_Wheel01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -228,7 +228,7 @@ GameObject:
   - component: {fileID: 4987527725724074}
   - component: {fileID: 33338854100124026}
   - component: {fileID: 23076582595380802}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Character_01_Icecream_Face_01_05
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -245,7 +245,7 @@ GameObject:
   - component: {fileID: 4248439853446202}
   - component: {fileID: 33126135884209526}
   - component: {fileID: 23071835822015612}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Character_01_Icecream_Face_01_04
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -262,7 +262,7 @@ GameObject:
   - component: {fileID: 4331073859380278}
   - component: {fileID: 33907754659214344}
   - component: {fileID: 23034536664995834}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Character_01_Icecream_Face_01_02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -279,7 +279,7 @@ GameObject:
   - component: {fileID: 4117325036239992}
   - component: {fileID: 33609213569275550}
   - component: {fileID: 23988336019508264}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Character_01_Icecream_Eye_01_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -296,7 +296,7 @@ GameObject:
   - component: {fileID: 4547930786812516}
   - component: {fileID: 33980044027456422}
   - component: {fileID: 23545745254068378}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Character_01_Icecream_Face_01_03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -312,7 +312,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4416166165834332}
   - component: {fileID: 95767490429061654}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Character_01_Mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -329,7 +329,7 @@ GameObject:
   - component: {fileID: 4032062090235070}
   - component: {fileID: 33642649026898880}
   - component: {fileID: 23292186759506792}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Character_01_Paws
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -346,7 +346,7 @@ GameObject:
   - component: {fileID: 4033966936851332}
   - component: {fileID: 33345805590035234}
   - component: {fileID: 23703365288554338}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Character_01_Cone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -363,7 +363,7 @@ GameObject:
   - component: {fileID: 4696457305492542}
   - component: {fileID: 33151213291621234}
   - component: {fileID: 23923572913239986}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Character_01_Icecream_Face_01_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -397,7 +397,7 @@ GameObject:
   - component: {fileID: 4574328543120004}
   - component: {fileID: 33410542259974640}
   - component: {fileID: 23486123671093634}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Character_01_Wheel02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -414,7 +414,7 @@ GameObject:
   - component: {fileID: 4020944443461716}
   - component: {fileID: 33992399605464846}
   - component: {fileID: 23439197949095258}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Character_01_Icecream_Face_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1484,6 +1484,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1024
   maxSpeed: 40
+  maxBoostSpeed: 0
   gravityforce: -9.8
   playerIndex: 0
   movementRayLength: 2
@@ -1506,6 +1507,13 @@ MonoBehaviour:
   AudManager: {fileID: 0}
   backwardsSpeedReduction: 0.5
   inZone: 0
+  currentSpeed: 0
+  initialSpeed: 10
+  maxSpeedTwo: 20
+  speedBoostMax: 40
+  backwardsReduction: 0.5
+  speedIncreaseTwo: 5
+  speedReductionTwo: 5
 --- !u!114 &114251486738769280
 MonoBehaviour:
   m_ObjectHideFlags: 1
