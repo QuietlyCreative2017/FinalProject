@@ -18,7 +18,7 @@ public class RocketUpdate : MonoBehaviour
     public GameObject ParticleEffect;
 
     [Tooltip("divides from current speed")]
-    float speedReduction;
+    public float speedReduction;
 
     Transform rotNeeded;
     // Use this for initialization

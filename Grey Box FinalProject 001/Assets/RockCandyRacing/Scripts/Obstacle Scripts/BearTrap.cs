@@ -7,7 +7,7 @@ public class BearTrap : MonoBehaviour
 
     public Animator anim;
     [Tooltip("divides from current speed")]
-    float speedReduction;
+    public float speedReduction;
     void Awake()
     {
         //anim = GetComponent<Animator>();
