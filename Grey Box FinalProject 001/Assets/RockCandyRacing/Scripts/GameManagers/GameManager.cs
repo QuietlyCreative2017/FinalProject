@@ -148,6 +148,8 @@ public class GameManager : MonoBehaviour
 
             ////////////////////////////////////////Start Game Over State//////////////////////////////////////////////////////////
             case GameState.GameOver:
+
+                ResetPlayerBuffs();
                 //StartCoroutine("NewEndGameCountdown");
                 stopVibration();
                 //winner.gameObject.GetComponent<CharacterControls>().PlayWinAnimation();
@@ -405,5 +407,14 @@ public class GameManager : MonoBehaviour
             }
         }
         return int.MaxValue;
+    }
+
+    private void ResetPlayerBuffs()
+    {
+        for (int i = 0; i < player.Length; i++)
+        {
+            player[i].GetComponent<RocketScript>().rocket = false;
+            player[i].GetComponent<DroppableScript>().canUse = false;
+        }
     }
 }
