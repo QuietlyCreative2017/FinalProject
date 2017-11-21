@@ -6,7 +6,8 @@ public class BearTrap : MonoBehaviour
 {
 
     public Animator anim;
-
+    [Tooltip("divides from current speed")]
+    float speedReduction;
     void Awake()
     {
         //anim = GetComponent<Animator>();
@@ -35,7 +36,7 @@ public class BearTrap : MonoBehaviour
         {
             CharacterControls colControls = col.gameObject.GetComponent<CharacterControls>();
             anim.SetBool("HasHitPlay", true);
-            colControls.Slow(2);
+            colControls.Slow(speedReduction);
             StartCoroutine(WaitAndDestroy());
 
         }

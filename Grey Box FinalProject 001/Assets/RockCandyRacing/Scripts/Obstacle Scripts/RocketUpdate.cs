@@ -17,6 +17,9 @@ public class RocketUpdate : MonoBehaviour
 
     public GameObject ParticleEffect;
 
+    [Tooltip("divides from current speed")]
+    float speedReduction;
+
     Transform rotNeeded;
     // Use this for initialization
     void Start()
@@ -63,7 +66,7 @@ public class RocketUpdate : MonoBehaviour
             //slow the player it hits
             CharacterControls ColControls = collision.gameObject.GetComponent<CharacterControls>();
             ColControls.StartCoroutine(ColControls.Vibrate(1));
-            ColControls.Slow(2);
+            ColControls.Slow(speedReduction);
         }
     }
 

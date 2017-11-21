@@ -10,7 +10,7 @@ public class CharacterControls : MonoBehaviour
     [HideInInspector]
     public float fInput;
     Vector3 direction;
-    
+
     //////////////Jumping//////////////
     bool grounded;
     [Tooltip("How fast the player jumps")]
@@ -85,6 +85,9 @@ public class CharacterControls : MonoBehaviour
     public GameObject GM;
     private GameManager gm;
 
+    public float minJumpTime;
+    float jumpVelTwo;
+
     private void Awake()
     {
         rb = gameObject.GetComponent<Rigidbody>();
@@ -97,6 +100,7 @@ public class CharacterControls : MonoBehaviour
     {
         JumpTimeCounter = JumpTime;
         PickupCDA = 0;
+        jumpVelTwo = JumpVel;
 
         //speed take two
 
@@ -121,8 +125,6 @@ public class CharacterControls : MonoBehaviour
             gameObject.layer = LayerMask.NameToLayer(gameObject.name);
         }
 
-
-        KeepGrounded();
 
         if (GetComponent<RocketScript>().rocket)
         {
@@ -208,6 +210,7 @@ public class CharacterControls : MonoBehaviour
             //if grounded reset gravity and jump velocity
             gravity = new Vector3(0, gravityforce, 0);
             m_JumpVel = JumpVel;
+            jumpVelTwo = JumpVel;
             //JumpTimeCounter = JumpTime;
         }
     }
@@ -276,20 +279,21 @@ public class CharacterControls : MonoBehaviour
             //end speed take two
         }
 
+        //Debug.Log("JumpTimeCounter" + JumpTimeCounter);
         //jump by pushing A
-        if (previousState.Buttons.A == ButtonState.Released && currentState.Buttons.A == ButtonState.Pressed)
-        {
-            if (grounded)
-            {
-                //jump!
-                //rb.AddForce(new Vector3(0, m_JumpVel, 0)); 
-                rb.velocity = new Vector3(rb.velocity.x, m_JumpVel, 0);
-                StoppedJumping = false;
-                JumpTimeCounter = JumpTime;
-                AudManager.PlaySound("Jump_SFX", false, 0.2f, 128);
-            }
-        }
-
+        //if (previousState.Buttons.A == ButtonState.Released && currentState.Buttons.A == ButtonState.Pressed)
+        //{
+        //    if (grounded)
+        //    {
+        //        //jump!
+        //        //rb.AddForce(new Vector3(0, m_JumpVel, 0)); 
+        //        rb.velocity = new Vector3(rb.velocity.x, m_JumpVel, 0);
+        //        StoppedJumping = false;
+        //        JumpTimeCounter = JumpTime;
+        //        AudManager.PlaySound("Jump_SFX", false, 0.2f, 128);
+        //    }
+        //}
+        //
         //if (!StoppedJumping)
         //{
         //    //and your counter hasn't reached zero...
@@ -300,15 +304,56 @@ public class CharacterControls : MonoBehaviour
         //        JumpTimeCounter -= Time.deltaTime;
         //    }
         //}
+        //
+        ////if you have released a and minimum jump is reached
+        ////or you jump for the full time
+        //if (/*(previousState.Buttons.A == ButtonState.Released && currentState.Buttons.A == ButtonState.Released) || JumpTimeCounter <= 0*/currentState.Buttons.A == ButtonState.Released)
+        //{
+        //    //stop jumping
+        //    JumpTimeCounter = 0;
+        //    StoppedJumping = true;
+        //}
 
-        //if you have released a and minimum jump is reached
-        //or you jump for the full time
-        if ((previousState.Buttons.A == ButtonState.Released && currentState.Buttons.A == ButtonState.Released/* && JumpTimeCounter <= JumpTime - Time.deltaTime*/) || JumpTimeCounter <= 0)
+
+        //jumping take two
+        //Debug.Log(JumpTimeCounter);
+
+        //if previous state is released and currentstate is pressed
+        if (previousState.Buttons.A == ButtonState.Released && currentState.Buttons.A == ButtonState.Pressed)
+        {
+            //if grounded
+            if (grounded)
+            {
+                //add jump force
+                rb.velocity = new Vector3(rb.velocity.x, jumpVelTwo, 0);
+                StoppedJumping = false;
+                JumpTimeCounter = JumpTime;
+                AudManager.PlaySound("Jump_SFX", false, 0.2f, 128);
+            }
+        }
+
+        //if you dont stop jumping
+        if (!StoppedJumping)
+        {
+            jumpVelTwo *= 1.01f;
+            //if counter is greater than zero
+            if (JumpTimeCounter > 0)
+            {
+                //keep jumping
+                rb.velocity = new Vector3(rb.velocity.x, jumpVelTwo, 0);
+                JumpTimeCounter -= 2 * Time.deltaTime;
+                Debug.Log("Still jumping");
+            }
+        }
+
+        if (currentState.Buttons.A == ButtonState.Released || JumpTimeCounter <= 0)
         {
             //stop jumping
-            JumpTimeCounter = 0;
             StoppedJumping = true;
+            JumpTimeCounter = 0f;
         }
+
+        //end jumping take two
 
         previousState = currentState;
     }
@@ -521,14 +566,14 @@ public class CharacterControls : MonoBehaviour
     //cast rays to check if the player is on the ground
     bool IsGrounded()
     {
-        Debug.DrawRay(transform.position, -Vector3.up, Color.black);
+        Debug.DrawRay(transform.position, -Vector3.up, Color.red);
         if (Physics.Raycast(transform.position, -Vector3.up, 3, LayerMask))
         {
             //if (gameObject.GetComponent<Rigidbody>().velocity.y == 0 || Mathf.Sign(gameObject.GetComponent<Rigidbody>().velocity.y) == -1)
             return true;
         }
 
-        Debug.DrawRay(new Vector3(transform.position.x + 0.4f, transform.position.y, transform.position.z), -Vector3.up, Color.black);
+        Debug.DrawRay(new Vector3(transform.position.x + 0.4f, transform.position.y, transform.position.z), -Vector3.up, Color.red);
         if (Physics.Raycast(new Vector3(transform.position.x + 0.4f, transform.position.y, transform.position.z), -Vector3.up, 3, LayerMask))
         {
             //if (gameObject.GetComponent<Rigidbody>().velocity.y <= 0)
@@ -536,14 +581,20 @@ public class CharacterControls : MonoBehaviour
             return true;
         }
 
-        Debug.DrawRay(new Vector3(transform.position.x - 0.4f, transform.position.y, transform.position.z), -Vector3.up, Color.black);
-        if (Physics.Raycast(new Vector3(transform.position.x - 0.4f, transform.position.y, transform.position.z), -Vector3.up, 3, LayerMask))
+        //Debug.DrawRay(new Vector3(transform.position.x - 0.5f, transform.position.y, transform.position.z), transform.position - Vector3.right * 3, Color.red);
+        Debug.DrawRay(new Vector3(transform.position.x - 1.5f, transform.position.y, transform.position.z), -Vector3.up * 3, Color.red);
+        if (Physics.Raycast(new Vector3(transform.position.x - 1.5f, transform.position.y, transform.position.z), -Vector3.up, 3, LayerMask))
         {
             //if (gameObject.GetComponent<Rigidbody>().velocity.y <= 0)
             //if (gameObject.GetComponent<Rigidbody>().velocity.y == 0 || Mathf.Sign(gameObject.GetComponent<Rigidbody>().velocity.y) == -1)
             return true;
         }
 
+        //Debug.DrawRay(transform.position + Vector3.up * -1.75f, Vector3.right * movementRayLength, Color.red);
+        //if(Physics.Raycast(transform.position + Vector3.up * -1.75f, Vector3.right * movementRayLength, 3, LayerMask))
+        //{
+        //    return true;
+        //}
         return false;
     }
 
