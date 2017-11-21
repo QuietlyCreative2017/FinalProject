@@ -17,9 +17,13 @@ public class MenuManager : MonoBehaviour {
 
     public AudioManager audManager;
 
+    GameObject previousSelected;
+
+    Button[] menuButtons;
     void Awake()
     {
         audManager = GetComponent<AudioManager>();
+        menuButtons = GameObject.FindObjectsOfType<Button>();
     }
 
     // Use this for initialization
@@ -29,8 +33,15 @@ public class MenuManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
-	}
+		if(m_ESystem.currentSelectedGameObject != previousSelected)
+        {
+            for (int i = 0; i < menuButtons.Length; i++)
+            {
+                menuButtons[i].transform.localScale = new Vector3(1, 1, 1);
+            }
+        }
+        previousSelected = m_ESystem.currentSelectedGameObject;
+    }
 
     public void PlayGame()
     {

@@ -50,6 +50,9 @@ public class GameManager : MonoBehaviour
 
     public GameObject[] PlayerUI;
 
+    Button[] menuButtons;
+    GameObject previousSelected;
+
     enum GameState
     {
         Playing,
@@ -66,6 +69,7 @@ public class GameManager : MonoBehaviour
         mainCamera = Camera.main;
         audManager = GetComponent<AudioManager>();
         EndGameUI.SetActive(false);
+        menuButtons = GameObject.FindObjectsOfType<Button>();
     }
 
     private void Start()
@@ -81,6 +85,14 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        menuButtons = GameObject.FindObjectsOfType<Button>();
+        if (m_ESystem.currentSelectedGameObject != previousSelected)
+        {
+            for (int i = 0; i < menuButtons.Length; i++)
+            {
+                menuButtons[i].transform.localScale = new Vector3(1, 1, 1);
+            }
+        }
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             Application.Quit();
@@ -141,6 +153,7 @@ public class GameManager : MonoBehaviour
                 //winner.gameObject.GetComponent<CharacterControls>().PlayWinAnimation();
                 if (winner != null)
                 {
+
                     winner.gameObject.GetComponent<CharacterControls>().enabled = false;
                     winner.gameObject.GetComponent<CharacterControls>().winAnim.SetBool("HasWon", true);
 
@@ -168,6 +181,7 @@ public class GameManager : MonoBehaviour
         }
 
 
+                previousSelected = m_ESystem.currentSelectedGameObject;
     }
 
     private void OnGUI()
@@ -191,7 +205,7 @@ public class GameManager : MonoBehaviour
             CurrentState = GameState.GameOver;
             //return whomever reached the end point
             audManager.PlaySound("Studio crowd celebration cheer clap_BLASTWAVEFX_12945", false, 0.2f, 128);
-            StartCoroutine("NewEndGameCountdown");
+            StartCoroutine(NewEndGameCountdown(WinObj.GetComponent<WinBox>().Winner));
             return WinObj.GetComponent<WinBox>().Winner;
         }
         for (int i = 0; i < player.Length; i++)
@@ -209,7 +223,7 @@ public class GameManager : MonoBehaviour
                 {
                     if (player[j].GetComponent<PlayerLives>().Lives() > 0)
                     {
-                        StartCoroutine("NewEndGameCountdown");
+                        StartCoroutine(NewEndGameCountdown(player[j]));
                         return player[j];
                     }
                 }
@@ -218,7 +232,7 @@ public class GameManager : MonoBehaviour
 
         if (deathCount == player.Length)
         {
-            StartCoroutine("NewEndGameCountdown");
+            StartCoroutine(NewEndGameCountdown(null));
             return null;
         }
 
@@ -336,21 +350,15 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    IEnumerator NewEndGameCountdown()
+    IEnumerator NewEndGameCountdown(GameObject winner)
     {
         //set timescale to zero
+        this.winner = winner;
         Time.timeScale = 0f;
         if (winner != null)
         {
-            if (winner != null)
-            {
-                WinTextObj.SetActive(true);
 
-            }
-            else
-            {
-                //show draw image
-            }
+            WinTextObj.SetActive(true);
 
             yield return new WaitForSecondsRealtime(1);
             audManager.PlaySound("Studio crowd celebration cheer clap_BLASTWAVEFX_12945", false, 0.2f, 128);
