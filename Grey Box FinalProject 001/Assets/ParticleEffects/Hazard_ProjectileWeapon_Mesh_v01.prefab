@@ -170,6 +170,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 50
+  deadTime: 5
+  followDeadTime: 0
+  homing: 1
+  SlerpTime: 0
+  v3Rotation: {x: 0, y: 0, z: 0}
+  ParticleEffect: {fileID: 0}
 --- !u!198 &198331649139178146
 ParticleSystem:
   m_ObjectHideFlags: 1

@@ -51,7 +51,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1017507989184598
 GameObject:
   m_ObjectHideFlags: 0
@@ -504,13 +504,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1017507989184598}
-  m_LocalRotation: {x: -0, y: -0.6383915, z: -0, w: 0.76971185}
-  m_LocalPosition: {x: 0.72, y: -1.25, z: -0.22000003}
+  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: -1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4685474960807806}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: -79.344, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
 --- !u!4 &4175101347813716
 Transform:
   m_ObjectHideFlags: 1
@@ -1594,21 +1594,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fInput: 0
-  speed: 10
   JumpVel: 40
   JumpTime: 0.1
   LayerMask:
     serializedVersion: 2
     m_Bits: 1024
-  maxSpeed: 40
   maxBoostSpeed: 0
   gravityforce: -9.8
   playerIndex: 1
   movementRayLength: 2
-  CameraBoost: 1.1
-  CameraBoostCooldown: 10
   winAnim: {fileID: 95839749528499922}
-  speedDecrease: 10
   Ground:
     serializedVersion: 2
     m_Bits: 1024
@@ -1630,7 +1625,7 @@ MonoBehaviour:
   speedBoostMax: 40
   speedIncreaseTwo: 5
   speedReductionTwo: 5
-  loserSpeedIncrease: 1.1
+  loserSpeedIncrease: 1.06
   GM: {fileID: 0}
 --- !u!114 &114616323000120118
 MonoBehaviour:
@@ -1644,7 +1639,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rocket: 0
-  rocketPrefab: {fileID: 1703008469852968, guid: 8aa2ce2fa0698fc46bdc957ccc930939,
+  rocketPrefab: {fileID: 1701604415795348, guid: 9987331116f32c247b2e6434d2011d49,
     type: 2}
   shot: 0
   canPickUp: 1
@@ -1694,7 +1689,7 @@ ParticleSystem:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1658603773663784}
   serializedVersion: 5
-  lengthInSec: 5
+  lengthInSec: 1
   simulationSpeed: 1
   looping: 0
   prewarm: 0
@@ -1746,7 +1741,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 1503751392
+  randomSeed: -111519127
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -5008,7 +5003,7 @@ ParticleSystem:
   moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -131476913
+  randomSeed: -165845630
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -5450,7 +5445,7 @@ ParticleSystem:
         m_RotationOrder: 4
   ShapeModule:
     serializedVersion: 5
-    enabled: 1
+    enabled: 0
     type: 4
     angle: 25
     length: 5
@@ -5568,8 +5563,8 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 0
-      minScalar: 50
+      scalar: 50
+      minScalar: 20
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -8218,7 +8213,7 @@ ParticleSystem:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1077596137616196}
   serializedVersion: 5
-  lengthInSec: 5
+  lengthInSec: 1
   simulationSpeed: 1
   looping: 0
   prewarm: 0
@@ -8270,7 +8265,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -580072391
+  randomSeed: -216520820
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -11480,7 +11475,7 @@ ParticleSystem:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1073937378664904}
   serializedVersion: 5
-  lengthInSec: 2
+  lengthInSec: 1
   simulationSpeed: 1
   looping: 0
   prewarm: 0
@@ -11532,7 +11527,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -1676806058
+  randomSeed: -1139362494
   InitialModule:
     serializedVersion: 3
     enabled: 1
