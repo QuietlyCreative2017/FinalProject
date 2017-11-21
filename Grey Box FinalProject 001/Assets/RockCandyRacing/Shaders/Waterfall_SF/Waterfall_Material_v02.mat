@@ -1,0 +1,144 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: Waterfall_Material_v02
+  m_Shader: {fileID: 4800000, guid: 8d0125df745410d48837b6b50bac1b5c, type: 3}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _BumpMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailAlbedoMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailMask:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailNormalMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _EmissionMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 2800000, guid: 47cab5d8ecfe90f4ebb31e16105f839c, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MetallicGlossMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _OcclusionMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _ParallaxMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _RefractionMap:
+        m_Texture: {fileID: 2800000, guid: ea89a2f026950f44a9515274ae49c092, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _StreakTexture1:
+        m_Texture: {fileID: 2800000, guid: beab70d16a12f0c4ea8109906fb95eea, type: 3}
+        m_Scale: {x: 20, y: 5}
+        m_Offset: {x: 0, y: 0}
+    - _StreakTexture2:
+        m_Texture: {fileID: 2800000, guid: 136cb13c73ee62e41990b797ad22431d, type: 3}
+        m_Scale: {x: 20, y: 5}
+        m_Offset: {x: 0, y: 0}
+    - _Waterfall_Effect1:
+        m_Texture: {fileID: 2800000, guid: 680f914764403184b86e8a49604a0a7e, type: 3}
+        m_Scale: {x: 4, y: 4}
+        m_Offset: {x: 0, y: 0}
+    - _Waterfall_Effect2:
+        m_Texture: {fileID: 2800000, guid: 976537ccc033cc04aa64790592980fbe, type: 3}
+        m_Scale: {x: 4, y: 4}
+        m_Offset: {x: 0, y: 0}
+    - _node_2027:
+        m_Texture: {fileID: 2800000, guid: 976537ccc033cc04aa64790592980fbe, type: 3}
+        m_Scale: {x: 4, y: 4}
+        m_Offset: {x: 0, y: 0}
+    - _node_2066:
+        m_Texture: {fileID: 2800000, guid: 6e28079f6ba45c54382b18969430ce8c, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _node_2866:
+        m_Texture: {fileID: 2800000, guid: 47cab5d8ecfe90f4ebb31e16105f839c, type: 3}
+        m_Scale: {x: 4, y: 4}
+        m_Offset: {x: 0, y: 0}
+    - _node_6638:
+        m_Texture: {fileID: 2800000, guid: 7ce94658e25d51c40a14ede365e52507, type: 3}
+        m_Scale: {x: 4, y: 4}
+        m_Offset: {x: 0, y: 0}
+    - _node_7437:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _node_9820:
+        m_Texture: {fileID: 2800000, guid: 680f914764403184b86e8a49604a0a7e, type: 3}
+        m_Scale: {x: 4, y: 4}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - _BumpScale: 1
+    - _Cutoff: 0.5
+    - _DetailNormalMapScale: 1
+    - _DstBlend: 0
+    - _Gloss: 0
+    - _GlossMapScale: 1
+    - _Glossiness: 0.5
+    - _GlossyReflections: 1
+    - _Metallic: 0
+    - _Mode: 0
+    - _OcclusionStrength: 1
+    - _Opacity: 0.35
+    - _Parallax: 0.02
+    - _RefractionDistortion: 0.08
+    - _SmoothnessTextureChannel: 0
+    - _SpecularHighlights: 1
+    - _SrcBlend: 1
+    - _StreakSpeed1: 0.3
+    - _StreakSpeed2: 0.4
+    - _UVSec: 0
+    - _ZWrite: 1
+    - _node_5777: 1
+    - _node_5777_copy: 1
+    - _node_6378: 0.3
+    - _node_7682: 1
+    - _node_8676: 0.5
+    - _node_9923: 1
+    m_Colors:
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _Colour1: {r: 1, g: 1, b: 1, a: 1}
+    - _Colour2: {r: 1, g: 1, b: 1, a: 1}
+    - _Effect_Color1: {r: 0.46666667, g: 0.69803923, b: 0.69803923, a: 1}
+    - _Effect_Color2: {r: 0.74509805, g: 0.8745098, b: 0.8745098, a: 1}
+    - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+    - _WaterBaseColor: {r: 0.3538603, g: 0.5573909, b: 0.5661765, a: 1}
+    - _WaterStreak_Color1: {r: 0.7463235, g: 0.875, b: 0.875, a: 1}
+    - _WaterStreak_Color2: {r: 0.5467128, g: 0.9411765, b: 0.8432407, a: 1}
+    - _node_2538: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+    - _node_2580: {r: 0.6985294, g: 0.09245243, b: 0.09245243, a: 1}
+    - _node_30: {r: 0.34088448, g: 0.49752858, b: 0.71323526, a: 1}
+    - _node_7132: {r: 0.19204152, g: 0.42878237, b: 0.8161765, a: 1}
+    - _node_9397: {r: 0.2105861, g: 0.5168127, b: 0.6985294, a: 1}
+    - _node_9699: {r: 0.5, g: 0.5, b: 0.5, a: 1}
