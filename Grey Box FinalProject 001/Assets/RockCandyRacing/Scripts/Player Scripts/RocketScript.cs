@@ -61,7 +61,7 @@ public class RocketScript : MonoBehaviour {
         if(col.gameObject.tag == "Rocket" && canPickUp && isActiveAndEnabled && PickupCD <= 0 && col.gameObject.GetComponent<PickUpBool>().Pickupable == true)
         {
             //pick up the thing
-            AudManager.PlaySound("Rocket_Pickup_SFX", false, 0.2f, 128);
+            AudManager.PlaySound("Rocket_Pickup_SFX", false, 0.05f, 128);
             rocket = true;
             shot = false;
             Destroy(col.gameObject);
