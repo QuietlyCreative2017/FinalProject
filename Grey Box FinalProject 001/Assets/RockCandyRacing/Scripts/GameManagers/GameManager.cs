@@ -183,7 +183,7 @@ public class GameManager : MonoBehaviour
         }
 
 
-                previousSelected = m_ESystem.currentSelectedGameObject;
+        previousSelected = m_ESystem.currentSelectedGameObject;
     }
 
     private void OnGUI()
@@ -208,6 +208,8 @@ public class GameManager : MonoBehaviour
             //return whomever reached the end point
             audManager.PlaySound("Studio crowd celebration cheer clap_BLASTWAVEFX_12945", false, 0.2f, 128);
             StartCoroutine(NewEndGameCountdown(WinObj.GetComponent<WinBox>().Winner));
+
+
             return WinObj.GetComponent<WinBox>().Winner;
         }
         for (int i = 0; i < player.Length; i++)
