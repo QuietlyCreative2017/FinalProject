@@ -51,6 +51,7 @@ public class MenuManager : MonoBehaviour {
     public void Credits()
     {
         audManager.PlaySound("Nav_Menu_SFX", false, 0.2f, 128);
+        SceneManager.load
     }
 
     public void Exit()
