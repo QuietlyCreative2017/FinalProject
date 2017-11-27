@@ -25,7 +25,7 @@ public class SpeedUp : MonoBehaviour
         if (other.gameObject.tag == "Player")
         {
             CharacterControls colControls = other.gameObject.GetComponent<CharacterControls>();
-            colControls.StartCoroutine(colControls.speedUp(BoostAmount, false));
+            colControls.StartCoroutine(colControls.speedUp(BoostAmount, true));
 
         }
 
