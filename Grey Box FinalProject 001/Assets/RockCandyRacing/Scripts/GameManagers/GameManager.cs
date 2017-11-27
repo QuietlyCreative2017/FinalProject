@@ -295,7 +295,7 @@ public class GameManager : MonoBehaviour
         //set timescale to 1
         Time.timeScale = 1;
         //load play scene again
-        SceneManager.LoadScene("Final_Scene_v1");
+        SceneManager.LoadScene("Playground_V03");
     }
 
     public void goToMenu()
@@ -307,7 +307,7 @@ public class GameManager : MonoBehaviour
     public void Restart()
     {
         audManager.PlaySound("Nav_Menu_SFX", false, 0.2f, 128);
-        StartCoroutine(WaitForSecondsThenLoadScene(0, "Final_Scene_v1"));
+        StartCoroutine(WaitForSecondsThenLoadScene(0, "Playground_V03"));
     }
 
 
@@ -390,7 +390,7 @@ public class GameManager : MonoBehaviour
         //set timescale to 1
         Time.timeScale = 1;
         //load play scene again
-        SceneManager.LoadScene("Final_Scene_v1");
+        SceneManager.LoadScene("Playground_V03");
     }
 
     void stopVibration()
@@ -422,9 +422,15 @@ public class GameManager : MonoBehaviour
 
     public float returnMagnitudeDifference()
     {
-        SortLeader();
-        Vector3 difference = player[1].transform.position - player[0].transform.position;
-        float magnitude = difference.magnitude;
-        return magnitude;
+        if (player.Length > 1)
+        {
+            SortLeader();
+            Vector3 difference = player[1].transform.position - player[0].transform.position;
+            float magnitude = difference.magnitude;
+            return magnitude;
+
+        }
+
+        else return 0;
     }
 }

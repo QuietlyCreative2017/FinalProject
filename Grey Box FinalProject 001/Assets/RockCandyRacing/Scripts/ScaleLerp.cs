@@ -23,13 +23,10 @@ public class ScaleLerp : MonoBehaviour
     float previousTime;
     float currentTime;
     float deltaTime;
-
-    float startTime;
     // Use this for initialization
     void Start()
     {
         previousTime = Time.timeSinceLevelLoad;
-        startTime = Time.time;
     }
 
     // Update is called once per frame

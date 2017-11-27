@@ -64,7 +64,7 @@ public class MenuManager : MonoBehaviour {
     {
 
         audManager.PlaySound("Menu_Select_SFX", false, 0.2f, 128);
-        AsyncOperation operation = SceneManager.LoadSceneAsync(1);
+        AsyncOperation operation = SceneManager.LoadSceneAsync("Playground_V03");
         LoadScreen.SetActive(true);
         while (!operation.isDone)
         {

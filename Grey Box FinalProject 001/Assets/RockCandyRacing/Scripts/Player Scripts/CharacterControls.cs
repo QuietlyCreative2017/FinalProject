@@ -497,7 +497,10 @@ public class CharacterControls : MonoBehaviour
             {
                 if (gm.returnIndex(gameObject.name) == 0)
                 {
-                    return rb.position + transform.right * fInput * (currentSpeed * loserSpeedIncrease) * Time.fixedDeltaTime;
+                    float speedIncrease = gm.returnMagnitudeDifference();
+                    speedIncrease += 100;
+                    speedIncrease /= 100;
+                    return rb.position + transform.right * fInput * (currentSpeed * speedIncrease) * Time.fixedDeltaTime;
 
                 }
                 else return rb.position + transform.right * fInput * (currentSpeed) * Time.fixedDeltaTime;

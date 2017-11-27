@@ -34,14 +34,22 @@ public class WinBox : MonoBehaviour
         //if a player enters set the winner
         if (collision.gameObject.tag == "Player")
         {
-            if ((int)Players[0].transform.position.x == (int)Players[1].transform.position.x)
+            if (Players.Length > 1)
             {
-                Winner = null;
+                if ((int)Players[0].transform.position.x == (int)Players[1].transform.position.x)
+                {
+                    Winner = null;
+                }
+                else
+                {
+                    Winner = collision.gameObject;
+
+                }
+
             }
             else
             {
                 Winner = collision.gameObject;
-
             }
             won = true;
         }
