@@ -27,16 +27,16 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - _Background_Opacity: 0.661
+    - _Background_Opacity: 0.443
     - _Cutoff: 0.5
-    - _Large_WindSpeed: 0.4
+    - _Large_WindSpeed: 0.77
     - _Large_WindTile: 1
     - _Small_WindSpeed: 0.4
     - _Small_WindTile: 2
     - _windSmall_Opacity: 0.831
     m_Colors:
-    - _Background_Colour: {r: 1, g: 0.9406694, b: 0.1397059, a: 1}
-    - _Large_FillColor: {r: 0.7058823, g: 0.150519, b: 0.150519, a: 1}
+    - _Background_Colour: {r: 1, g: 0.72413784, b: 0, a: 1}
+    - _Large_FillColor: {r: 1, g: 1, b: 1, a: 1}
     - _Large_OutlineColor: {r: 0, g: 0, b: 0, a: 1}
-    - _Small_FillColor: {r: 1, g: 0.4793102, b: 0, a: 1}
+    - _Small_FillColor: {r: 1, g: 1, b: 1, a: 1}
     - _Small_OutlineColor: {r: 0, g: 0, b: 0, a: 1}

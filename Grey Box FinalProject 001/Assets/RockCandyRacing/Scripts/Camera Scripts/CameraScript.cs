@@ -50,7 +50,7 @@ public class CameraScript : MonoBehaviour
 
     void LateUpdate()
     {
-        middle.transform.position = new Vector3(gameObject.transform.position.x, middle.transform.position.y, 1);
+        //middle.transform.position = new Vector3(gameObject.transform.position.x, middle.transform.position.y, 1);
         SortLeader();
         if (players != null)
         {
