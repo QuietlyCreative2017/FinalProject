@@ -108,7 +108,7 @@ public class CharacterControls : MonoBehaviour
         PickupCDA = 0;
         jumpVelTwo = JumpVel;
         //speed take two
-
+        SpeedUpCD = 0;
         currentSpeed = initialSpeed;
 
         //end speed take two
