@@ -53,6 +53,10 @@ public class GameManager : MonoBehaviour
     Button[] menuButtons;
     GameObject previousSelected;
 
+
+    public float endCelebrationVolume;
+    public float catDeathVolume;
+
     enum GameState
     {
         Playing,
@@ -126,7 +130,7 @@ public class GameManager : MonoBehaviour
                         Vector3 disPos = Camera.main.ViewportToWorldPoint(new Vector3(1, 1, 0));
                         newT.Set(SpawnPoint.transform.position.x, disPos.y, -1);
                         player[i].transform.position = newT;
-                        audManager.PlaySound("Cat_Death_SFX", false, 0.2f, 128);
+                        audManager.PlaySound("Cat_Death_SFX", false, catDeathVolume, 128);
                         player[i].GetComponent<PlayerLives>().RemoveLife();
                         player[i].GetComponent<Rigidbody>().velocity = Vector3.zero;
                         player[i].GetComponent<CharacterControls>().Respawn();
@@ -206,7 +210,7 @@ public class GameManager : MonoBehaviour
             //set current state to gameover
             CurrentState = GameState.GameOver;
             //return whomever reached the end point
-            audManager.PlaySound("Studio crowd celebration cheer clap_BLASTWAVEFX_12945", false, 0.2f, 128);
+            audManager.PlaySound("Studio crowd celebration cheer clap_BLASTWAVEFX_12945", false, endCelebrationVolume, 128);
             StartCoroutine(NewEndGameCountdown(WinObj.GetComponent<WinBox>().Winner));
 
 
@@ -365,7 +369,7 @@ public class GameManager : MonoBehaviour
             WinTextObj.SetActive(true);
 
             yield return new WaitForSecondsRealtime(1);
-            audManager.PlaySound("Studio crowd celebration cheer clap_BLASTWAVEFX_12945", false, 0.2f, 128);
+            audManager.PlaySound("Studio crowd celebration cheer clap_BLASTWAVEFX_12945", false, endCelebrationVolume, 128);
             //do a countdown for however many seconds to let animation play
             for (float i = countDownTimer; i >= 0; i--)
             {

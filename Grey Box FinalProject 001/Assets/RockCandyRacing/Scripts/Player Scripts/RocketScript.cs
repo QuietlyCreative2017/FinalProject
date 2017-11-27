@@ -19,6 +19,7 @@ public class RocketScript : MonoBehaviour {
     public float PickupCD;
 
     public AudioManager AudManager;
+    public float RocketVolume;
     private void Awake()
     {
         playerIndex = gameObject.GetComponent<CharacterControls>().GetPlayerIndex();
@@ -61,7 +62,7 @@ public class RocketScript : MonoBehaviour {
         if(col.gameObject.tag == "Rocket" && canPickUp && isActiveAndEnabled && PickupCD <= 0 && col.gameObject.GetComponent<PickUpBool>().Pickupable == true)
         {
             //pick up the thing
-            AudManager.PlaySound("Rocket_Pickup_SFX", false, 0.05f, 128);
+            AudManager.PlaySound("Rocket_Pickup_SFX", false, RocketVolume, 128);
             rocket = true;
             shot = false;
             Destroy(col.gameObject);
