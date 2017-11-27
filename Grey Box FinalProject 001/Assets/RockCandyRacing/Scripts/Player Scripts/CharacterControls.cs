@@ -92,6 +92,8 @@ public class CharacterControls : MonoBehaviour
     public float SpeedBoostVolume;
     public float DazeVolume;
 
+    public float SpeedBoostCD;
+    float SpeedUpCD;
     private void Awake()
     {
         rb = gameObject.GetComponent<Rigidbody>();
@@ -105,7 +107,6 @@ public class CharacterControls : MonoBehaviour
         JumpTimeCounter = JumpTime;
         PickupCDA = 0;
         jumpVelTwo = JumpVel;
-
         //speed take two
 
         currentSpeed = initialSpeed;
@@ -119,6 +120,7 @@ public class CharacterControls : MonoBehaviour
         //camBoostCD -= Time.deltaTime;
         HandleXinput();
         PickupCDA -= Time.deltaTime;
+        SpeedUpCD -= Time.deltaTime;
 
         if (!grounded)
         {
@@ -443,13 +445,19 @@ public class CharacterControls : MonoBehaviour
         //    speed *= a_SpeedIncrease;
         //}
 
-        if (currentSpeed <= speedBoostMax)
+        if (SpeedUpCD <= 0)
         {
-            if (playSound)
+            if (currentSpeed <= speedBoostMax)
             {
-                AudManager.PlaySound("Turbo_Boost_SFX_v2", false, SpeedBoostVolume, 128);
+                if (playSound)
+                {
+                    AudManager.PlaySound("Turbo_Boost_SFX_v2", false, SpeedBoostVolume, 128);
+                }
+                currentSpeed *= a_SpeedIncrease;
+                SpeedUpCD = SpeedBoostCD;
             }
-            currentSpeed *= a_SpeedIncrease;
+
+
         }
         yield return new WaitForSeconds(0.5f);
     }
