@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class CreditsManager : MonoBehaviour {
 
+    public float CountDown;
+
 	// Use this for initialization
 	void Start () {
 		
@@ -12,7 +14,12 @@ public class CreditsManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
+        CountDown -= Time.deltaTime;
+
+        if(CountDown <= 0)
+        {
+            GoToMenu();
+        }
 	}
 
     public void GoToMenu()
