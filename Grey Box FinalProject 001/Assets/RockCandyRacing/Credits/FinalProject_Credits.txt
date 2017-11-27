@@ -1,0 +1,59 @@
+Credits
+
+
+
+
+Sounds:
+
+"Love Shuttle" 
+By Waterflame
+https://www.newgrounds.com/audio/listen/596766
+https://creativecommons.org/licenses/by-nc-sa/3.0/
+
+
+BFXR
+https://www.bfxr.net/
+
+Chiptone
+http://sfbgames.com/chiptone/
+
+Audacity
+http://www.audacityteam.org/
+
+SoundSnap
+https://www.soundsnap.com/
+
+
+Font(Westmeath)
+https://www.dafont.com/westmeath.font
+
+ShaderForge
+https://www.assetstore.unity3d.com/en/#!/content/14147
+
+
+
+
+Software used;
+
+Unity
+Photoshop
+Quixel SUITE 2.0
+xNormal
+Visual Studio
+
+
+ShaderForge
+https://www.assetstore.unity3d.com/en/#!/content/14147
+
+ProBuilder Basic
+https://www.assetstore.unity3d.com/en/#!/content/11919
+
+Post Processing Stack
+https://www.assetstore.unity3d.com/en/#!/content/83912
+
+
+
+
+3rd Party Textures:
+
+https://www.dreamstime.com/royalty-free-stock-images-strawberry-icecream-texture-image25562179
