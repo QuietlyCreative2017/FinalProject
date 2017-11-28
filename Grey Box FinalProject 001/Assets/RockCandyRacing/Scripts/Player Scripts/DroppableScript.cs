@@ -19,7 +19,7 @@ public class DroppableScript : MonoBehaviour {
     CharacterControls PlayerScript;
     public float PickupCD;
     public float PickupVolume;
-    public float PickupPrio;
+    public int PickupPrio;
 
     public AudioManager AudManager;
     private void Awake()
