@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: a0a40b2281b7dde46adbcf1ccd228256
+timeCreated: 1511830462
+licenseType: Pro
+ShaderImporter:
+  defaultTextures:
+  - _texSpeedBoost_Fill: {fileID: 2800000, guid: 3dfaa696d1cffae4191e00e891600f31,
+      type: 3}
+  - _texSpeedBoost_Outline: {fileID: 2800000, guid: cfa7be8613943c14cbc9b72af5a5a563,
+      type: 3}
+  - _Streak_Texture: {fileID: 2800000, guid: 6f0340337b09f274fb5329a76e05efe1, type: 3}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -1510,6 +1510,11 @@ MonoBehaviour:
   speedReductionTwo: 5
   loserSpeedIncrease: 1.06
   GM: {fileID: 0}
+  minJumpTime: 0
+  JumpVolume: 1
+  SpeedBoostVolume: 0.3
+  DazeVolume: 0.3
+  SpeedBoostCD: 0.5
 --- !u!114 &114251486738769280
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1546,12 +1551,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rocket: 0
-  rocketPrefab: {fileID: 1701604415795348, guid: 9987331116f32c247b2e6434d2011d49,
+  rocketPrefab: {fileID: 1703008469852968, guid: 8aa2ce2fa0698fc46bdc957ccc930939,
     type: 2}
   shot: 0
   canPickUp: 1
   PickupCD: 0
   AudManager: {fileID: 0}
+  RocketVolume: 0.2
 --- !u!114 &114819681009537564
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1569,6 +1575,7 @@ MonoBehaviour:
   type: WASD
   canPickUp: 1
   PickupCD: 0
+  PickupVolume: 0
   AudManager: {fileID: 0}
 --- !u!136 &136847548769531120
 CapsuleCollider:

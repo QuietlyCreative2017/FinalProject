@@ -51,7 +51,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1017507989184598
 GameObject:
   m_ObjectHideFlags: 0
@@ -1581,6 +1581,7 @@ MonoBehaviour:
   type: WASD
   canPickUp: 1
   PickupCD: 0
+  PickupVolume: 0
   AudManager: {fileID: 0}
 --- !u!114 &114285767455031434
 MonoBehaviour:
@@ -1627,6 +1628,11 @@ MonoBehaviour:
   speedReductionTwo: 5
   loserSpeedIncrease: 1.06
   GM: {fileID: 0}
+  minJumpTime: 0
+  JumpVolume: 1
+  SpeedBoostVolume: 1
+  DazeVolume: 1
+  SpeedBoostCD: 0.2
 --- !u!114 &114616323000120118
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1639,12 +1645,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rocket: 0
-  rocketPrefab: {fileID: 1701604415795348, guid: 9987331116f32c247b2e6434d2011d49,
+  rocketPrefab: {fileID: 1703008469852968, guid: 8aa2ce2fa0698fc46bdc957ccc930939,
     type: 2}
   shot: 0
   canPickUp: 1
   PickupCD: 0
   AudManager: {fileID: 0}
+  RocketVolume: 0
 --- !u!114 &114712530407693048
 MonoBehaviour:
   m_ObjectHideFlags: 1

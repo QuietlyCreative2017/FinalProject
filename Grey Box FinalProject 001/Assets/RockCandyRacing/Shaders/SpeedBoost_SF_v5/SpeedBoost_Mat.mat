@@ -1,0 +1,212 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: SpeedBoost_Mat
+  m_Shader: {fileID: 4800000, guid: a0a40b2281b7dde46adbcf1ccd228256, type: 3}
+  m_ShaderKeywords: _BGINVERT_ON _NODE_2116_ON
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _ArrowTexture:
+        m_Texture: {fileID: 2800000, guid: 657bfe2f7b3dd87478aa1764a09ba74a, type: 3}
+        m_Scale: {x: 5, y: 5}
+        m_Offset: {x: 0, y: 0}
+    - _ArrowTexture_copy:
+        m_Texture: {fileID: 2800000, guid: 725456a204ff5764fa0556c0de5a15bf, type: 3}
+        m_Scale: {x: 7.5, y: 7.5}
+        m_Offset: {x: 0, y: 0}
+    - _Arrow_Texture:
+        m_Texture: {fileID: 2800000, guid: d3049abde9d636740ad193766ff86565, type: 3}
+        m_Scale: {x: 5, y: 5}
+        m_Offset: {x: 0, y: 0}
+    - _BumpMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailAlbedoMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailMask:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailNormalMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _EmissionMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _FillColor:
+        m_Texture: {fileID: 2800000, guid: 7e1e10138aaed0c45b2a54081f6e045b, type: 3}
+        m_Scale: {x: 5, y: 5}
+        m_Offset: {x: 0, y: 0}
+    - _FillTexture:
+        m_Texture: {fileID: 2800000, guid: cfa7be8613943c14cbc9b72af5a5a563, type: 3}
+        m_Scale: {x: 2.5, y: 2.5}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MetallicGlossMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _OcclusionMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _OutlineColor:
+        m_Texture: {fileID: 2800000, guid: d9ce005f189b1964eaa0f031463abfd5, type: 3}
+        m_Scale: {x: 5, y: 5}
+        m_Offset: {x: 0, y: 0}
+    - _OutlineTexture:
+        m_Texture: {fileID: 2800000, guid: 3dfaa696d1cffae4191e00e891600f31, type: 3}
+        m_Scale: {x: 2.5, y: 2.5}
+        m_Offset: {x: 0, y: 0}
+    - _ParallaxMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Streak_Texture:
+        m_Texture: {fileID: 2800000, guid: 6574f79e66a19144190a4a3a66116315, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Wind_Texture:
+        m_Texture: {fileID: 2800000, guid: d3049abde9d636740ad193766ff86565, type: 3}
+        m_Scale: {x: 5, y: 5}
+        m_Offset: {x: 0, y: 0}
+    - _node_1451:
+        m_Texture: {fileID: 2800000, guid: df378df4b8af473458209b4568785977, type: 3}
+        m_Scale: {x: 2, y: 2}
+        m_Offset: {x: 0, y: 0}
+    - _node_1773:
+        m_Texture: {fileID: 2800000, guid: 657bfe2f7b3dd87478aa1764a09ba74a, type: 3}
+        m_Scale: {x: 5, y: 5}
+        m_Offset: {x: 0, y: 0}
+    - _node_244:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _node_6171:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _node_7403:
+        m_Texture: {fileID: 2800000, guid: 3dfaa696d1cffae4191e00e891600f31, type: 3}
+        m_Scale: {x: 5, y: 5}
+        m_Offset: {x: 0, y: 0}
+    - _node_7534:
+        m_Texture: {fileID: 2800000, guid: cfa7be8613943c14cbc9b72af5a5a563, type: 3}
+        m_Scale: {x: 5, y: 5}
+        m_Offset: {x: 0, y: 0}
+    - _texSpeedBoost_Fill:
+        m_Texture: {fileID: 2800000, guid: 3dfaa696d1cffae4191e00e891600f31, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _texSpeedBoost_Outline:
+        m_Texture: {fileID: 2800000, guid: cfa7be8613943c14cbc9b72af5a5a563, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - _ArrowSpeed: 0.27
+    - _ArrowSpeed_Large: 0
+    - _ArrowSpeed_Small: 0
+    - _ArrowSpeed_copy: 0.19
+    - _ArrowSpeed_small: 0.2
+    - _ArrowsSmallOpacity: 0.25
+    - _ArrowsSmall_Opacity: 0
+    - _BG_Opacity: 1
+    - _BGinvert: 1
+    - _BackgroundOpacity: 0.527
+    - _Background_Opacity: 0
+    - _BumpScale: 1
+    - _Cutoff: 0.5
+    - _DetailNormalMapScale: 1
+    - _DstBlend: 0
+    - _GlossMapScale: 1
+    - _Glossiness: 0.5
+    - _GlossyReflections: 1
+    - _LargeWind_Speed: 0.33
+    - _Large_WindSpeed: 1
+    - _Large_WindTile: 1
+    - _Metallic: 0
+    - _Mode: 0
+    - _OcclusionStrength: 1
+    - _Parallax: 0.02
+    - _SmallWind_Speed: 0.09
+    - _Small_WindSpeed: 1
+    - _Small_WindTile: 3
+    - _SmoothnessTextureChannel: 0
+    - _SpecularHighlights: 1
+    - _SrcBlend: 1
+    - _StreakOpacity: 1
+    - _StreakSpeed: 3
+    - _StreakTile: 1
+    - _Temp1: 0.2
+    - _Temp2: 0
+    - _Temp3: 0
+    - _UVSec: 0
+    - _UnusedOpacity: 0
+    - _WindSmall_Opacity: 0.25
+    - _WindSpeed_Large: 0.35
+    - _WindSpeed_Small: 0.2
+    - _ZWrite: 1
+    - _node_1089: 4
+    - _node_1726: 2
+    - _node_2116: 1
+    - _node_2813: 1
+    - _node_3702: 0.26
+    - _node_3838: 2
+    - _node_4069: 0.43
+    - _node_4143: 1
+    - _node_5356: 1
+    - _node_5380: 0.35
+    - _node_7704: 0.15
+    - _node_8092: 0
+    - _windSmall_Opacity: 1
+    m_Colors:
+    - _ArrowLarge_Color: {r: 0.1490196, g: 0.7490196, b: 0.8745099, a: 1}
+    - _ArrowSmall_Color: {r: 0.14901961, g: 0.7490196, b: 0.8745098, a: 0.2509804}
+    - _BackgroundColour: {r: 0, g: 1, b: 0, a: 0}
+    - _Background_Colour: {r: 0.07996324, g: 0.6397059, b: 0.3617647, a: 1}
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+    - _FillColor: {r: 1, g: 0, b: 0, a: 1}
+    - _FillColor_Large: {r: 0, g: 0.5, b: 1, a: 1}
+    - _FillColor_Small: {r: 1, g: 1, b: 0, a: 1}
+    - _FillColor_copy: {r: 0, g: 0, b: 1, a: 1}
+    - _Large_FillColor: {r: 1, g: 1, b: 1, a: 1}
+    - _Large_OutlineColor: {r: 0, g: 0, b: 0, a: 1}
+    - _OutlineColor: {r: 0, g: 1, b: 1, a: 1}
+    - _OutlineColor_Large: {r: 1, g: 0, b: 0, a: 1}
+    - _OutlineColor_Small: {r: 0.034482718, g: 0.5019608, b: 0, a: 1}
+    - _OutlineColor_copy: {r: 1, g: 0, b: 0, a: 1}
+    - _Red: {r: 0, g: 0, b: 1, a: 1}
+    - _Small_FillColor: {r: 1, g: 1, b: 1, a: 1}
+    - _Small_OutlineColor: {r: 0, g: 0, b: 0, a: 1}
+    - _StreakColor: {r: 1, g: 0.5019608, b: 0, a: 1}
+    - _Wind_Color: {r: 0.1490196, g: 0.7490196, b: 0.8745098, a: 0.2509804}
+    - _node_2805: {r: 0, g: 0.5, b: 1, a: 1}
+    - _node_3608: {r: 0.14901961, g: 0.7490196, b: 0.8745098, a: 1}
+    - _node_4646: {r: 1, g: 0, b: 0, a: 1}
+    - _node_4901: {r: 0.8, g: 0.8, b: 0.8, a: 1}
+    - _node_6019: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+    - _node_6107: {r: 1, g: 0, b: 0, a: 1}
+    - _node_7095: {r: 1, g: 0, b: 0.93103456, a: 1}
+    - _node_9734: {r: 1, g: 0, b: 0, a: 1}
+    - _node_9866: {r: 0.5, g: 0.5, b: 0.5, a: 1}
