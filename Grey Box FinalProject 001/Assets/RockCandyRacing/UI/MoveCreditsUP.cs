@@ -14,7 +14,7 @@ public class MoveCreditsUP : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        transform.position = transform.position + new Vector3(0, moveUpSpeed, 0);
-
+         //transform.position = transform.position + new Vector3(0, moveUpSpeed * Time.deltaTime, 0);
+        transform.Translate(new Vector3(0, moveUpSpeed * Time.deltaTime, 0));
 	}
 }
