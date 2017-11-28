@@ -92,6 +92,10 @@ public class CharacterControls : MonoBehaviour
     public float SpeedBoostVolume;
     public float DazeVolume;
 
+    public int JumpPrio;
+    public int SpeedBoostPrio;
+    public int DazePrio;
+
     public float SpeedBoostCD;
     float SpeedUpCD;
     private void Awake()
@@ -334,7 +338,7 @@ public class CharacterControls : MonoBehaviour
                 rb.velocity = new Vector3(rb.velocity.x, jumpVelTwo, 0);
                 StoppedJumping = false;
                 JumpTimeCounter = JumpTime;
-                AudManager.PlaySound("Jump_SFX", false, JumpVolume, 128);
+                AudManager.PlaySound("Jump_SFX", false, JumpVolume, JumpPrio);
             }
         }
 
@@ -428,7 +432,7 @@ public class CharacterControls : MonoBehaviour
         {
             GO.GetComponent<ParticleSystem>().Play();
         }
-        AudManager.PlaySound("Daze_SFX", false, DazeVolume, 128);
+        AudManager.PlaySound("Daze_SFX", false, DazeVolume, DazePrio);
         currentSpeed /= reduction;
         yield return new WaitForSeconds(2f);
     }
@@ -451,7 +455,7 @@ public class CharacterControls : MonoBehaviour
             {
                 if (playSound)
                 {
-                    AudManager.PlaySound("Turbo_Boost_SFX_v2", false, SpeedBoostVolume, 128);
+                    AudManager.PlaySound("Turbo_Boost_SFX_v2", false, SpeedBoostVolume, SpeedBoostPrio);
                 }
                 currentSpeed *= a_SpeedIncrease;
                 SpeedUpCD = SpeedBoostCD;

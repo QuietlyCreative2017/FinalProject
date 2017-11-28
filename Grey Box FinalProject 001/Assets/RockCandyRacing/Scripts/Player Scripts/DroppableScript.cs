@@ -19,6 +19,7 @@ public class DroppableScript : MonoBehaviour {
     CharacterControls PlayerScript;
     public float PickupCD;
     public float PickupVolume;
+    public float PickupPrio;
 
     public AudioManager AudManager;
     private void Awake()
@@ -55,7 +56,7 @@ public class DroppableScript : MonoBehaviour {
     {
         if(collision.gameObject.tag == "Droppable" && canPickUp && isActiveAndEnabled && PickupCD <= 0 && collision.gameObject.GetComponent<PickUpBool>().Pickupable == true)
         {
-            AudManager.PlaySound("Rocket_Pickup_SFX", false, PickupVolume, 128);
+            AudManager.PlaySound("Rocket_Pickup_SFX", false, PickupVolume, PickupPrio);
             canUse = true;
             Destroy(collision.gameObject);
             gameObject.GetComponent<RocketScript>().enabled = false;
