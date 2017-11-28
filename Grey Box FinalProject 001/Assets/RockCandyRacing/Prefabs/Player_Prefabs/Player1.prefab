@@ -1512,9 +1512,12 @@ MonoBehaviour:
   GM: {fileID: 0}
   minJumpTime: 0
   JumpVolume: 1
-  SpeedBoostVolume: 0.3
+  SpeedBoostVolume: 0.2
   DazeVolume: 0.3
-  SpeedBoostCD: 0.5
+  JumpPrio: 0
+  SpeedBoostPrio: 0
+  DazePrio: 0
+  SpeedBoostCD: 0.2
 --- !u!114 &114251486738769280
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1558,6 +1561,7 @@ MonoBehaviour:
   PickupCD: 0
   AudManager: {fileID: 0}
   RocketVolume: 0.2
+  RocketPrio: 0
 --- !u!114 &114819681009537564
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1575,7 +1579,8 @@ MonoBehaviour:
   type: WASD
   canPickUp: 1
   PickupCD: 0
-  PickupVolume: 0
+  PickupVolume: 0.2
+  PickupPrio: 0
   AudManager: {fileID: 0}
 --- !u!136 &136847548769531120
 CapsuleCollider:
